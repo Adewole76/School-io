@@ -68,3 +68,30 @@ const schoolClasses = [
       teacherId: null,
     },
 ]
+
+let studentsArray=getCollection('students')?getCollection('students'):[];
+// CRUD functions
+const addStudent = (email, password, DOB, parentNo, classId, StudentId) => {
+  const newStudentObject  = {
+    Email: email,
+    passWord: password,
+    dateOfBirth:DOB,
+    ParentGuardianNo: parentNo,
+    Classid: classId,
+    studentId: StudentId
+  }
+
+  studentsArray.push(newStudentObject);
+  saveCollection('students', studentsArray);
+}
+
+const deleteStudent = (deletedStudentId) => {
+   studentsArray = studentsArray.filter(student => student.studentId !== deletedStudentId);
+   saveCollection('students', studentsArray);
+}
+
+const keyNewValueInputs = []
+const updateStudent = (updatedStudentId, keyToBeUpdated, keyNewValue) => {
+  const studentTobeUpdated = studentsArray.find(student => student.studentId === updatedStudentId)
+  console.log(studentTobeUpdated) 
+}
