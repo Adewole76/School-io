@@ -307,4 +307,14 @@ const checkIfEmailExists = (email) => {
    }
 }
 
-const getStudentsForTeachers;
+//role scoped data-loading function
+const getStudentsForTeachers = (teacherClassId) => {
+   const teachersStudents = studentsArray.filter(student => student.classId === teacherClassId)
+   return teachersStudents
+}
+
+//Basic field validators
+const validateEmail = (email) =>{
+  const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  return regex.test(email);
+};
