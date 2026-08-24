@@ -220,10 +220,11 @@ const deleteTeacher = (deletedTeacherId) => {
 }
 
 
-const updateTeacher = (updatedTeacherId, emailnewValue, passwordNewValue, classIdNewValue, studentIdNewValue) => {
-  const teacherToBeUpdate = TeachersArray.find(teacher => teacher.teacherId === updatedTeacherId)
-  console.log(teacherToBeUpdate)  
-  teacherToBeUpdate.Email = !emailnewValue?studentTobeUpdated.Email:passwordNewValue
+const updateTeacher = (updatedTeacherId, emailnewValue, phoneNumbernewValue, classIdNewValue, studentIdNewValue) => {
+  const teacherToBeUpdated = TeachersArray.find(teacher => teacher.teacherId === updatedTeacherId)
+  console.log(teacherToBeUpdated)  
+  teacherToBeUpdated.Email = !emailnewValue?teacherToBeUpdated.Email:emailnewValue;
+  teacherToBeUpdated.phoneNumber = !phoneNumbernewValue?teacherToBeUpdated.phoneNumber:phoneNumbernewValue;
   saveCollection('students', studentsArray);
 }
 
@@ -243,5 +244,52 @@ const addGrades = (studentId, term, subject, test1, test2, Exam) => {
   
 gradesArray.push(newGradeObject);
 saveCollection('grades', gradesArray);
+}
 
+const deleteGrade = (gradeId) => {
+   gradesArray = gradesArray.filter(grade => grade.id !== gradeId)
+   saveCollection('grades', gradesArray);
+}
+
+const updateGrade = (gradeId, termNewValue, subjectNewValue, test1NewValue, test2NewValue, examNewValue) => {
+  const gradeToBeUpdated = gradesArray.find(grade => grade.id === gradeId);
+  console.log(gradeToBeUpdated);
+  gradeToBeUpdated.term = !termNewValue?gradeToBeUpdated.term:termNewValue;
+  gradeToBeUpdated.gradeSubject = !subjectNewValue?gradeToBeUpdated.gradeSubject:subjectNewValue;
+  gradeToBeUpdated.test1Score = !test1NewValue?gradeToBeUpdated.test1Score:test1NewValue;
+  gradeToBeUpdated.test2Score = !test2NewValue?gradeToBeUpdated.test2Score:test2NewValue;
+  gradeToBeUpdated.examScore = !examNewValue?gradeToBeUpdated.examScore:examNewValue;
+
+  saveCollection('grades', gradesArray);
+}
+
+//Attendance CRUD operations
+let attendanceArray = getCollection('attends')?getCollection('attends'):[];
+const addAttendance = (studentId, classId, date, term, Status) => {
+  const newAttendanceObject = { 
+    id: generateIdForUsers('attend'), 
+    studentId: studentId, 
+    classId: classId,
+    date: date, 
+    term: term,
+    attendanceStatus: Status
+  } 
+  
+  attendanceArray.unshift(newAttendanceObject)
+  saveCollection('attends', attendanceArray);
+}
+
+const deleteAttendance = (attendanceId) => {
+   attendanceArray = attendanceArray.filter(attendance => attendance.id !== attendanceId);
+   saveCollection('attends', attendanceArray);
+}
+
+const updateAttendance = (attendanceId, date, term, status) => {
+  const attendanceToBeUpdated = attendanceArray.find(attendance => attendance.id === attendanceId);
+  console.log(attendanceToBeUpdated);
+  attendanceToBeUpdated.term = !term?attendanceToBeUpdated.term:term;
+  attendanceToBeUpdated.attendanceStatus = !status?attendanceToBeUpdated.attendanceStatus:status;
+  attendanceToBeUpdated.date = !date?attendanceToBeUpdated.test1Score:date;
+
+  saveCollection('attends', attendanceArray);
 }
