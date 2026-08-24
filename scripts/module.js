@@ -220,6 +220,8 @@ hashPassword(password).then(result => console.log(result))
  
 const deleteTeacher = (deletedTeacherId) => {
    TeachersArray = TeachersArray.filter(teacher => teacher.teacherId !== deletedTeacherId);
+   const particularTeacherClass = schoolClasses.find(particularclass => particularclass.teacherId === deletedTeacherId)
+   particularTeacherClass.teacherId = null;
    saveCollection('teachers', TeachersArray);
 }
 
@@ -298,4 +300,11 @@ const updateAttendance = (attendanceId, date, term, status) => {
   saveCollection('attends', attendanceArray);
 }
 
+//Global Email Validation Logic
+const checkIfEmailExists = (email) => {
+   if(studentsArray.some(student => student.Email === email) || TeachersArray.some(teacher => teacher.mail === email)){
+    console.log('email exists');
+   }
+}
 
+const getStudentsForTeachers;
