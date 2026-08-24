@@ -143,7 +143,11 @@ hashPassword(generateSecureShortPassword()).then(result => console.log(result))
 
 const deleteStudent = (deletedStudentId) => {
    studentsArray = studentsArray.filter(student => student.studentId !== deletedStudentId);
+   gradesArray = gradesArray.filter(grade => grade.studentId !== deletedStudentId.studentId);
+   attendanceArray = attendanceArray.filter(attendance => attendance.studentId !== deletedStudentId);
    saveCollection('students', studentsArray);
+   saveCollection('grades', gradesArray);
+   saveCollection('attends', attendanceArray);
 }
 
 const keyNewValueInputs = []
@@ -293,3 +297,5 @@ const updateAttendance = (attendanceId, date, term, status) => {
 
   saveCollection('attends', attendanceArray);
 }
+
+
