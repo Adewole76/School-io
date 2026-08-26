@@ -317,3 +317,12 @@ export const validateEmail = (email) =>{
   return regex.test(email);
 };  
 
+
+//does admin exist check function
+const checkIfAdminExist = (adminArr) => {
+  if(adminArr.length>0){
+    console.log('already exists')
+  }else {
+    console.log('admin exists')
+  }
+}
