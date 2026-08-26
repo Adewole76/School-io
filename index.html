@@ -8,14 +8,60 @@
 </head>
 <body>
 
-    <input type="text" placeholder="name">
-    <input type="text" placeholder="email">
-    <input type="text" placeholder="parent No">
-    <input type="text" placeholder="">
-    <input type="text" placeholder="">
-    <input type="text" placeholder="">
-    <input type="text" placeholder="">
-    <input type="text" placeholder="">
-    <script src="module.js"></script>
+    <!--Student Testing emails-->
+  <form action="">
+    <label for="">
+        <input class="name-input" type="text" placeholder="name">
+    </label>
+    <label for="">
+        <input class="age-input" type="text" placeholder="age">
+    </label>
+    <label for="">
+        <input class="email-input" type="text" placeholder="email">
+    </label>
+    <label for="">
+        <input class="DOB-input" type="date" placeholder="DOB">
+    </label>
+    <label for="">
+        <input class="parent-phone-input" type="tel" placeholder="Parent No">
+    </label>
+    <select class="classId-select" name="" id="">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+    </select>
+  </form>
+  <button type="button" class="submit-btn">Submit</button>
+
+  <!--Edit student Form-->
+  <form action="" class="hidden">
+    <label for="">
+        <input type="text" placeholder="name">
+    </label>
+    <label for="">
+        <input type="text" placeholder="email">
+    </label>
+    <label for="">
+        <input type="text" placeholder="age">
+    </label>
+    <label for="">
+        <input type="date" placeholder="date of birth">
+    </label>
+    <label for="">
+        <input type="text" placeholder="Parent No">
+    </label>
+   <select name="" id="">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+   </select>
+  </form>
+    <script type="module" src="/scripts/controllers/login.js"></script>
 </body>
 </html>

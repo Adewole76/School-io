@@ -1,10 +1,10 @@
 'use strict'
 
 // Local Storage helpers
-const saveCollection = (name, value) =>{
+export const saveCollection = (name, value) =>{
   localStorage.setItem(name, JSON.stringify(value));
 }
-const getCollection = (name) =>{
+export const getCollection = (name) =>{
     const storedItem = localStorage.getItem(name);
     const parsedStoredItem = JSON.parse(storedItem);
     return parsedStoredItem;
@@ -12,31 +12,31 @@ const getCollection = (name) =>{
 
 
 //Session Storage helpers
-const saveUserIdOnLogin = (name, value) => {
+export const saveUserIdOnLogin = (name, value) => {
    sessionStorage.setItem(name, JSON.stringify(value))
 }
-const saveUserRoleOnLogin = (name, value) => {
+export const saveUserRoleOnLogin = (name, value) => {
     sessionStorage.setItem(name, JSON.stringify(value));
 }
 
-const gettingUser = (name) => {
+export const gettingUser = (name) => {
     const userDetail = sessionStorage.getItem(name);
     const parsedUserDetail = JSON.parse(userDetail);
     return parsedUserDetail
 }
 
-const clearSessionStorage = () =>{
+export const clearSessionStorage = () =>{
     sessionStorage.clear();
 }
 
-const generateId = () => {
+export const generateId = () => {
   const timestamp = Date.now().toString(36); 
   const randomStr = Math.random().toString(36).substring(2, 8);
   
   return `${timestamp}-${randomStr}`;
 };
 
-const generateIdForUsers = (user) =>{
+export const generateIdForUsers = (user) =>{
   const studentId = `${user}-${Math.random().toString(36).substring(2, 9)}`
   return studentId
 }
@@ -74,74 +74,71 @@ const schoolClasses = [
     },
 ]
 
-//let studentsArray=getCollection('students')?getCollection('students'):[];
-let TeachersArray = []
-let exampleArray= []
+export let studentsArray=getCollection('students')?getCollection('students'):[];
 // CRUD functions
-const addStudent = (studentName,studentAge, email, DOB, parentNo, classId,) => {
-function generateSecureShortPassword(length = 8) {
-  const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-  const randomValues = new Uint32Array(length);
-  crypto.getRandomValues(randomValues);
-  let password = "";
-  for (let i = 0; i < length; i++) {
-    password += charset[randomValues[i] % charset.length];
+export const addStudent = async (studentName, studentAge, email, DOB, parentNo, classId) => {
+  
+  function generateSecureShortPassword(length = 8) {
+    const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    const randomValues = new Uint32Array(length);
+    crypto.getRandomValues(randomValues);
+    let password = "";
+    for (let i = 0; i < length; i++) {
+      password += charset[randomValues[i] % charset.length];
+    }
+    return password;
   }
-  return password;
-}
-async function hashPassword(password) {
-  // 1. Generate a random 16-byte salt
-  const salt = crypto.getRandomValues(new Uint8Array(16));
 
-  // 2. Turn the plain text password into a crypto key object
-  const encoder = new TextEncoder();
-  const baseKey = await crypto.subtle.importKey(
-    'raw',
-    encoder.encode(password),
-    'PBKDF2',
-    false,
-    ['deriveBits']
-  );
+  async function hashPassword(password) {
+    const salt = crypto.getRandomValues(new Uint8Array(16));
+    const encoder = new TextEncoder();
+    const baseKey = await crypto.subtle.importKey(
+      'raw',
+      encoder.encode(password),
+      'PBKDF2',
+      false,
+      ['deriveBits']
+    );
 
-  // 3. Run PBKDF2 with 600,000 iterations
-  const hashBuffer = await crypto.subtle.deriveBits(
-    {
-      name: 'PBKDF2',
-      salt: salt,
-      iterations: 600000, // High count slows down attackers
-      hash: 'SHA-256'
-    },
-    baseKey,
-    256 // Output hash size in bits (32 bytes)
-  );
+    const hashBuffer = await crypto.subtle.deriveBits(
+      {
+        name: 'PBKDF2',
+        salt: salt,
+        iterations: 600000,
+        hash: 'SHA-256'
+      },
+      baseKey,
+      256 
+    );
 
-  // 4. Convert salt and hash to Hex strings to store them
-  const saltHex = Array.from(salt).map(b => b.toString(16).padStart(2, '0')).join('');
-  const hashHex = Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+    const saltHex = Array.from(salt).map(b => b.toString(16).padStart(2, '0')).join('');
+    const hashHex = Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
 
-  // Return both! You need the exact same salt to verify the password later.
-  return { saltHex, hashHex };
-}
+    return { saltHex, hashHex };
+  }
 
-hashPassword(generateSecureShortPassword()).then(result => console.log(result))
+  const clearPassword = generateSecureShortPassword();
 
-  const newStudentObject  = {
+  const { saltHex, hashHex } = await hashPassword(clearPassword);
+
+  const newStudentObject = {
     Name: studentName,
     age: studentAge,
     Email: email,
-    dateOfBirth:DOB,
+    dateOfBirth: DOB,
     ParentGuardianNo: parentNo,
     Classid: classId,
-    passwordHash: saltHex,
-    passwordSalt: hashHex,
+    passwordHash: hashHex,   
+    passwordSalt: saltHex,  
     studentId: generateIdForUsers('student')
-  }
+  };
 
   studentsArray.push(newStudentObject);
-  saveCollection('students', studentsArray);
-}
+  saveCollection('students', studentsArray)
 
-const deleteStudent = (deletedStudentId) => {
+};
+
+export const deleteStudent = (deletedStudentId) => {
    studentsArray = studentsArray.filter(student => student.studentId !== deletedStudentId);
    gradesArray = gradesArray.filter(grade => grade.studentId !== deletedStudentId.studentId);
    attendanceArray = attendanceArray.filter(attendance => attendance.studentId !== deletedStudentId);
@@ -151,20 +148,21 @@ const deleteStudent = (deletedStudentId) => {
 }
 
 const keyNewValueInputs = []
-const updateStudent = (updatedStudentId, emailnewValue, ageNewValue, DOBnewValue, parentNoNewValue, classIdNewValue) => {
+export const updateStudent = (updatedStudentId,nameNewValue, emailnewValue, ageNewValue, DOBnewValue, parentNoNewValue, classIdNewValue) => {
   const studentTobeUpdated = studentsArray.find(student => student.studentId === updatedStudentId)
-  studentTobeUpdated.Email = !emailnewValue?studentTobeUpdated.Email:passwordNewValue;
+  studentTobeUpdated.Email = !emailnewValue?studentTobeUpdated.Email:emailnewValue;
+  studentTobeUpdated.name = !nameNewValue?studentTobeUpdated.name:nameNewValue;
   studentTobeUpdated.age = !ageNewValue?studentTobeUpdated.age:ageNewValue;
-  studentTobeUpdated.dateOfBirth = !DOBnewValue?studentTobeUpdated.Email:DOBnewValue
-  studentTobeUpdated.ParentGuardianNo = !parentNoNewValue?studentTobeUpdated.Email:parentNoNewValue
-  studentTobeUpdated.Classid = !emailnewValue?studentTobeUpdated.Email:classIdNewValue;
+  studentTobeUpdated.dateOfBirth = !DOBnewValue?studentTobeUpdated.dateOfBirth:DOBnewValue
+  studentTobeUpdated.ParentGuardianNo = !parentNoNewValue?studentTobeUpdated.ParentGuardianNo:parentNoNewValue
+  studentTobeUpdated.Classid = !emailnewValue?studentTobeUpdated.ClassId:classIdNewValue;
   console.log(studentTobeUpdated) 
 
   saveCollection('students', studentsArray);
 }
 
 //CRUD functionality for teachers
-const addTeacher = (name, email, password, classId, phoneNumber) => {
+export const addTeacher = (name, email, password, classId, phoneNumber) => {
 
 async function hashPassword(password) {
   // 1. Generate a random 16-byte salt
@@ -218,7 +216,7 @@ hashPassword(password).then(result => console.log(result))
   saveCollection('teachers', TeachersArray);
 }
  
-const deleteTeacher = (deletedTeacherId) => {
+export const deleteTeacher = (deletedTeacherId) => {
    TeachersArray = TeachersArray.filter(teacher => teacher.teacherId !== deletedTeacherId);
    const particularTeacherClass = schoolClasses.find(particularclass => particularclass.teacherId === deletedTeacherId)
    particularTeacherClass.teacherId = null;
@@ -237,7 +235,7 @@ const updateTeacher = (updatedTeacherId, emailnewValue, phoneNumbernewValue, cla
 
 //CRUD for grades
 let gradesArray = getCollection('grades')?getCollection('grades'):[]
-const addGrades = (studentId, term, subject, test1, test2, Exam) => {
+export const addGrades = (studentId, term, subject, test1, test2, Exam) => {
   const newGradeObject = {
     id: generateIdForUsers('grade'),
     studentId: studentId,
@@ -252,12 +250,12 @@ gradesArray.push(newGradeObject);
 saveCollection('grades', gradesArray);
 }
 
-const deleteGrade = (gradeId) => {
+export const deleteGrade = (gradeId) => {
    gradesArray = gradesArray.filter(grade => grade.id !== gradeId)
    saveCollection('grades', gradesArray);
 }
 
-const updateGrade = (gradeId, termNewValue, subjectNewValue, test1NewValue, test2NewValue, examNewValue) => {
+export const updateGrade = (gradeId, termNewValue, subjectNewValue, test1NewValue, test2NewValue, examNewValue) => {
   const gradeToBeUpdated = gradesArray.find(grade => grade.id === gradeId);
   console.log(gradeToBeUpdated);
   gradeToBeUpdated.term = !termNewValue?gradeToBeUpdated.term:termNewValue;
@@ -271,7 +269,7 @@ const updateGrade = (gradeId, termNewValue, subjectNewValue, test1NewValue, test
 
 //Attendance CRUD operations
 let attendanceArray = getCollection('attends')?getCollection('attends'):[];
-const addAttendance = (studentId, classId, date, term, Status) => {
+export const addAttendance = (studentId, classId, date, term, Status) => {
   const newAttendanceObject = { 
     id: generateIdForUsers('attend'), 
     studentId: studentId, 
@@ -285,12 +283,12 @@ const addAttendance = (studentId, classId, date, term, Status) => {
   saveCollection('attends', attendanceArray);
 }
 
-const deleteAttendance = (attendanceId) => {
+export const deleteAttendance = (attendanceId) => {
    attendanceArray = attendanceArray.filter(attendance => attendance.id !== attendanceId);
    saveCollection('attends', attendanceArray);
 }
 
-const updateAttendance = (attendanceId, date, term, status) => {
+export const updateAttendance = (attendanceId, date, term, status) => {
   const attendanceToBeUpdated = attendanceArray.find(attendance => attendance.id === attendanceId);
   console.log(attendanceToBeUpdated);
   attendanceToBeUpdated.term = !term?attendanceToBeUpdated.term:term;
@@ -301,20 +299,21 @@ const updateAttendance = (attendanceId, date, term, status) => {
 }
 
 //Global Email Validation Logic
-const checkIfEmailExists = (email) => {
+export const checkIfEmailExists = (email) => {
    if(studentsArray.some(student => student.Email === email) || TeachersArray.some(teacher => teacher.mail === email)){
     console.log('email exists');
    }
 }
 
 //role scoped data-loading function
-const getStudentsForTeachers = (teacherClassId) => {
+export const getStudentsForTeachers = (teacherClassId) => {
    const teachersStudents = studentsArray.filter(student => student.classId === teacherClassId)
    return teachersStudents
 }
 
 //Basic field validators
-const validateEmail = (email) =>{
+export const validateEmail = (email) =>{
   const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   return regex.test(email);
-};
+};  
+
