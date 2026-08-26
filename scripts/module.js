@@ -88,7 +88,7 @@ export const addStudent = async (studentName, studentAge, email, DOB, parentNo, 
     }
     return password;
   }
-
+  console.log(generateSecureShortPassword(length = 8))
   async function hashPassword(password) {
     const salt = crypto.getRandomValues(new Uint8Array(16));
     const encoder = new TextEncoder();
@@ -162,6 +162,7 @@ export const updateStudent = (updatedStudentId,nameNewValue, emailnewValue, ageN
 }
 
 //CRUD functionality for teachers
+export let TeachersArray = getCollection('teachers')?getCollection('teachers'):[];
 export const addTeacher = (name, email, password, classId, phoneNumber) => {
 
 async function hashPassword(password) {
@@ -325,4 +326,37 @@ const checkIfAdminExist = (adminArr) => {
   }else {
     console.log('admin exists')
   }
+}
+
+export async function verifyPassword(plainPassword, storedSaltHex, iterations, expectedHashHex) {
+  const encoder = new TextEncoder();
+  const passwordBytes = encoder.encode(plainPassword);
+  const saltBytes = hexToBytes(storedSaltHex);
+
+  // 1. Import the plain password as a raw key material
+  const baseKey = await crypto.subtle.importKey(
+    "raw",
+    passwordBytes,
+    { name: "PBKDF2" },
+    false,
+    ["deriveBits"]
+  );
+
+  // 2. Re-derive the bits using the exact same salt and iterations
+  const derivedBits = await crypto.subtle.deriveBits(
+    {
+      name: "PBKDF2",
+      image: "SHA-256", // Use a strong hashing function
+      salt: saltBytes,
+      iterations: iterations
+    },
+    baseKey,
+    256 // Length of the key in bits (32 bytes)
+  );
+
+  // 3. Convert the newly computed hash to a Hex string
+  const newHashHex = bufferToHex(derivedBits);
+
+  // 4. Securely compare the newly computed hash against the stored hash
+  return newHashHex === expectedHashHex;
 }
