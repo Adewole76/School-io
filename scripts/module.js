@@ -88,7 +88,6 @@ export const addStudent = async (studentName, studentAge, email, DOB, parentNo, 
     }
     return password;
   }
-  console.log(generateSecureShortPassword(length = 8))
   async function hashPassword(password) {
     const salt = crypto.getRandomValues(new Uint8Array(16));
     const encoder = new TextEncoder();
@@ -118,6 +117,7 @@ export const addStudent = async (studentName, studentAge, email, DOB, parentNo, 
   }
 
   const clearPassword = generateSecureShortPassword();
+  console.log(clearPassword)
 
   const { saltHex, hashHex } = await hashPassword(clearPassword);
 
@@ -328,10 +328,33 @@ const checkIfAdminExist = (adminArr) => {
   }
 }
 
+function hexToBytes(hexString) {
+  // Check for odd length and fix or throw error
+  if (hexString.length % 2 !== 0) {
+    throw new Error("Invalid hex string length");
+  }
+
+  const numBytes = hexString.length / 2;
+  const byteArray = new Uint8Array(numBytes);
+
+  for (let i = 0; i < numBytes; i++) {
+    // Extract a 2-character chunk
+    const hexChunk = hexString.substr(i * 2, 2);
+    // Convert base-16 string to numeric byte value
+    byteArray[i] = parseInt(hexChunk, 16);
+  }
+
+  return byteArray;
+}
+
+function bufferToHex(buffer){
+  const HashHex = Array.from(new Uint8Array(buffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+return HashHex
+}
 export async function verifyPassword(plainPassword, storedSaltHex, iterations, expectedHashHex) {
   const encoder = new TextEncoder();
   const passwordBytes = encoder.encode(plainPassword);
-  const saltBytes = hexToBytes(storedSaltHex);
+  const salt = hexToBytes(storedSaltHex);
 
   // 1. Import the plain password as a raw key material
   const baseKey = await crypto.subtle.importKey(
@@ -346,8 +369,8 @@ export async function verifyPassword(plainPassword, storedSaltHex, iterations, e
   const derivedBits = await crypto.subtle.deriveBits(
     {
       name: "PBKDF2",
-      image: "SHA-256", // Use a strong hashing function
-      salt: saltBytes,
+      hash: "SHA-256", // Use a strong hashing function
+      salt: salt,
       iterations: iterations
     },
     baseKey,
@@ -356,6 +379,7 @@ export async function verifyPassword(plainPassword, storedSaltHex, iterations, e
 
   // 3. Convert the newly computed hash to a Hex string
   const newHashHex = bufferToHex(derivedBits);
+  console.log(newHashHex);
 
   // 4. Securely compare the newly computed hash against the stored hash
   return newHashHex === expectedHashHex;
