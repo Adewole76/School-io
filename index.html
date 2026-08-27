@@ -4,19 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <section class="info-area">
+        <h2 class="school-name">School<span>.io Portal</span></h2>
+
+        <article>
+            <h2>Every record, in its place,</h2>
+            <p>Attendance, grades, and student records for prime touch-Kept simply, kept accurately.</p>
+        </article>
+
+        <section class="features">
+            <footer>
+                <h3>3</h3>
+                <p>ROLES</p>
+            </footer>
+            <footer>
+                <h3>12</h3>
+                <p>WEEKS / TERM</p>
+            </footer>
+            <footer>
+                <h3>100%</h3>
+                <p>ACCOUNTABLE</p>
+            </footer>
+        </section>
+    </section>
+    <section class="form-section">
     <form action="">
-        <h2>School.io</h2>
-        <h3>Sign in to your dashboard</h3>
+        <h2>Sign in</h2>
+        <h3>Enter your details to reach your dashboard</h3>
        <label for="">
+        Email
         <input type="email" class="email-input" placeholder="email">
        </label>
        <label for="">
+        Password
         <input type="password" class="password-input" placeholder="password">
        </label>
-       <button type="button" class="submit-btn">submit</button>
+       <button type="button" class="submit-btn">Sign in</button>
+       <p>Forgot your password?<a>Reset it</a></p>
+       <p>New teacher?<a>Create an account</a></p>
+       <p class="admin-link-toggle"></p>
     </form>
+    </section>
     <script type="module" src="/scripts/controllers/sharedLogin.js"></script>
 </body>
 </html>

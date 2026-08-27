@@ -27,7 +27,7 @@ export const gettingUser = (name) => {
 
 export const clearSessionStorage = () =>{
     sessionStorage.clear();
-    window.location.href ='index.html';
+    window.location.href ='/index.html';
 }
 
 export const generateId = () => {
