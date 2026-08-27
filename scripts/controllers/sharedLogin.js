@@ -34,7 +34,7 @@ try {
     }else(
         console.log("incorrect password")
     );
-    }else if(!emailInput.value && !passwordInput.value){
+    }else if(!emailInput.value || !passwordInput.value){
         console.log('please fill in all the required data')
     }
 } catch (error) {

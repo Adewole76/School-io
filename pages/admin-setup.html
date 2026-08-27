@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+   <link rel="stylesheet" href="/styles/admin-setup.css">
 </head>
 <body>
     <form action="">
-        <h2>School.io</h2>
+        <p class="pill">&#9679;ONE-TIME SETUP</p>
+        <h2>Create the admin account</h2>
+        <p class="account-instruction1">This account will have full access to Prime Touch Portal - managing teachers, students, and classes.Only one admin can ever exist</p>
         <label>
             Name
             <input type="text" placeholder="Full Name">
@@ -18,10 +21,18 @@
         </label>
 
         <label>
+            Password
             <input type="password" placeholder="password">
         </label>
-
-        <button type="button">sign up</button>
+      <label for="">
+        Confirm Password
+        <input type="password" placeholder="Confirm password">
+    <p>Re-enter password to confirm</p>  
+    </label>
+        <button type="button" class="create-admin-btn">Create admin account</button>
+    <div>
+        <p class="account-instruction2">Once Created, this page will no longer be reachable-the link on the sign-in page will switch to admin sign-in instead</p>
+    </div>
     </form>
     <script type="module" src="/scripts/controllers/admin-setup.js"></script>
 </body>

@@ -1,7 +1,4 @@
-.hidden{
-    display: none;
-}
- :root {
+:root {
     /* Color — brand */
 --color-bg: #FAF9F6
     --color-primary: #2A3B7C;        /* deep institutional blue — headers, primary actions */
@@ -76,100 +73,60 @@
 body{
     background-color: var(--color-bg);
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    height: 100vh;
-}
-
-.info-area{
-    background-color: var(--color-primary-dark);
-    padding: 3em 2em;
-}
-.school-name{
-    color: white;
-    font-size: 2.5em;
-    margin-top: 0;
-}
-
-.school-name span{
-    color: var(--color-accent);
-    font-family: var(--font-display);
-}
-article{
-    margin: 4em 0;
-}
-article h2{
-    font-size: 3em;
-    color: white;
-    font-family: var(--font-display);
-    margin: 0;
-    width: 350px;
-}
-article p{
-    color: white;
-    width: 350px;
-    font-size: 1rem;
-    font-family: var(--font-body);
-}
-.features{
-    display: flex;
-    column-gap: 2em;
-}
-
-.features footer h3{
-    color: var(--color-accent);
-    font-size: 2.5em;
-    font-family: var(--font-mono);
-    margin-bottom: 0;
-}
-.features footer p{
-    color: white;
-    font-family: var(--font-mono);
-}
-
-/*Form Styles*/
-.form-section{
-    display: grid;
     place-items: center;
 }
 form{
-    width: 60%;
-}
-.form-section label{
-    display: block;
-    margin-top: 1em;
-    font-family: var(--font-body);
-}
-label input{
-    display: block;
-    padding: 1em 1em;
-    width: 100%;
-    border-radius: 6px;
-    border: 1px solid var(--color-border)
-}
-.submit-btn{
-    width: 100%;
+    background-color: white;
+    box-shadow: var(--shadow-md);
     padding: 1em;
-    margin: 1em 0;
+    border-radius: 10px;
+}
+form label{
+ display: block;
+ width: 100%;
+ margin-top: 1em;
+ font-family: var(--font-body);
+}
+form label input{
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 1em 0.5em;
+    border-radius: 6px;
+    border: 1px solid var(--color-border-strong)
+}
+.create-admin-btn{
+    width: 100%;
     background-color: var(--color-primary-dark);
     color: white;
-    border-radius: 6px;
+    padding: 1em 0;
+    margin-top: 1em;
     border: 1px solid transparent;
+    border-radius: 6px;
 }
-form p{
-    text-align: center;
+.account-instruction1, .account-instruction2{
+    max-width: 500px;
     font-family: var(--font-body);
 }
-form p a{
-    color: var(--color-primary-dark);
+.account-instruction2{
+    color:#1D2A5C;
+}
+form div{
+    background-color: var(--color-primary-light);
+    padding: 1em 0 1em 1em;
+    margin-top: 1em;
+    border-radius: 6px;
+}
+.pill{
+    color: #C8892E;
+    background-color: var(--color-warning-bg);
+    display: inline-block;
+    padding: 0.5em 1em;
+    border-radius: 1.5em;
+    font-family: var(--font-mono);
+    margin-bottom: 0;
 }
 form h2{
-    font-size: 2.5em;
-    margin-bottom: 0;
     font-family: var(--font-display);
-}
-form h3{
-    font-size: 1em;
-    font-family: var(--font-body);
-    color: var(--color-text);
-    font-weight: 400;
+    font-size: 2.5em;
 }
