@@ -27,6 +27,7 @@ export const gettingUser = (name) => {
 
 export const clearSessionStorage = () =>{
     sessionStorage.clear();
+    window.location.href ='index.html';
 }
 
 export const generateId = () => {
@@ -163,7 +164,7 @@ export const updateStudent = (updatedStudentId,nameNewValue, emailnewValue, ageN
 
 //CRUD functionality for teachers
 export let TeachersArray = getCollection('teachers')?getCollection('teachers'):[];
-export const addTeacher = (name, email, password, classId, phoneNumber) => {
+export const addTeacher = async (name, email, password, classId, phoneNumber) => {
 
 async function hashPassword(password) {
   // 1. Generate a random 16-byte salt
@@ -198,9 +199,8 @@ async function hashPassword(password) {
   // Return both! You need the exact same salt to verify the password later.
   return { saltHex, hashHex };
 }
-hashPassword(password).then(result => console.log(result))
 
- 
+ const { saltHex, hashHex } = await hashPassword(password);
   
   const newTeacherObject  = {
     teacherId: generateIdForUsers('teacher'),
