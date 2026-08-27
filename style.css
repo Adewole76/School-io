@@ -92,6 +92,7 @@ body{
 
 .school-name span{
     color: var(--color-accent);
+    font-family: var(--font-display);
 }
 article{
     margin: 4em 0;
@@ -99,12 +100,15 @@ article{
 article h2{
     font-size: 3em;
     color: white;
+    font-family: var(--font-display);
     margin: 0;
-    width: 300px;
+    width: 350px;
 }
 article p{
     color: white;
-    width: 300px;
+    width: 350px;
+    font-size: 1rem;
+    font-family: var(--font-body);
 }
 .features{
     display: flex;
@@ -114,9 +118,12 @@ article p{
 .features footer h3{
     color: var(--color-accent);
     font-size: 2.5em;
+    font-family: var(--font-mono);
+    margin-bottom: 0;
 }
 .features footer p{
     color: white;
+    font-family: var(--font-mono);
 }
 
 /*Form Styles*/
@@ -124,15 +131,20 @@ article p{
     display: grid;
     place-items: center;
 }
-
+form{
+    width: 60%;
+}
 .form-section label{
     display: block;
+    margin-top: 1em;
+    font-family: var(--font-body);
 }
 label input{
     display: block;
     padding: 1em 1em;
     width: 100%;
     border-radius: 6px;
+    border: 1px solid var(--color-border)
 }
 .submit-btn{
     width: 100%;
@@ -145,4 +157,18 @@ label input{
 }
 form p{
     text-align: center;
+    font-family: var(--font-body);
+}
+form p a{
+    color: var(--color-primary-dark);
+}
+form h2{
+    font-size: 2.5em;
+    margin-bottom: 0;
+}
+form h3{
+    font-size: 1em;
+    font-family: var(--font-body);
+    color: var(--color-text);
+    font-weight: 400;
 }
