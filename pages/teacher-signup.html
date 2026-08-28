@@ -5,24 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/styles/teacher-signup.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
 </head>
 <body>
     <form action="">
-        <h3>School.io Portal</h3>
+        <h3>School.io <span>Portal</span></h3>
 
         <h2>Teacher sign up</h2>
-        <p>Create your account, then wait for the admin to assign you to a class before you can access student data</p>
+        <p class="instruction1">Create your account, then wait for the admin to assign you to a class before you can access student data</p>
         <label for="">
             Full Name
-            <input type="text" placeholder="Full name">
+            <input class="name-input" type="text" placeholder="Full name">
         </label>
         <label for="">
             Email address
-            <input type="email" placeholder="Email">
+            <input class="email-input" type="email" placeholder="Email">
         </label>
         <label for="">
            Subject you teach
-           <select name="" id="">
+           <select class="select-subject" name="" id="">
             <option value="Pick your subjec">Pick your subject</option>
             <option value="Mathematics">Mathematics</option>
             <option value="English">English</option>
@@ -37,15 +42,15 @@
         </label>
         <label for="">
            Password
-            <input type="text" placeholder="password">
+            <input class="password-input" type="text" placeholder="password">
         </label>
         <label for="">
             Confirm Password
-            <input type="text" placeholder="confirm password">
+            <input class="confirm-password-input" type="text" placeholder="confirm password">
         </label>
         <button class="create-teacher" type="button">Create account</button>
-    <p>You won't see any class or student data until the admin assigns you too a class - this is normal for new accounts</p>
-<p>Already have an account?<a>Sign in</a></p>    
+    <p class="instruction2">You won't see any class or student data until the admin assigns you too a class - this is normal for new accounts</p>
+<p class="sign-in-link">Already have an account?<a>Sign in</a></p>    
 </form>
     <script type="module" src="/scripts/controllers/teacher-signup.js"></script>
 </body>
