@@ -320,6 +320,9 @@ export const validateEmail = (email) =>{
 
 
 //does admin exist check function
+const createAdmin = () => {
+
+}
 const checkIfAdminExist = (adminArr) => {
   if(adminArr.length>0){
     console.log('already exists')
