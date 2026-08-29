@@ -173,3 +173,11 @@ form h3{
     color: var(--color-text);
     font-weight: 400;
 }
+.admin-link-toggle{
+    font-family: var(--font-body);
+    color: var(--color-primary-dark);
+    text-decoration: none;
+}
+.admin-link-footer{
+   text-align: center;
+}

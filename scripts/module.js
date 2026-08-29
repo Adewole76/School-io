@@ -359,6 +359,7 @@ export const createAdmin = async (name, email, password) => {
  const { saltHex, hashHex } = await hashPassword(password);
 
  const newAdminObject = {
+  id: generateIdForUsers('admin'),
   name: name,
   email: email,
   passwordSalt: saltHex,
