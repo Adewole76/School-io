@@ -319,17 +319,63 @@ export const validateEmail = (email) =>{
   return regex.test(email);
 };  
 
-
+export const adminArray = getCollection('admin')?getCollection('admin'):[];
 //does admin exist check function
-const createAdmin = () => {
+export const createAdmin = async (name, email, password) => {
+  async function hashPassword(password) {
+  // 1. Generate a random 16-byte salt
+  const salt = crypto.getRandomValues(new Uint8Array(16));
 
+  // 2. Turn the plain text password into a crypto key object
+  const encoder = new TextEncoder();
+  const baseKey = await crypto.subtle.importKey(
+    'raw',
+    encoder.encode(password),
+    'PBKDF2',
+    false,
+    ['deriveBits']
+  );
+
+  // 3. Run PBKDF2 with 600,000 iterations
+  const hashBuffer = await crypto.subtle.deriveBits(
+    {
+      name: 'PBKDF2',
+      salt: salt,
+      iterations: 600000, // High count slows down attackers
+      hash: 'SHA-256'
+    },
+    baseKey,
+    256 // Output hash size in bits (32 bytes)
+  );
+
+  // 4. Convert salt and hash to Hex strings to store them
+  const saltHex = Array.from(salt).map(b => b.toString(16).padStart(2, '0')).join('');
+  const hashHex = Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+
+  // Return both! You need the exact same salt to verify the password later.
+  return { saltHex, hashHex };
 }
-const checkIfAdminExist = (adminArr) => {
+
+ const { saltHex, hashHex } = await hashPassword(password);
+
+ const newAdminObject = {
+  name: name,
+  email: email,
+  passwordSalt: saltHex,
+  passwordHash: hashHex
+ }
+adminArray.push(newAdminObject);
+console.log(adminArray);
+saveCollection('admin', JSON.stringify(adminArray))
+}
+export const checkIfAdminExist = (adminArr) => {
+  let result;
   if(adminArr.length>0){
-    console.log('already exists')
-  }else {
-    console.log('admin exists')
+    result = true
+  }else{
+    result = false
   }
+    return result
 }
 
 function hexToBytes(hexString) {

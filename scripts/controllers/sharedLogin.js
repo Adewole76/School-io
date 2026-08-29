@@ -4,9 +4,21 @@ import { TeachersArray } from "../module.js"
 import { verifyPassword } from "../module.js";
 import { saveUserIdOnLogin } from "../module.js";
 import { saveUserRoleOnLogin } from "../module.js";
+import { checkIfAdminExist } from "../module.js";
 const emailInput = document.querySelector('.email-input');
 const passwordInput = document.querySelector('.password-input');
 const submitButton = document.querySelector('.submit-btn');
+const adminLinkToggle = document.querySelector('.admin-link-toggle');
+checkIfAdminExist()
+if(checkIfAdminExist()){
+  console.log('admin exists');
+  adminLinkToggle.textContent = 'Sign in as Admin';
+  adminLinkToggle.href = "/pages/admin-login.html";
+}else if(!checkIfAdminExist()){
+    console.log('admin does not exist')
+    adminLinkToggle.textContent = 'Sign up Admin';
+    adminLinkToggle.href = "/pages/admin-setup.html";
+}
 console.log(studentsArray);
 submitButton.addEventListener('click', async () => {
 try {
