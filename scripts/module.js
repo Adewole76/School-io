@@ -164,7 +164,7 @@ export const updateStudent = (updatedStudentId,nameNewValue, emailnewValue, ageN
 
 //CRUD functionality for teachers
 export let TeachersArray = getCollection('teachers')?getCollection('teachers'):[];
-export const addTeacher = async (name, email, password, classId, phoneNumber) => {
+export const addTeacher = async (name, email, password, subject, classId, phoneNumber) => {
 
 async function hashPassword(password) {
   // 1. Generate a random 16-byte salt
@@ -210,6 +210,7 @@ async function hashPassword(password) {
     phonenumber:phoneNumber ,
     passwordHash: hashHex,
     passwordSalt:saltHex,
+    teacherSubject: subject,
     mustChangePassword: false
   }
 
@@ -225,12 +226,12 @@ export const deleteTeacher = (deletedTeacherId) => {
 }
 
 
-const updateTeacher = (updatedTeacherId, emailnewValue, phoneNumbernewValue, classIdNewValue, studentIdNewValue) => {
+export const updateTeacher = (updatedTeacherId, emailnewValue, phoneNumbernewValue, classIdNewValue, studentIdNewValue) => {
   const teacherToBeUpdated = TeachersArray.find(teacher => teacher.teacherId === updatedTeacherId)
   console.log(teacherToBeUpdated)  
   teacherToBeUpdated.Email = !emailnewValue?teacherToBeUpdated.Email:emailnewValue;
   teacherToBeUpdated.phoneNumber = !phoneNumbernewValue?teacherToBeUpdated.phoneNumber:phoneNumbernewValue;
-  saveCollection('students', studentsArray);
+  saveCollection('teachers', TeachersArray);
 }
 
 
