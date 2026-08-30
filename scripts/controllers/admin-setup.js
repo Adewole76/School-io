@@ -16,7 +16,7 @@ createAdminBtn.addEventListener('click',  async () => {
         console.log('your password has not been confirmed, please type it exactly in the confirmation input');
     }else if(!validateEmail(emailInput.value)){
         console.log("invalid email");
-    }else if(!checkIfAdminExist(adminArray)){
+    }else if(checkIfAdminExist(adminArray)){
         console.log("admin already exists");
     }else{
         await createAdmin(nameInput.value, emailInput.value, passwordInput.value)

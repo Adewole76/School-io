@@ -200,23 +200,30 @@ async function hashPassword(password) {
   return { saltHex, hashHex };
 }
 
- const { saltHex, hashHex } = await hashPassword(password);
-  
-  const newTeacherObject  = {
-    teacherId: generateIdForUsers('teacher'),
-    Name: name,
-    Email: email,
-    ClassId: classId,
-    phonenumber:phoneNumber ,
-    passwordHash: hashHex,
-    passwordSalt:saltHex,
-    teacherSubject: subject,
-    mustChangePassword: false
-  }
+ 
+    const { saltHex, hashHex } = await hashPassword(password);
+    
+    // JavaScript is likely crashing on the line below:
+    const newTeacherObject = {
+      teacherId: generateIdForUsers('teacher'), 
+      Name: name,
+      Email: email,
+      ClassId: classId,
+      phonenumber: phoneNumber,
+      passwordHash: hashHex,
+      passwordSalt: saltHex,
+      teacherSubject: subject,
+      mustChangePassword: false
+    };
 
-  TeachersArray.push(newTeacherObject);
-  saveCollection('teachers', TeachersArray);
+    TeachersArray.push(newTeacherObject);
+    saveCollection('teachers', TeachersArray);
+    
+    return newTeacherObject;
+
+ 
 }
+
  
 export const deleteTeacher = (deletedTeacherId) => {
    TeachersArray = TeachersArray.filter(teacher => teacher.teacherId !== deletedTeacherId);
@@ -434,4 +441,8 @@ export async function verifyPassword(plainPassword, storedSaltHex, iterations, e
 
   // 4. Securely compare the newly computed hash against the stored hash
   return newHashHex === expectedHashHex;
+}
+
+export const requireAuth = (id, role) => {
+ 
 }
