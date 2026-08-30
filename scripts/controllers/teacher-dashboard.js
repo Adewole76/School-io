@@ -1,0 +1,1 @@
+const userName = document.querySelector('.user-name');
