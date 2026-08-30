@@ -16,17 +16,21 @@
         </section>
     </nav>
 
-    <section>
-       <section>
-        <h2>You're all set - almost</h2>
-        <p>Your account has been created, but you haven't been assigned to a class yet. Once the admin assigns you, your class roster, attendance, and grade tools will appear here.</p>
-       </section>
+    <section class="main-container">
+       <header>
+        <h1>You're all set - almost</h1>
+        <p class="instruction">Your account has been created, but you haven't been assigned to a class yet. Once the admin assigns you, your class roster, attendance, and grade tools will appear here.</p>
+       </header>
        <section>
         <div>
             <p>Account</p>
             <footer><p class="user-name"></p>&bull;<p class="user-subject"></p></footer>
         </div>
-        <div></div>
+        <hr>
+        <div>
+          <p>Class assignment</p>
+          <p class="assignment-status"></p>
+        </div>
        </section>
     </section>
     <script type="module" src="/scripts/controllers/teacher-dashboard.js"></script>
