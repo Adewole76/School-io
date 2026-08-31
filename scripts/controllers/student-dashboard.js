@@ -6,7 +6,7 @@ import { clearSessionStorage } from "../module.js";
 const logOutBtn = document.querySelector('.logout-btn');
 const currentUser = gettingUser('currentUserId');
 const currentUserRole = gettingUser("currentUserRole")
-requireAuth(currentUser, "studentId", studentsArray, 'student');
+requireAuth(currentUser, "studentId", studentsArray, currentUserRole, 'student');
 logOutBtn.addEventListener('click', function (){
     clearSessionStorage();
 })
