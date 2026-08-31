@@ -12,5 +12,5 @@ logOutBtn.addEventListener('click', function (){
 })
 window.addEventListener('pageshow', (event) => {
     // Your code to execute when the page is shown
-    requireAuth(currentUser, "studentId", studentsArray, 'student');
+    requireAuth(currentUser, "studentId", studentsArray, currentUserRole, 'student');
 });

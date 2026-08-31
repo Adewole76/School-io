@@ -6,4 +6,8 @@ const currentUser = gettingUser('currentUserId');
 const currentUserRole = gettingUser("currentUserRole");
 console.log(currentUser, currentUserRole);
 const currentTeacher = TeachersArray.find(user => user.teacherId === currentUser);
-requireAuth(currentUser, "teacherId", TeachersArray, currentUserRole, 'teacher')
+requireAuth(currentUser, "teacherId", TeachersArray, currentUserRole, 'teacher');
+window.addEventListener('pageshow', (event) => {
+    // Your code to execute when the page is shown
+   requireAuth(currentUser, "teacherId", TeachersArray, currentUserRole, 'teacher');
+});

@@ -7,3 +7,7 @@ console.log(currentUser);
 console.log(typeof adminArray);
 const currentUserRole = gettingUser('currentUserRole');
 requireAuth(currentUser, "id", adminArray, currentUserRole, 'admin');
+
+window.addEventListener('pageshow', (event) => {
+   requireAuth(currentUser, "id", adminArray, currentUserRole, 'admin');
+});
