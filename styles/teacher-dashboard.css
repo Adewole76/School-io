@@ -99,6 +99,19 @@
     font-weight: 200;
     font-family: var(--font-body);
   }
+  nav .user-profile{
+    font-family: var(--font-body);
+  }
+  nav .user-profile p{
+    display: inline-block;
+  }
+  .account-details{
+    font-family: var(--font-body);
+    font-weight: 100;
+  }
+  .account-details footer p{
+    display: inline-block
+  }
   .main-container header{
     text-align: center;
   }

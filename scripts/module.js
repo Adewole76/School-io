@@ -443,6 +443,8 @@ export async function verifyPassword(plainPassword, storedSaltHex, iterations, e
   return newHashHex === expectedHashHex;
 }
 
-export const requireAuth = (id, role) => {
- 
+export const requireAuth = (id, particular, array, particularRole, role) => {
+  if(!array.some(user => user[particular] === id) && particularRole !== role ){
+  window.location.href ='/index.html';
+  }
 }

@@ -41,7 +41,7 @@ try {
        console.log(await verifyPassword(passwordInput.value, ParticularTeacher.passwordSalt, 600000, ParticularTeacher.passwordHash))       
    if(passwordInput.value && await verifyPassword(passwordInput.value, ParticularTeacher.passwordSalt, 600000, ParticularTeacher.passwordHash)){
         console.log('password was verified'); 
-        saveUserIdOnLogin('currentUserId', ParticularTeacher.studentId);
+        saveUserIdOnLogin('currentUserId', ParticularTeacher.teacherId);
         saveUserRoleOnLogin('currentUserRole', 'teacher');
         window.location.href = '/pages/teacher-dashboard.html'
     }else(
