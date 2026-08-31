@@ -366,7 +366,7 @@ export const createAdmin = async (name, email, password) => {
  const { saltHex, hashHex } = await hashPassword(password);
 
  const newAdminObject = {
-  id: generateIdForUsers('admin'),
+  adminid: generateIdForUsers('admin'),
   name: name,
   email: email,
   passwordSalt: saltHex,
@@ -375,6 +375,7 @@ export const createAdmin = async (name, email, password) => {
 adminArray.push(newAdminObject);
 console.log(adminArray);
 saveCollection('admin', JSON.stringify(adminArray))
+return newAdminObject;
 }
 export const checkIfAdminExist = (adminArr) => {
   let result;

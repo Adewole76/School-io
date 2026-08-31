@@ -1,8 +1,9 @@
-import { adminArray, checkIfAdminExist } from "../module.js";
+import { adminArray } from "../module.js";
 import { createAdmin } from "../module.js";
 import { validateEmail } from "../module.js";
 import { checkIfAdminExist } from "../module.js";
 import { saveUserIdOnLogin } from "../module.js";
+import { saveUserRoleOnLogin } from "../module.js";
 const nameInput = document.querySelector('.name-input');
 const emailInput = document.querySelector('.email-input');
 const passwordInput = document.querySelector('.password-input');
@@ -19,8 +20,11 @@ createAdminBtn.addEventListener('click',  async () => {
     }else if(checkIfAdminExist(adminArray)){
         console.log("admin already exists");
     }else{
-        await createAdmin(nameInput.value, emailInput.value, passwordInput.value)
+        const currentAdmin = await createAdmin(nameInput.value, emailInput.value, passwordInput.value)
+        console.log(currentAdmin);
         console.log(adminArray);
+        saveUserIdOnLogin('currentUserId', currentAdmin.adminid )
+        saveUserRoleOnLogin('currentUserRole', 'admin');
+        window.location.href = "/pages/admin-dashboard.html"
     }
-    
 })
