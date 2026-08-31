@@ -374,7 +374,7 @@ export const createAdmin = async (name, email, password) => {
  }
 adminArray.push(newAdminObject);
 console.log(adminArray);
-saveCollection('admin', JSON.stringify(adminArray))
+saveCollection('admin', adminArray)
 return newAdminObject;
 }
 export const checkIfAdminExist = (adminArr) => {

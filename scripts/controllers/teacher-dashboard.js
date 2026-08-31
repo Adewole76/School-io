@@ -7,7 +7,7 @@ const currentUser = gettingUser('currentUserId');
 const currentUserRole = gettingUser("currentUserRole");
 console.log(currentUser, currentUserRole);
 const currentTeacher = TeachersArray.find(user => user.teacherId === currentUser);
-requireAuth(currentUser, "teacherId", TeachersArray, 'teacher')
+requireAuth(currentUser, "teacherId", TeachersArray, currentUserRole, 'teacher')
 const userName = document.querySelector('.user-name');
 const userName2 = document.querySelector('.user-name-2')
 const userSubject = document.querySelector('.user-subject');
