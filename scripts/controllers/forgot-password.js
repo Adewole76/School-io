@@ -17,18 +17,27 @@ sendBtn.addEventListener('click', function(){
       const particularAdmin = adminArray.find(admin => admin.email === emailInput.value);
       console.log(particularAdmin.email);
       const resetCode = generateFourDigitNumber();
+      particularAdmin.passwordResetCode = resetCode;
+      particularAdmin.passwordResetTimestamp = Date.now();
+      console.log(particularAdmin);
       sendEmail(particularAdmin.name, resetCode, particularAdmin.email);
     }else if(TeachersArray.some(teacher => teacher.Email === emailInput.value)){
         const particularTeacher = TeachersArray.find(teacher => teacher.Email === emailInput.value);
         console.log(particularTeacher.Email);
         const resetCode = generateFourDigitNumber();
         console.log(resetCode);
+        particularTeacher.passwordResetCode = resetCode;
+        particularTeacher.passwordResetTimestamp = Date.now()
+        console.log(particularTeacher);
         sendEmail(particularTeacher.Name, resetCode, particularTeacher.Email);
     }else if(studentsArray.some(student => student.Email === emailInput.value)){
         const particularStudent = studentsArray.find(student => student.Email === emailInput.value);
         console.log(particularStudent.Email);
         const resetCode = generateFourDigitNumber();
+        particularStudent.passwordResetCode = resetCode;
+        particularStudent.passwordResetTimestamp = Date.now();
         console.log(resetCode);
+        console.log(particularStudent);
         sendEmail(particularStudent.Name, resetCode, particularStudent.Email);
     }else{
         console.log('Email not found');
