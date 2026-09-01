@@ -14,13 +14,24 @@ sendBtn.addEventListener('click', function(){
     if(!emailInput.value){
         console.log('please fill in your email address');
     }else if(adminArray.some(admin => admin.email === emailInput.value)){
-      console.log(adminArray.find(admin => admin.email === emailInput.value));
+      const particularAdmin = adminArray.find(admin => admin.email === emailInput.value);
+      console.log(particularAdmin.email);
+      const resetCode = generateFourDigitNumber();
+      sendEmail(particularAdmin.name, resetCode, particularAdmin.email);
     }else if(TeachersArray.some(teacher => teacher.Email === emailInput.value)){
-        console.log(TeachersArray.find(teacher => teacher.Email === emailInput.value));
+        const particularTeacher = TeachersArray.find(teacher => teacher.Email === emailInput.value);
+        console.log(particularTeacher.Email);
+        const resetCode = generateFourDigitNumber();
+        console.log(resetCode);
+        sendEmail(particularTeacher.Name, resetCode, particularTeacher.Email);
     }else if(studentsArray.some(student => student.Email === emailInput.value)){
-        console.log(studentsArray.find(student => student.Email === emailInput.value));
+        const particularStudent = studentsArray.find(student => student.Email === emailInput.value);
+        console.log(particularStudent.Email);
+        const resetCode = generateFourDigitNumber();
+        console.log(resetCode);
+        sendEmail(particularStudent.Name, resetCode, particularStudent.Email);
     }else{
-        console.log('Invalid email');
+        console.log('Email not found');
     }
 })
 
@@ -28,21 +39,22 @@ sendBtn.addEventListener('click', function(){
 
 
 // 2. Define the JavaScript variables you want to send
-const userScore = 95;
-const userName = "Alex";
+const sendEmail = (userName, resetCode, userEmail) => {
 
 // 3. Package your variables into a template parameters object
 const templateParams = {
-    to_name: userName,
-    score_result: userScore, // This maps to your EmailJS template variable
-    reply_to: "user@example.com"
+    name: userName,
+    reset_code: resetCode, // This maps to your EmailJS template variable
+    user_email:  userEmail
 };
 
 // 4. Send the email using your Service ID and Template ID
-// emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", templateParams)
-//     .then((response) => {
-//         console.log("Email sent successfully!", response.status, response.text);
-//     })
-//     .catch((error) => {
-//         console.error("Failed to send email:", error);
-//     });
+
+emailjs.send("service_1fzqpt7", "template_625pnsa", templateParams)
+    .then((response) => {
+        console.log("Email sent successfully!", response.status, response.text);
+    })
+    .catch((error) => {
+        console.error("Failed to send email:", error);
+    });
+}
