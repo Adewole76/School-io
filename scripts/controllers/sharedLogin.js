@@ -10,12 +10,12 @@ const emailInput = document.querySelector('.email-input');
 const passwordInput = document.querySelector('.password-input');
 const submitButton = document.querySelector('.submit-btn');
 const adminLinkToggle = document.querySelector('.admin-link-toggle');
-checkIfAdminExist(adminArray)
-if(checkIfAdminExist(adminArray)){
+const adminExists = checkIfAdminExist(adminArray)
+if(adminExists){
   console.log('admin exists');
   adminLinkToggle.textContent = 'Sign in as Admin';
   adminLinkToggle.href = "/pages/admin-login.html";
-}else if(!checkIfAdminExist(adminArray)){
+}else if(!adminExists){
     console.log('admin does not exist')
     adminLinkToggle.textContent = 'Sign up Admin';
     adminLinkToggle.href = "/pages/admin-setup.html";
@@ -32,9 +32,9 @@ try {
         saveUserIdOnLogin('currentUserId', particularStudent.studentId);
         saveUserRoleOnLogin('currentUserRole', 'student');
         window.location.href = '/pages/student-dashboard.html';
-    }else(
+    }else{
         console.log("incorrect password")
-    )
+    }
     }else if (emailInput.value && TeachersArray.some(user => user.Email === emailInput.value)){
        const ParticularTeacher = TeachersArray.find(teacher => teacher.Email === emailInput.value);
        console.log(ParticularTeacher);
