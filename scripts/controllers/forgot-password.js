@@ -2,6 +2,7 @@
 import {TeachersArray} from '../module.js';
 import {studentsArray} from '../module.js';
 import {adminArray} from '../module.js';``
+import {saveCollection} from '../module.js';
 const sendBtn = document.querySelector('.send-btn');
 const emailInput = document.querySelector('.email-input');
 function generateFourDigitNumber() {
@@ -21,6 +22,7 @@ sendBtn.addEventListener('click', function(){
       particularAdmin.passwordResetTimestamp = Date.now();
       console.log(particularAdmin);
       sendEmail(particularAdmin.name, resetCode, particularAdmin.email);
+      saveCollection('userTochangePassword', particularAdmin);
     }else if(TeachersArray.some(teacher => teacher.Email === emailInput.value)){
         const particularTeacher = TeachersArray.find(teacher => teacher.Email === emailInput.value);
         console.log(particularTeacher.Email);
@@ -30,6 +32,7 @@ sendBtn.addEventListener('click', function(){
         particularTeacher.passwordResetTimestamp = Date.now()
         console.log(particularTeacher);
         sendEmail(particularTeacher.Name, resetCode, particularTeacher.Email);
+        saveCollection('userTochangePassword', particularTeacher);
     }else if(studentsArray.some(student => student.Email === emailInput.value)){
         const particularStudent = studentsArray.find(student => student.Email === emailInput.value);
         console.log(particularStudent.Email);
@@ -39,6 +42,7 @@ sendBtn.addEventListener('click', function(){
         console.log(resetCode);
         console.log(particularStudent);
         sendEmail(particularStudent.Name, resetCode, particularStudent.Email);
+        saveCollection('userTochangePassword', particularStudent);
     }else{
         console.log('Email not found');
     }
