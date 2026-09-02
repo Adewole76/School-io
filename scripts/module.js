@@ -445,7 +445,9 @@ export async function verifyPassword(plainPassword, storedSaltHex, iterations, e
 }
 
 export const requireAuth = (id, particular, array, particularRole, role) => {
-  if(!array.some(user => user[particular] === id) && particularRole !== role ){
+  const currentIdinSession = gettingUser('currentUserId');
+  const currentUserRole = gettingUser('currentUserRole');
+  if(!array.some(user => user[particular] === currentIdinSession) || particularRole !== currentUserRole ){
   window.location.href ='/index.html';
   }
 }

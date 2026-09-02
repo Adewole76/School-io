@@ -8,7 +8,11 @@ const currentUser = gettingUser('currentUserId');
 const currentUserRole = gettingUser("currentUserRole");
 console.log(currentUser, currentUserRole);
 window.addEventListener('pageshow', (event) => {
-    requireAuth(currentUser, "teacherId", TeachersArray, currentUserRole, 'teacher');
+    if (event.persisted) {
+        const freshUserId = gettingUser('currentUserId');
+        const freshUserRole = gettingUser('currentUserRole');
+        requireAuth(freshUserId, "teacherId", TeachersArray, freshUserRole, 'teacher');
+    }
 });
 const currentTeacher = TeachersArray.find(user => user.teacherId === currentUser);
 requireAuth(currentUser, "teacherId", TeachersArray, currentUserRole, 'teacher')

@@ -162,6 +162,7 @@ form p{
 }
 form p a{
     color: var(--color-primary-dark);
+    text-decoration: none;
 }
 form h2{
     font-size: 2.5em;

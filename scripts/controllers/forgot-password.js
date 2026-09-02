@@ -23,6 +23,7 @@ sendBtn.addEventListener('click', function(){
       console.log(particularAdmin);
       sendEmail(particularAdmin.name, resetCode, particularAdmin.email);
       saveCollection('userTochangePassword', particularAdmin);
+       window.location.href = '/pages/reset-password.html'
     }else if(TeachersArray.some(teacher => teacher.Email === emailInput.value)){
         const particularTeacher = TeachersArray.find(teacher => teacher.Email === emailInput.value);
         console.log(particularTeacher.Email);
@@ -33,6 +34,7 @@ sendBtn.addEventListener('click', function(){
         console.log(particularTeacher);
         sendEmail(particularTeacher.Name, resetCode, particularTeacher.Email);
         saveCollection('userTochangePassword', particularTeacher);
+        window.location.href = '/pages/reset-password.html'
     }else if(studentsArray.some(student => student.Email === emailInput.value)){
         const particularStudent = studentsArray.find(student => student.Email === emailInput.value);
         console.log(particularStudent.Email);
@@ -43,6 +45,7 @@ sendBtn.addEventListener('click', function(){
         console.log(particularStudent);
         sendEmail(particularStudent.Name, resetCode, particularStudent.Email);
         saveCollection('userTochangePassword', particularStudent);
+         window.location.href = '/pages/reset-password.html'
     }else{
         console.log('Email not found');
     }
