@@ -49,6 +49,8 @@ try {
     );
     }else if(!emailInput.value || !passwordInput.value){
         console.log('please fill in all the required data')
+    }else{
+        console.log('user does not exist');
     }
 } catch (error) {
     console.log(error)

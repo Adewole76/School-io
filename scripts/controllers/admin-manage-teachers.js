@@ -3,6 +3,9 @@ import { gettingUser } from "../module.js";
 import { requireAuth } from "../module.js";
 import { TeachersArray } from "../module.js";
 import { clearSessionStorage } from "../module.js";
+import { mapUnAssignedTeachers } from "../views/admin-manage-teacher-view.js"
+import { mapAssignedTeachers } from "../views/admin-manage-teacher-view.js"
+const teachersSection = document.querysSelector('.teachers-section')
 const currentUser = gettingUser('currentUserId');
 console.log(currentUser);
 console.log(typeof adminArray);
@@ -16,5 +19,6 @@ window.addEventListener('pageshow', (event) => {
         requireAuth(freshUserId, "adminid", adminArray, freshUserRole, 'admin');
     }
 });
+
 const unassingnedContainer = document.querySelector('.unassinged-container');
 const assignedContainer = document.querySelector('.assinged-container');

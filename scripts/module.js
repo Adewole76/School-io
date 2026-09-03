@@ -42,7 +42,7 @@ export const generateIdForUsers = (user) =>{
   return studentId
 }
 
-const schoolClasses = [
+export const schoolClasses = [
     {
       name:"Js1",
       id: generateId(),

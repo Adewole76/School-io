@@ -28,7 +28,7 @@ const manageStudents = document.querySelector('.manage-students');
 adminName.textContent = currentAdmin.name;
 totalTeachers.textContent = TeachersArray.length;
 totalStudents.textContent = studentsArray.length;
-const unassignedTeachersArray = TeachersArray.filter(user => user.ClassId === null);
+export const unassignedTeachersArray = TeachersArray.filter(user => user.ClassId === null);
 unassignedTeachers.textContent = unassignedTeachersArray.length;
 
 manageTeachers.addEventListener('click', function(){
