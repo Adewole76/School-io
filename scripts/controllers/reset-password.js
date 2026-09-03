@@ -79,12 +79,26 @@ resetBtn.addEventListener('click', async() => {
         const { saltHex, hashHex } = await hashPassword(resetPasswordInput.value);
         userTochangePassword.passwordSalt = saltHex;
         userTochangePassword.passwordHash = hashHex;
+        console.log(userTochangePassword);
+        const adminRecordTochange = TeachersArray.find(user => user.email === userTochangePassword.email);
+        adminRecordTochange.passwordSalt = userTochangePassword.passwordSalt;
+        adminRecordTochange.passwordHash = userTochangePassword.passwordHash
         saveCollection('admin', adminArray);
+        console.log(TeachersArray);
+        userTochangePassword.passwordResetCode = null;
+        userTochangePassword.passwordResetTimestamp = null
       }else if(studentsArray.some(user => user.Email === userTochangePassword.Email)){
         const { saltHex, hashHex } = await hashPassword(resetPasswordInput.value);
         userTochangePassword.passwordSalt = saltHex;
         userTochangePassword.passwordHash = hashHex;
+        console.log(userTochangePassword);
+        const studentRecordTochange = studentsArray.find(user => user.Email === userTochangePassword.Email);
+        studentRecordTochange.passwordSalt = userTochangePassword.passwordSalt;
+        studentRecordTochange.passwordHash = userTochangePassword.passwordHash
         saveCollection('students', studentsArray);
+        console.log(studentsArray);
+        userTochangePassword.passwordResetCode = null;
+        userTochangePassword.passwordResetTimestamp = null
       }else if(TeachersArray.some(user => user.Email === userTochangePassword.Email)){
         const { saltHex, hashHex } = await  hashPassword(resetPasswordInput.value);
         userTochangePassword.passwordSalt = saltHex;
