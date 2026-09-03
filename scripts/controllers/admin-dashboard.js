@@ -23,14 +23,20 @@ const adminName = document.querySelector('.admin-name');
 const totalTeachers = document.querySelector('.total-teachers');
 const totalStudents = document.querySelector('.total-students');
 const unassignedTeachers = document.querySelector('.unassinged-teachers');
-
+const manageTeachers = document.querySelector('.manage-teachers');
+const manageStudents = document.querySelector('.manage-students');
 adminName.textContent = currentAdmin.name;
 totalTeachers.textContent = TeachersArray.length;
 totalStudents.textContent = studentsArray.length;
 const unassignedTeachersArray = TeachersArray.filter(user => user.ClassId === null);
 unassignedTeachers.textContent = unassignedTeachersArray.length;
 
-
+manageTeachers.addEventListener('click', function(){
+    window.location.href = "/pages/admin-manage-teachers.html";
+});
+manageStudents.addEventListener('click', function(){
+    window.location.href = "pages/admin-manage-students.html";
+})
 
 
 const logOut = document.querySelector('.log-out');
