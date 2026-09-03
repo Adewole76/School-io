@@ -25,6 +25,7 @@ const unassingnedContainer = document.querySelector('.unassinged-container');
 const assignedContainer = document.querySelector('.assinged-container');
 const logoutBtn = document.querySelector('.logout-btn');
 
+
 logoutBtn.addEventListener('click', function(){
  clearSessionStorage();
 })
