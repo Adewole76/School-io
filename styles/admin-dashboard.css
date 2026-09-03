@@ -105,6 +105,13 @@
     text-decoration: none;
   }
 
+  nav h2{
+    font-family: var(--font-display);
+    color: var(--color-primary-dark);
+  }
+  nav span{
+    color: var(--color-accent);
+  }
   header h2{
     font-family:var(--font-display);
     font-size:var(--text-2xl);
@@ -125,7 +132,8 @@
     background-color: var(--color-surface);
     box-shadow: var(--shadow-sm);
     padding: 1em;
-    border-radius:var(--radius-md)
+    border-radius:var(--radius-md);
+    border:1px solid var(--color-border)
   }
   .stat p{
     display: block;
@@ -142,9 +150,17 @@
     padding: 1em;
     border-radius:var(--radius-md)
   }
+  .management{
+    display: flex;
+    padding: 2em;
+    transform: translateY(0);
+    cursor: pointer;
+    border:1px solid var(--color-border); 
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.4s ease;
+}
   .management:hover{
-    border: 1px solid var(--color-primary-dark);
-    box-shadow:var(--shadow-md);
+    transform: translateY(-3px);
+    border-color:var(--color-primary-dark);
   }
   .img-container img{
     width: 50px;
@@ -155,11 +171,7 @@
     margin:var(--space-4);
   }
   
-  .management{
-    display: flex;
-    padding: 2em;
-    transition:box-shadow 0.15s ease, border 0.15s ease;
-}
+  
 
   .management section{
     margin-left: 1em;
