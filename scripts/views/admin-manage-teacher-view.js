@@ -30,14 +30,18 @@ export const mapUnAssignedTeachers = (arr, container) => {
 }
 
 export const mapAssignedTeachers = (arr, container) => {
+const classLookup = Object.fromEntries(
+        schoolClasses.map(cla => [cla.id, cla.name])
+    );
+
     const mappedAssignedTeachers = arr.map(user => {
-        const particularClass = schoolClasses.find(cla => cla.id === user.ClassId);
-        console.log(particularClass.name)
+
+        const className = classLookup[user.ClassId] || "No Class Assigned";
         return `<div class="assigned-teacher" data-user-id="${user.teacherId}">
         <section>
             <footer>
                 <h3>${user.Name}</h3>
-                <p>${user.Email} &#9679; ${user.teacherSubject} &#9679; ${particularClass.name}</p>
+                <p>${user.Email} &#9679; ${user.teacherSubject} &#9679; ${className}</p>
             </footer>
         </section>
 

@@ -1,7 +1,9 @@
 import { adminArray } from "../module.js";
 import { gettingUser } from "../module.js";
+import { schoolClasses } from "../module.js";
 import { requireAuth } from "../module.js";
 import { TeachersArray } from "../module.js";
+import { saveCollection } from "../module.js";
 import { clearSessionStorage } from "../module.js";
 import { mapUnAssignedTeachers } from "../views/admin-manage-teacher-view.js"
 import { mapAssignedTeachers } from "../views/admin-manage-teacher-view.js"
@@ -47,7 +49,18 @@ teachersSection.addEventListener('click', (event)=>{
      const UnassignedTeacherInfo = TeachersArray.find(user => user.teacherId = UnassignedTeachertag.dataset.userId);
      console.log(UnassignedTeachertag, UnassignedTeacherInfo);
      saveAssignmentbtn.addEventListener('click', function(){
-        console.log(UnassignedTeachertag);
+        if(classAssignmentInput.value === "Select a class to coordinate"){
+            console.log(`you haven't selected a class`);
+        }else{
+           const particularClass = schoolClasses.find(c => c.name === classAssignmentInput.value);
+           console.log(particularClass)
+           UnassignedTeacherInfo.ClassId = particularClass.id;
+           particularClass.teacherId = UnassignedTeacherInfo.teacherId;
+           saveCollection('teachers', TeachersArray);
+           saveCollection('classes', schoolClasses);
+           AssignmentForm.classList.add('hidden');
+           console.log(UnassignedTeacherInfo);
+        };
         
      })
    }
