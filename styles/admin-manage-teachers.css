@@ -225,3 +225,31 @@ form h3{
     margin-top: 1em;
     border-radius: 6px;
 }
+.assigned-teacher{
+    display: flex;
+    justify-content: space-between;
+}
+.img-Name-Email div{
+    display: inline-block;
+}
+.img-Name-Email img{
+    width: 50px;
+    height: 50px;
+}
+.img-Name-Email footer{
+    display: inline-block;
+}
+
+.assigned-tag-btn{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+}
+
+.manage-btn{
+    background-color: var(--color-primary-light);
+    color:var(--color-primary-dark);
+    padding: 8px;
+    border: 1px solid transparent;
+    border-radius: 6px;
+}

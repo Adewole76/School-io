@@ -1,6 +1,7 @@
 'use strict'
 import {TeachersArray} from "../module.js"
 import {schoolClasses} from "../module.js"
+import { getCollection } from "../module.js"
 export const mapUnAssignedTeachers = (arr, container) => {
    const mappedAssignedTeachers = arr.map(user => {
     return `<div class="unassigned-teacher" data-user-id="${user.teacherId}" >
@@ -28,29 +29,29 @@ export const mapUnAssignedTeachers = (arr, container) => {
     </div>`
    }
 }
-
+let schoolClass = getCollection("classes")
 export const mapAssignedTeachers = (arr, container) => {
-const classLookup = Object.fromEntries(
-        schoolClasses.map(cla => [cla.id, cla.name])
-    );
-
+    console.log(schoolClass);
     const mappedAssignedTeachers = arr.map(user => {
-
-        const className = classLookup[user.ClassId] || "No Class Assigned";
+        const particularClass = schoolClass.find(cla => cla.id === user.ClassId);
+        console.log(particularClass);
         return `<div class="assigned-teacher" data-user-id="${user.teacherId}">
-        <section>
+        <section class="img-Name-Email">
+           <div imga>
+              <img src="/images/user2.png">
+           </div>
             <footer>
                 <h3>${user.Name}</h3>
-                <p>${user.Email} &#9679; ${user.teacherSubject} &#9679; ${className}</p>
+                <p>${user.Email} &#9679; ${user.teacherSubject} &#9679; coordinates ${particularClass.name}</p>
             </footer>
         </section>
 
-        <section>
+        <section class="assigned-tag-btn">
            <p>&#9679; Assigned</p>
            <button class="manage-btn">manage</button>
         </section>
         </div>`
-    }).join();
+    }).join('');
    if(arr.length > 0){
     container.innerHTML = mappedAssignedTeachers;
     }else {
