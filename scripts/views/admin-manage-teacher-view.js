@@ -20,7 +20,13 @@ export const mapUnAssignedTeachers = (arr, container) => {
     </div>
     `
    }).join('')
+   if(arr.length > 0){
    container.innerHTML = mappedAssignedTeachers;
+   }else{
+    container.innerHTML = `<div>
+    <h3>Needs assignment ${arr.length}</h3>
+    </div>`
+   }
 }
 
 export const mapAssignedTeachers = (arr, container) => {

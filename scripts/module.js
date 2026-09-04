@@ -451,3 +451,13 @@ export const requireAuth = (id, particular, array, particularRole, role) => {
   window.location.href ='/index.html';
   }
 }
+
+export const checkIfThereAreAnyteachers = (arr, emptyState, actualSection) => {
+  if(arr.length === 0){
+    emptyState.classList.remove('hidden');
+    actualSection.classList.add('hidden')
+  }else{
+    emptyState.classList.add('hidden');
+    actualSection.classList.remove('hidden');
+  }
+}
