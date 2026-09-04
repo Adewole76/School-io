@@ -4,9 +4,9 @@ import {schoolClasses} from "../module.js"
 export const mapUnAssignedTeachers = (arr, container) => {
    const mappedAssignedTeachers = arr.map(user => {
     return `<div class="unassigned-teacher">
-    <section>
+    <section class="img-name-email">
         <div>
-             <img src="/images/user.png">
+             <img src="/images/user2.png">
         </div>
         <footer>
         <h3>${user.Name}</h3>
@@ -33,7 +33,7 @@ export const mapAssignedTeachers = (arr, container) => {
     const mappedAssignedTeachers = arr.map(user => {
         const particularClass = schoolClasses.find(cla => cla.id === user.ClassId);
         console.log(particularClass.name)
-        return `<div class="assigned-teacher">
+        return `<div class="assigned-teacher" data-user-id="${user.teacherId}">
         <section>
             <footer>
                 <h3>${user.Name}</h3>
@@ -47,6 +47,11 @@ export const mapAssignedTeachers = (arr, container) => {
         </section>
         </div>`
     }).join();
-
+   if(arr.length > 0){
     container.innerHTML = mappedAssignedTeachers;
+    }else {
+        container.innerHTML = `<div>
+         <h2>No teacher has been assigned to any class</h2>
+        </div>`
+    }
 }

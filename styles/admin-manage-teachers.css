@@ -141,3 +141,29 @@
      width: 50px;
      height: 50px;
   }
+
+  .unassinged-container{
+    background-color: blue;
+  }
+
+  .unassigned-teacher{
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--color-surface);
+  }
+
+.img-name-email div{
+    display: inline-block;
+}
+  .img-name-email div img{
+    width: 50px;
+    height: 50px;
+  }
+
+  .img-name-email footer{
+    display: inline-block;
+  }
+
+  .img-name-email footer h3,p{
+    margin: 0;
+  }
