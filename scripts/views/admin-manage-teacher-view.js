@@ -13,7 +13,7 @@ export const mapUnAssignedTeachers = (arr, container) => {
         <p>${user.Email} &#9679; ${user.teacherSubject}</p>
         </footer>
     </section>
-    <section>
+    <section class="tag-btn">
     <p>&#9679; Unassigned</p>
     <button class="Assign-btn">Assign Class</button>
     </section>

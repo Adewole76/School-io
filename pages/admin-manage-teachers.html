@@ -49,6 +49,38 @@
                 <p>Nothing to do on your end — just share the sign-up link with your teaching staff.</p>
             </section>
     </main>
+
+    <div class="form-overlay"></div>
+    <form class="assignment-form">
+        <header>
+          <div>
+            <img src="/images/user.png">
+          </div> 
+          <section>
+            <h2 class="formUserName"></h2>
+            <p class="formUserEmail"></p>
+          </section> 
+        </header>
+     <section>
+        <h3>CLASS ASSIGNMENT</h3>
+        <select class="class-select">
+            <option value="Select a class to coordinate">Select a class to coordinate</option>
+            <option value="Js1">Js1</option>
+            <option value="Js2">Js2</option>
+            <option value="Js3">Js3</option>
+            <option value="Ss1">Ss1</option>
+            <option value="Ss2">Ss2</option>
+            <option value="Ss3">Ss3</option>
+        </select>
+        <button class="save-assignment">Save assignment</button>
+     </section>
+
+     <section class="danger-zone">
+        <h2>Danger zone</h2>
+        <p>Removing this teacher deletes their account. if they're coordinating a class, that class will show 'no teacher assigned" afterward</p>
+        <button>Remove teacher</button>
+     </section>
+    </form>
     <script type="module" src="/scripts/controllers/admin-manage-teachers.js"></script>
 </body>
 </html>

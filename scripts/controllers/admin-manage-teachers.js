@@ -38,4 +38,11 @@ logoutBtn.addEventListener('click', function(){
 mapUnAssignedTeachers(unassignedTeachers, unassingnedContainer)
 mapAssignedTeachers(assignedTeachers, assignedContainer);
 
+teachersSection.addEventListener('click', (event)=>{
+   if(event.target.closest('.Assign-btn')){
+    
+   }
+})
+
+
 
