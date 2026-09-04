@@ -22,7 +22,9 @@ window.addEventListener('pageshow', (event) => {
 const teachersSection = document.querySelector('.teachers-section')
 const emptyState = document.querySelector('.empty-state-section');
 checkIfThereAreAnyteachers(TeachersArray, emptyState, teachersSection)
-
+const AssignmentForm = document.querySelector('.assignment-form')
+const saveAssignmentbtn = document.querySelector('.save-assignment');
+const classAssignmentInput = document.querySelector('.class-select');
 const unassignedTeachers = TeachersArray.filter(user => user.ClassId === null);
 const assignedTeachers = TeachersArray.filter(user => user.ClassId !== null);
 const unassingnedContainer = document.querySelector('.unassinged-container');
@@ -40,9 +42,17 @@ mapAssignedTeachers(assignedTeachers, assignedContainer);
 
 teachersSection.addEventListener('click', (event)=>{
    if(event.target.closest('.Assign-btn')){
-    
+     AssignmentForm.classList.remove('hidden'); 
+     const UnassignedTeachertag = event.target.closest('.unassigned-teacher');
+     const UnassignedTeacherInfo = TeachersArray.find(user => user.teacherId = UnassignedTeachertag.dataset.userId);
+     console.log(UnassignedTeachertag, UnassignedTeacherInfo);
+     saveAssignmentbtn.addEventListener('click', function(){
+        console.log(UnassignedTeachertag);
+        
+     })
    }
 })
+
 
 
 

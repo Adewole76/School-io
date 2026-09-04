@@ -3,7 +3,7 @@ import {TeachersArray} from "../module.js"
 import {schoolClasses} from "../module.js"
 export const mapUnAssignedTeachers = (arr, container) => {
    const mappedAssignedTeachers = arr.map(user => {
-    return `<div class="unassigned-teacher">
+    return `<div class="unassigned-teacher" data-user-id="${user.teacherId}" >
     <section class="img-name-email">
         <div>
              <img src="/images/user2.png">
