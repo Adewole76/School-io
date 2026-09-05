@@ -63,6 +63,8 @@ teachersSection.addEventListener('click', (event)=>{
         };
         
      })
+   }else if (event.target.closest('.manage-btn')){
+    
    }
 })
 
