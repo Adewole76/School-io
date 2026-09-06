@@ -1,5 +1,6 @@
 import { adminArray } from "../module.js";
 import { gettingUser } from "../module.js";
+import {deleteTeacher} from "../module.js";
 import { schoolClasses } from "../module.js";
 import { requireAuth } from "../module.js";
 import { TeachersArray } from "../module.js";
@@ -32,8 +33,10 @@ const assignedTeachers = TeachersArray.filter(user => user.ClassId !== null);
 const unassingnedContainer = document.querySelector('.unassinged-container');
 const assignedContainer = document.querySelector('.assinged-container');
 const logoutBtn = document.querySelector('.logout-btn');
-
-
+const removeBtn = document.querySelector('.remove-btn');
+console.log(removeBtn);
+const formUserName = document.querySelector('.formUserName');
+const formUserEmail = document.querySelector('.formUserEmail');
 logoutBtn.addEventListener('click', function(){
  clearSessionStorage();
 })
@@ -45,9 +48,11 @@ mapAssignedTeachers(assignedTeachers, assignedContainer);
 teachersSection.addEventListener('click', (event)=>{
    if(event.target.closest('.Assign-btn')){
      AssignmentForm.classList.remove('hidden'); 
-     const UnassignedTeachertag = event.target.closest('.unassigned-teacher');
-     const UnassignedTeacherInfo = TeachersArray.find(user => user.teacherId = UnassignedTeachertag.dataset.userId);
+     let UnassignedTeachertag = event.target.closest('.unassigned-teacher');
+     const UnassignedTeacherInfo = TeachersArray.find(user => user.teacherId === UnassignedTeachertag.dataset.userId);
      console.log(UnassignedTeachertag, UnassignedTeacherInfo);
+     formUserName.innerHTML = UnassignedTeacherInfo.Name;
+     formUserEmail.innerHTML = UnassignedTeacherInfo.Email;
      saveAssignmentbtn.addEventListener('click', function(){
         if(classAssignmentInput.value === "Select a class to coordinate"){
             console.log(`you haven't selected a class`);
@@ -61,7 +66,10 @@ teachersSection.addEventListener('click', (event)=>{
            AssignmentForm.classList.add('hidden');
            console.log(UnassignedTeacherInfo);
         };
-        
+     removeBtn.addEventListener('click', function(){
+        console.log('i am a boy')
+        deleteTeacher(UnassignedTeacherInfo.teacherId);
+     })
      })
    }else if (event.target.closest('.manage-btn')){
     
