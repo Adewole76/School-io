@@ -42,7 +42,7 @@ export const generateIdForUsers = (user) =>{
   return studentId
 }
 
-export const schoolClasses = [
+export let schoolClasses =getCollection('classes')?getCollection('classes'):[
     {
       name:"Js1",
       id: generateId(),

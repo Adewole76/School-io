@@ -1,9 +1,11 @@
 import { adminArray } from "../module.js";
 import { gettingUser } from "../module.js";
 import {deleteTeacher} from "../module.js";
+// import {schoolClass} from "../views/admin-manage-teacher-view.js"
 import { schoolClasses } from "../module.js";
 import { requireAuth } from "../module.js";
 import { TeachersArray } from "../module.js";
+import {getCollection} from "../module.js";
 import { saveCollection } from "../module.js";
 import { clearSessionStorage } from "../module.js";
 import { mapUnAssignedTeachers } from "../views/admin-manage-teacher-view.js"
@@ -58,12 +60,13 @@ teachersSection.addEventListener('click', (event)=>{
             console.log(`you haven't selected a class`);
         }else{
            const particularClass = schoolClasses.find(c => c.name === classAssignmentInput.value);
-           console.log(particularClass)
+           console.log(particularClass);
            UnassignedTeacherInfo.ClassId = particularClass.id;
            particularClass.teacherId = UnassignedTeacherInfo.teacherId;
            saveCollection('teachers', TeachersArray);
            saveCollection('classes', schoolClasses);
            AssignmentForm.classList.add('hidden');
+           mapAssignedTeachers(assignedTeachers, assignedContainer);
            console.log(UnassignedTeacherInfo);
         };
      removeBtn.addEventListener('click', function(){

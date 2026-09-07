@@ -3,7 +3,7 @@ import {TeachersArray} from "../module.js"
 import {schoolClasses} from "../module.js"
 import { getCollection } from "../module.js"
 export const mapUnAssignedTeachers = (arr, container) => {
-   const mappedAssignedTeachers = arr.map(user => {
+    const mappedAssignedTeachers = arr.map(user => {
     return `<div class="unassigned-teacher" data-user-id="${user.teacherId}" >
     <section class="img-name-email">
         <div>
@@ -29,11 +29,12 @@ export const mapUnAssignedTeachers = (arr, container) => {
     </div>`
    }
 }
-let schoolClass = getCollection("classes")
+
 export const mapAssignedTeachers = (arr, container) => {
-    console.log(schoolClass);
+
     const mappedAssignedTeachers = arr.map(user => {
-        const particularClass = schoolClass.find(cla => cla.id === user.ClassId);
+        console.log(schoolClasses);
+        const particularClass = schoolClasses.find(cla => cla.id === user.ClassId);
         console.log(particularClass);
         return `<div class="assigned-teacher" data-user-id="${user.teacherId}">
         <section class="img-Name-Email">
