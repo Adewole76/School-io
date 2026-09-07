@@ -61,13 +61,18 @@ teachersSection.addEventListener('click', (event)=>{
         }else{
            const particularClass = schoolClasses.find(c => c.name === classAssignmentInput.value);
            console.log(particularClass);
+           if(particularClass.teacherId !== null){
+            console.log('this class already has a teacher');
+           }else{
            UnassignedTeacherInfo.ClassId = particularClass.id;
            particularClass.teacherId = UnassignedTeacherInfo.teacherId;
            saveCollection('teachers', TeachersArray);
            saveCollection('classes', schoolClasses);
            AssignmentForm.classList.add('hidden');
+           mapUnAssignedTeachers(unassignedTeachers, unassingnedContainer);
            mapAssignedTeachers(assignedTeachers, assignedContainer);
            console.log(UnassignedTeacherInfo);
+           }
         };
      removeBtn.addEventListener('click', function(){
         console.log('i am a boy')
