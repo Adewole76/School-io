@@ -39,7 +39,7 @@ export const mapAssignedTeachers = (arr, container) => {
         return `<div class="assigned-teacher" data-user-id="${user.teacherId}">
         <section class="img-Name-Email">
            <div imga>
-              <img src="/images/user2.png">
+              <img src="/images/user.png">
            </div>
             <footer>
                 <h3>${user.Name}</h3>
@@ -49,7 +49,7 @@ export const mapAssignedTeachers = (arr, container) => {
 
         <section class="assigned-tag-btn">
            <p>&#9679; Assigned</p>
-           <button class="manage-btn">manage</button>
+           <button class="manage-btn">Manage</button>
         </section>
         </div>`
     }).join('');

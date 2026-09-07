@@ -12,10 +12,11 @@ signInButton.addEventListener('click', async() => {
         console.log('please fill all necessary Inputs');
     }else if(adminArray.some(user => user.email === emailInput.value)){
       let currentAdmin  = adminArray.find(user => user.email === emailInput.value);
-      let isPasswordverified = await verifyPassword(emailInput.value, currentAdmin.passwordSalt, 600000, currentAdmin.passwordHash);
+      console.log(currentAdmin.passwordSalt)
+      let isPasswordverified = await verifyPassword(passwordInput.value, currentAdmin.passwordSalt, 600000, currentAdmin.passwordHash);
       if(isPasswordverified){
-        saveUserIdOnLogin(currentAdmin.adminid);
-        saveUserRoleOnLogin('admin')
+        saveUserIdOnLogin("currentUserId", currentAdmin.adminid);
+        saveUserRoleOnLogin("currentUserRole", 'admin');
         window.location.href = '/pages/admin-dashboard.html';
       }else {
         console.log("password is incorrect");

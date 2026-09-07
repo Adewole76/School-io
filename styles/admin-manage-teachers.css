@@ -228,6 +228,18 @@ form h3{
 .assigned-teacher{
     display: flex;
     justify-content: space-between;
+    background-color: white;
+    border: 1px solid var(--color-border-strong);
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+    padding: 1em;
+    margin-bottom: 1em
+}
+.assigned-teacher footer h3{
+  margin: 0;
+}
+.assigned-teacher footer p{
+  margin: 0;
 }
 .img-Name-Email div{
     display: inline-block;
@@ -245,6 +257,13 @@ form h3{
     grid-template-columns: 1fr 1fr;
     place-items: center;
 }
+.assigned-tag-btn p{
+  background-color:var(--color-success-bg);
+  padding:var(--space-2);
+  border-radius: 6px;
+  color: var(--color-success);
+  font-family: var(--font-mono);
+}
 
 .manage-btn{
     background-color: var(--color-primary-light);
@@ -252,4 +271,5 @@ form h3{
     padding: 8px;
     border: 1px solid transparent;
     border-radius: 6px;
+    font-weight:var(--weight-bold);
 }
