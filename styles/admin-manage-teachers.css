@@ -142,7 +142,9 @@
      width: 50px;
      height: 50px;
   }
-
+.assigned-heading{
+  font-family:var(--font-display);
+}
   
 .unassinged-container{
     width: 100%;
@@ -162,6 +164,11 @@
     box-shadow:var(--shadow-sm);
   }
 
+.unassigned-empty-state h3{
+  font-family: var(--font-display);
+  color: var(--color-accent);
+}
+
 .img-name-email div{
     display: inline-block;
 }
@@ -174,11 +181,16 @@
     display: inline-block;
   }
 
-  .img-name-email footer h3,p{
+  .img-name-email footer h3{
     margin: 0;
+    font-family:var(--font-display);
   }
- 
- 
+  
+
+  .img-name-email footer p{
+    margin: 0;
+    font-family:var(--font-body);
+  }
 .tag-btn{
     display: grid;
     place-items: center;
@@ -208,6 +220,9 @@ form{
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: white;
+    padding:2em 2em;
+    border-radius: 8px;
+    z-index: 120
 }
 form img{
     width: 50px;
@@ -218,6 +233,25 @@ form header div{
 }
 form h3{
     margin: 0;
+}
+.form-overlay{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.169);
+  z-index: 100;
+}
+.formUserName{
+  font-size: var(--text-xl);
+  font-family: var(--font-display);
+  color:var(--color-text);
+}
+.formUserEmail{
+    font-size: var(--text-l);
+  font-family: var(--font-body);
+  color: var(--color-text-muted);
 }
 .class-select, .save-assignment{
     width: 100%;
@@ -237,9 +271,11 @@ form h3{
 }
 .assigned-teacher footer h3{
   margin: 0;
+  font-family:var(--font-display);
 }
 .assigned-teacher footer p{
   margin: 0;
+  font-family:var(--font-body);
 }
 .img-Name-Email div{
     display: inline-block;
@@ -272,4 +308,66 @@ form h3{
     border: 1px solid transparent;
     border-radius: 6px;
     font-weight:var(--weight-bold);
+}
+.assigment-form header div{
+ display: inline-block;
+}
+.assignment-form header section{
+  display: inline-block;
+}
+
+.assignment-form header section h2{
+  margin: 0;
+}
+.assignment-form header section p{
+  margin: 0;
+}
+.class-select-section{
+  margin: 1em 0;
+}
+.class-select-section h3{
+  font-family:var(--font-body);
+  font-size:var(--text-sm);
+  font-weight:var(--weight-semibold);
+  color:var(--color-text-muted);
+}
+.save-assignment{
+  background-color:var(--color-primary-dark);
+  color: white;
+  border: 1px solid transparent;
+}
+.remove-btn{
+  background-color:transparent;
+  border: 1.5px solid var(--color-danger);
+  padding: 1em;
+  font-weight:var(--weight-bold);
+  width: 100%;
+  color:var(--color-danger);
+  border-radius: 6px;
+}
+.danger-zone h2{
+ font-size:var(--text-sm);
+ color: var(--color-danger);
+ font-family:var(--font-body);
+ font-weight:var(--weight-semibold);
+}
+.removal-warning1{
+  font-family:var(--font-body);
+  color:var(--color-text-muted);
+  font-size: var(--text-sm);
+  max-width: 350px;
+  font-weight: var(--weight-regular);
+}
+.actual-remove-btn{
+  background-color: var(--color-danger);
+  color: white;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  width: 100%;
+  padding: 1em;
+}
+.cancel-remover-btn{
+  background-color: transparent;
+  padding: 1em;
+  width: 100%;
 }

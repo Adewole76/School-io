@@ -4,11 +4,88 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/styles/admin-manage-students.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"></head>
 <body>
-    
+    <nav>
+        <h2>Prime Touch <span>Portal</span></h2>
+        <section class=info-section>
+            <section>
+            <a href="/pages/forgot-password.html">Change Password</a>
+            <button class="logout-btn">log out</button>
+            </section>
+            <div>
+                <img src="/images/user.png">
+                <p class="admin-name"></p>
+            </div>
+        </section>
+    </nav>
+    <section class="banner">
+        <section>
+            <h3>Students</h3>
+            <section class="instruction-btn">
+                <p>View, add, and manage every student enrolled at Prime Touch including their class placement and guardian contact</p>
+                <button class="add-button">+ Add Student</button> 
+            </section>
+        </section>
+    </section>
+    <section class="Search-banner">
+        <input class="search-bar" placeholder="Search students...">
+        <select>
+            <option value="All Classes">All Classes</option>
+            <option value="Js">Js1</option>
+            <option value="Js">Js2</option>
+            <option value="Js">Js3</option>
+            <option value="Ss1">Ss1</option>
+            <option value="Ss2">Ss2</option>
+            <option value="Ss3">Ss3</option>
+        </select>
+    </section>
+<form>
+    <header>
+        <div>
+            <h3>Add student</h3>
+            <button>close</button>
+        </div>
+        <p>This creates a student profile and enrolls them in the selected class.</p>
+    </header>
+    <main>
+        <label>
+           Full name
+            <input type="text" placeholder="e.g. Chidinma">
+        </label>
+        <section>
+            <label for="">
+                <input type="date" placeholder="">
+            </label>
+            <label for="">
+                Class
+                <select>
+                    <option value="Select a class">Select a class</option>
+                    <option value="Js1">Js1</option>
+                    <option value="Js2">Js2</option>
+                    <option value="Js3">Js3</option>
+                    <option value="Ss1">Ss1</option>
+                    <option value="Ss2">Ss2</option>
+                    <option value="Ss3">Ss3</option>
+                </select>
+            </label>
+            <label for="">
+                Guardian/Parent No
+                <input type="tel" placeholder="+234 800 000 000">
+            </label>
+            <label for="">
+                Email
+                <input type="email" placeholder="student@greendale.edu">
+            </label>
+        </section>
+    </main>
+</form>
+    <main class="class-container">
+
+    </main>
     <script type="module" src="/scripts/controllers/admin-manage-students.js"></script>
 </body>
 </html>

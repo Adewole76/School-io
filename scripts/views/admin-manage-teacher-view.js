@@ -24,7 +24,7 @@ export const mapUnAssignedTeachers = (arr, container) => {
    if(arr.length > 0){
    container.innerHTML = mappedAssignedTeachers;
    }else{
-    container.innerHTML = `<div>
+    container.innerHTML = `<div class="unassigned-empty-state">
     <h3>Needs assignment ${arr.length}</h3>
     </div>`
    }

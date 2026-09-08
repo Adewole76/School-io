@@ -67,3 +67,39 @@
 	--transition-fast: 120ms ease;
 	--transition-base: 200ms ease;
   }
+  *{
+	box-sizing: border-box;
+  }
+  body{
+	background-color:var(--color-bg);
+	position: relative;
+	padding-top: 3em;
+  }
+  nav{
+	display:flex;
+	justify-content: space-between;
+    position: fixed;
+	padding: 1em 1em 0 1em;
+	top:0;
+	right: 0;
+	left: 0;
+	border-bottom: 1px solid var(--color-border);
+  }
+  .info-section{
+	display: flex;
+  }
+  nav h2{
+	margin: 0;
+  }
+  nav div img{
+	width: 30px;
+	height: 30px;
+  }
+
+  .instruction-btn{
+	display: flex;
+	justify-content: space-between;
+  }
+  .instruction-btn p{
+	margin: 0;
+  }

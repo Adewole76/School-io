@@ -32,7 +32,7 @@
 
             </section>
             <footer>
-                <h2>Assigned Teachers</h2>
+                <h2 class="assigned-heading">Assigned Teachers</h2>
                 <p class="AssignedTeachers-length"></p>
             </footer>
             <section class="assinged-container">
@@ -60,8 +60,9 @@
             <h2 class="formUserName"></h2>
             <p class="formUserEmail"></p>
           </section> 
+          <button type="button" class="close-btn">Close</button>
         </header>
-     <section>
+     <section class="class-select-section">
         <h3>CLASS ASSIGNMENT</h3>
         <select class="class-select">
             <option value="Select a class to coordinate">Select a class to coordinate</option>
@@ -75,15 +76,15 @@
         <button type="button" class="save-assignment">Save assignment</button>
      </section>
 
-
+<hr>
      <section class="danger-zone">
-        <h2>Danger zone</h2>
+        <h2>DANGER ZONE</h2>
         <section class="removal-section hidden">
             <p>This can't be undone. Are you sure you watnt to remove  </p>
-            <button class="actual-remove-btn">Yes, remove teacher</button>
-            <button class="cancel-removal-btn">cancel</button>
-            <p>Removing this teacher deletes their account. if they're coordinating a class, that class will show 'no teacher assigned" afterward</p>
+            <button type="button" class="actual-remove-btn">Yes, remove teacher</button>
+            <button type="button" class="cancel-removal-btn">cancel</button>
         </section>
+        <p class="removal-warning1">Removing this teacher deletes their account. if they're coordinating a class, that class will show 'no teacher assigned" afterward</p>
         <button type="button" class="remove-btn">Remove teacher</button>
      </section>
     </form>

@@ -228,8 +228,14 @@ async function hashPassword(password) {
 export const deleteTeacher = (deletedTeacherId) => {
    TeachersArray = TeachersArray.filter(teacher => teacher.teacherId !== deletedTeacherId);
    const particularTeacherClass = schoolClasses.find(particularclass => particularclass.teacherId === deletedTeacherId)
+   if(particularTeacherClass){
    particularTeacherClass.teacherId = null;
    saveCollection('teachers', TeachersArray);
+   saveCollection('classes', schoolClasses)
+   }else{
+   saveCollection('teachers', TeachersArray);
+  saveCollection('classes', schoolClasses)
+   }
 }
 
 

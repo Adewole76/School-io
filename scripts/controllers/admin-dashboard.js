@@ -35,7 +35,7 @@ manageTeachers.addEventListener('click', function(){
     window.location.href = "/pages/admin-manage-teachers.html";
 });
 manageStudents.addEventListener('click', function(){
-    window.location.href = "pages/admin-manage-students.html";
+    window.location.href = "/pages/admin-manage-students.html";
 })
 
 
