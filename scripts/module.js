@@ -10,7 +10,27 @@ export const getCollection = (name) =>{
     return parsedStoredItem;
 }
 
+const sendEmail = (userName, resetCode, userEmail) => {
 
+// templateParams object package
+const templateParams = {
+    name: userName,
+    reset_code: resetCode, // maps to EmailJS template variable
+    user_email:  userEmail,
+    duration: '48 hrs',
+    headWording: "Welcome to Greendale Portal! Use code use the code to set your password"
+};
+
+//  Service ID and Template ID
+
+emailjs.send("service_1fzqpt7", "template_625pnsa", templateParams)
+    .then((response) => {
+        console.log("Email sent successfully!", response.status, response.text);
+    })
+    .catch((error) => {
+        console.error("Failed to send email:", error);
+    });
+}
 //Session Storage helpers
 export const saveUserIdOnLogin = (name, value) => {
    sessionStorage.setItem(name, JSON.stringify(value))
@@ -77,7 +97,7 @@ export let schoolClasses =getCollection('classes')?getCollection('classes'):[
 
 export let studentsArray=getCollection('students')?getCollection('students'):[];
 // CRUD functions
-export const addStudent = async (studentName, studentAge, email, DOB, parentNo, classId) => {
+export const addStudent = async (studentName, email, DOB, parentNo, classId) => {
   
   function generateSecureShortPassword(length = 8) {
     const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -122,9 +142,13 @@ export const addStudent = async (studentName, studentAge, email, DOB, parentNo, 
 
   const { saltHex, hashHex } = await hashPassword(clearPassword);
 
+function generate4DigitNumber() {
+  const code = Math.floor(1000 + Math.random() * 9000);
+  return code;
+}
+
   const newStudentObject = {
     Name: studentName,
-    age: studentAge,
     Email: email,
     dateOfBirth: DOB,
     ParentGuardianNo: parentNo,
@@ -133,6 +157,13 @@ export const addStudent = async (studentName, studentAge, email, DOB, parentNo, 
     passwordSalt: saltHex,  
     studentId: generateIdForUsers('student')
   };
+
+  newStudentObject.passwordResetCode = generate4DigitNumber();
+  newStudentObject.passwordResetTimestamp = Date.now();
+  newStudentObject.passwordResetType = 'setup';
+
+  sendEmail(studentName, newStudentObject.passwordResetCode, email)
+
 
   studentsArray.push(newStudentObject);
   saveCollection('students', studentsArray)
