@@ -3,6 +3,7 @@ import { gettingUser } from "../module.js";
 import { requireAuth } from "../module.js";
 import { clearSessionStorage } from "../module.js";
 import {studentsArray} from "../module.js";
+import {schoolClasses} from "../module.js";
 import {mappingStudentsArray} from "../views/admin-manage-students-view.js"
 import {addStudent} from "../module.js";
 window.addEventListener('pageshow', (event) => {
@@ -30,11 +31,13 @@ const guardianNo = document.querySelector('.guardian-No');
 const emailInput =  document.querySelector('.email-input');
 activateFormButton.addEventListener('click', async()=>{
     addStudentForm.classList.remove('hidden');
-})
+});
 addBtn.addEventListener('click', async()=>{
     if(!nameInput||dateInput||classSelect.value === 'Select a class'||!guardianNo.value||emailInput.value){
         console.log(`you haven't filled in all the current information`);
     }else{
-        await addStudent(nameInput.value, ,emailInput.value, dateInput.value, guardianNo.value,)
+        let studentClass = schoolClasses.find(cla => cla.name === classSelect.value);
+        console.log(studentClass);
+        await addStudent(nameInput.value, emailInput.value, dateInput.value, guardianNo.value, studentClass.id)
     }
 })
