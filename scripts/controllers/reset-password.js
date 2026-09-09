@@ -80,7 +80,8 @@ resetBtn.addEventListener('click', async() => {
         userTochangePassword.passwordSalt = saltHex;
         userTochangePassword.passwordHash = hashHex;
         console.log(userTochangePassword);
-        const adminRecordTochange = TeachersArray.find(user => user.email === userTochangePassword.email);
+        const adminRecordTochange = adminArray.find(user => user.email === userTochangePassword.email);
+        console.log(adminRecordTochange);
         adminRecordTochange.passwordSalt = userTochangePassword.passwordSalt;
         adminRecordTochange.passwordHash = userTochangePassword.passwordHash
         saveCollection('admin', adminArray);

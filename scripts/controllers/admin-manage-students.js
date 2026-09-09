@@ -4,6 +4,7 @@ import { requireAuth } from "../module.js";
 import { clearSessionStorage } from "../module.js";
 import {studentsArray} from "../module.js";
 import {mappingStudentsArray} from "../views/admin-manage-students-view.js"
+import {addStudent} from "../module.js";
 window.addEventListener('pageshow', (event) => {
     if (event.persisted) {
         const freshUserId = gettingUser('currentUserId');
@@ -18,4 +19,22 @@ const currentUserRole = gettingUser('currentUserRole');
 requireAuth(currentUser, "adminid", adminArray, currentUserRole, 'admin');
 const classContainer = document.querySelector('.class-container');
 mappingStudentsArray(studentsArray, classContainer);
-const addButton = document.querySelector('.add-button');
+const activateFormButton = document.querySelector('.add-button');
+const logoutButton = document.querySelector('.logout-btn');
+const addStudentForm = document.querySelector('.add-student-form');
+const addBtn = document.querySelector('.add-btn');
+const nameInput = document.querySelector('.name-input');
+const dateInput = document.querySelector('.date-input');
+const classSelect = document.querySelector('.class-select');
+const guardianNo = document.querySelector('.guardian-No');
+const emailInput =  document.querySelector('.email-input');
+activateFormButton.addEventListener('click', async()=>{
+    addStudentForm.classList.remove('hidden');
+})
+addBtn.addEventListener('click', async()=>{
+    if(!nameInput||dateInput||classSelect.value === 'Select a class'||!guardianNo.value||emailInput.value){
+        console.log(`you haven't filled in all the current information`);
+    }else{
+        await addStudent(nameInput.value, ,emailInput.value, dateInput.value, guardianNo.value,)
+    }
+})

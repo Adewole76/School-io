@@ -52,19 +52,20 @@ sendBtn.addEventListener('click', function(){
 })
 
 
-
-
-// 2. Define the JavaScript variables you want to send
+//send Email function
 const sendEmail = (userName, resetCode, userEmail) => {
 
-// 3. Package your variables into a template parameters object
+// templateParams object package
 const templateParams = {
     name: userName,
-    reset_code: resetCode, // This maps to your EmailJS template variable
-    user_email:  userEmail
+    reset_code: resetCode, // maps to EmailJS template variable
+    user_email:  userEmail,
+    duration: '15 minutes',
+    headWording: 'Your Password Reset Code is'
+
 };
 
-// 4. Send the email using your Service ID and Template ID
+//  Service ID and Template ID
 
 emailjs.send("service_1fzqpt7", "template_625pnsa", templateParams)
     .then((response) => {

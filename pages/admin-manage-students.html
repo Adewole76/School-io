@@ -5,7 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/styles/admin-manage-students.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
+
+     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    
+<!-- 2. Initialize with your Public Key -->
+<script type="text/javascript">
+    (function() {
+        emailjs.init({
+            publicKey: "fE1t16ddwBV1pRz-G", // Replace with your actual public key
+        });
+    })();
+</script> 
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"></head>
 <body>
@@ -43,7 +55,7 @@
             <option value="Ss3">Ss3</option>
         </select>
     </section>
-<form>
+<form class="add-student-form hidden">
     <header>
         <div>
             <h3>Add student</h3>
@@ -54,15 +66,16 @@
     <main>
         <label>
            Full name
-            <input type="text" placeholder="e.g. Chidinma">
+            <input class="name-input" type="text" placeholder="e.g. Chidinma">
         </label>
         <section>
             <label for="">
-                <input type="date" placeholder="">
+                Date of Birth
+                <input class="date-input" type="date" placeholder="">
             </label>
             <label for="">
                 Class
-                <select>
+                <select class="class-select">
                     <option value="Select a class">Select a class</option>
                     <option value="Js1">Js1</option>
                     <option value="Js2">Js2</option>
@@ -74,14 +87,18 @@
             </label>
             <label for="">
                 Guardian/Parent No
-                <input type="tel" placeholder="+234 800 000 000">
+                <input class="guardian-No" type="tel" placeholder="+234 800 000 000">
             </label>
             <label for="">
                 Email
-                <input type="email" placeholder="student@greendale.edu">
+                <input class="email-input" type="email" placeholder="student@greendale.edu">
             </label>
         </section>
     </main>
+  <footer>
+    <button>Cancel</button>
+    <button class="add-btn">Add button</button>
+  </footer>
 </form>
     <main class="class-container">
 
