@@ -20,20 +20,24 @@ sendBtn.addEventListener('click', function(){
       const resetCode = generateFourDigitNumber();
       particularAdmin.passwordResetCode = resetCode;
       particularAdmin.passwordResetTimestamp = Date.now();
+      particularAdmin.passwordResetType = 'password reset';
       console.log(particularAdmin);
+      saveCollection('admin', adminArray);
       sendEmail(particularAdmin.name, resetCode, particularAdmin.email);
-      saveCollection('userTochangePassword', particularAdmin);
-       window.location.href = '/pages/reset-password.html'
+      //saveCollection('userTochangePassword', particularAdmin);
+       //window.location.href = '/pages/reset-password.html'
     }else if(TeachersArray.some(teacher => teacher.Email === emailInput.value)){
         const particularTeacher = TeachersArray.find(teacher => teacher.Email === emailInput.value);
         console.log(particularTeacher.Email);
         const resetCode = generateFourDigitNumber();
         console.log(resetCode);
         particularTeacher.passwordResetCode = resetCode;
-        particularTeacher.passwordResetTimestamp = Date.now()
+        particularTeacher.passwordResetTimestamp = Date.now();
+        particularTeacher.passwordResetType = 'password reset';
         console.log(particularTeacher);
+        saveCollection('teachers', TeachersArray);
         sendEmail(particularTeacher.Name, resetCode, particularTeacher.Email);
-        saveCollection('userTochangePassword', particularTeacher);
+        //saveCollection('userTochangePassword', particularTeacher);
         window.location.href = '/pages/reset-password.html'
     }else if(studentsArray.some(student => student.Email === emailInput.value)){
         const particularStudent = studentsArray.find(student => student.Email === emailInput.value);
@@ -41,11 +45,13 @@ sendBtn.addEventListener('click', function(){
         const resetCode = generateFourDigitNumber();
         particularStudent.passwordResetCode = resetCode;
         particularStudent.passwordResetTimestamp = Date.now();
+        particularStudent.passwordResetType = 'password reset';
         console.log(resetCode);
         console.log(particularStudent);
+        saveCollection('students', studentsArray);
         sendEmail(particularStudent.Name, resetCode, particularStudent.Email);
-        saveCollection('userTochangePassword', particularStudent);
-         window.location.href = '/pages/reset-password.html'
+        //saveCollection('userTochangePassword', particularStudent);
+        window.location.href = '/pages/reset-password.html'
     }else{
         console.log('Email not found');
     }

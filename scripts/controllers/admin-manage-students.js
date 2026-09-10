@@ -33,11 +33,12 @@ activateFormButton.addEventListener('click', async()=>{
     addStudentForm.classList.remove('hidden');
 });
 addBtn.addEventListener('click', async()=>{
-    if(!nameInput||dateInput||classSelect.value === 'Select a class'||!guardianNo.value||emailInput.value){
+    if(!nameInput.value||!dateInput.value||classSelect.value === 'Select a class'||!guardianNo.value||!emailInput.value){
+       console.log(nameInput.value, dateInput.value, classSelect.value, guardianNo.value, emailInput.value);
         console.log(`you haven't filled in all the current information`);
     }else{
         let studentClass = schoolClasses.find(cla => cla.name === classSelect.value);
         console.log(studentClass);
         await addStudent(nameInput.value, emailInput.value, dateInput.value, guardianNo.value, studentClass.id)
     }
-})
+});
