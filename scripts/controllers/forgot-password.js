@@ -25,7 +25,7 @@ sendBtn.addEventListener('click', function(){
       saveCollection('admin', adminArray);
       sendEmail(particularAdmin.name, resetCode, particularAdmin.email);
       //saveCollection('userTochangePassword', particularAdmin);
-       //window.location.href = '/pages/reset-password.html'
+      window.location.href = '/pages/reset-password.html'
     }else if(TeachersArray.some(teacher => teacher.Email === emailInput.value)){
         const particularTeacher = TeachersArray.find(teacher => teacher.Email === emailInput.value);
         console.log(particularTeacher.Email);

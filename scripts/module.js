@@ -10,14 +10,14 @@ export const getCollection = (name) =>{
     return parsedStoredItem;
 }
 
-const sendEmail = (userName, resetCode, userEmail) => {
+const sendEmailToStudents = (userName, resetCode, userEmail, duration, headWording) => {
 
 // templateParams object package
 const templateParams = {
     name: userName,
     reset_code: resetCode, // maps to EmailJS template variable
     user_email:  userEmail,
-    duration: '48 hrs',
+    duration: duration,
     headWording: "Welcome to Greendale Portal! Use code use the code to set your password"
 };
 
@@ -162,8 +162,8 @@ function generate4DigitNumber() {
   newStudentObject.passwordResetTimestamp = Date.now();
   newStudentObject.passwordResetType = 'setup';
 
-  sendEmail(studentName, newStudentObject.passwordResetCode, email)
-
+  sendEmailToStudents(studentName, newStudentObject.passwordResetCode, email, '48hrs', 'Welcome to Prime touch portal use the code to set your password');
+  
 
   studentsArray.push(newStudentObject);
   saveCollection('students', studentsArray)

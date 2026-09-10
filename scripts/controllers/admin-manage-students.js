@@ -1,6 +1,7 @@
 import { adminArray } from "../module.js";
 import { gettingUser } from "../module.js";
 import { requireAuth } from "../module.js";
+import {saveCollection} from "../module.js";
 import { clearSessionStorage } from "../module.js";
 import {studentsArray} from "../module.js";
 import {schoolClasses} from "../module.js";
@@ -29,6 +30,7 @@ const dateInput = document.querySelector('.date-input');
 const classSelect = document.querySelector('.class-select');
 const guardianNo = document.querySelector('.guardian-No');
 const emailInput =  document.querySelector('.email-input');
+
 activateFormButton.addEventListener('click', async()=>{
     addStudentForm.classList.remove('hidden');
 });
@@ -40,5 +42,9 @@ addBtn.addEventListener('click', async()=>{
         let studentClass = schoolClasses.find(cla => cla.name === classSelect.value);
         console.log(studentClass);
         await addStudent(nameInput.value, emailInput.value, dateInput.value, guardianNo.value, studentClass.id)
+        saveCollection('students', studentsArray);
+        saveCollection('classes', schoolClasses);
+        mappingStudentsArray(studentsArray, classContainer);
+        addStudentForm.classList.add('hidden');
     }
 });

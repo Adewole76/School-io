@@ -88,30 +88,30 @@ resetBtn.addEventListener('click', async() => {
           particularAdmin.passwordHash = hashHex;
           saveCollection('admin', adminArray);
         }
-      }else if(studentsArray.some(user=> user.passwordResetCode === resetCodeInput.value)){
-        const particularStudent = studentsArray.find(user => user.passwordResetCode === resetCodeInput.value);
+      }else if(studentsArray.some(user=> user.passwordResetCode === Number(resetCodeInput.value))){
+        const particularStudent = studentsArray.find(user => user.passwordResetCode === Number(resetCodeInput.value));
         console.log(particularStudent);
         let currentTimesstamp = Date.now();
-        if (particularAdmin.passwordResetType === 'password reset' &&currentTimestamp - particularStudent.passwordResetTimestamp >= fifteenMinutes){
+        if (particularAdmin.passwordResetType === 'password reset' &&currentTimesstamp - particularStudent.passwordResetTimestamp >= fifteenMinutes){
            console.log('you code has expired')
-        }else if(particularAdmin.passwordResetType === 'password reset' && currentTimestamp - particularStudent.passwordResetTimestamp < fifteenMinutes){
+        }else if(particularAdmin.passwordResetType === 'password reset' && currentTimesstamp - particularStudent.passwordResetTimestamp < fifteenMinutes){
           const { saltHex, hashHex } = await hashPassword(resetPasswordInput.value);
           particularStudent.passwordSalt = saltHex;
           particularStudent.passwordHash = hashHex;
           saveCollection('teachers', TeachersArray);
-        }else if (particularStudent.passwordResetType === 'setup' && currentTimestamp - particularStudent.passwordResetTimestamp >= fortyEightHrs){
+        }else if (particularStudent.passwordResetType === 'setup' && currentTimesstamp - particularStudent.passwordResetTimestamp >= fortyEightHrs){
           console.log('your code has expired');
-        }else if(particularStudent.passwordResetType === 'setup' && currentTimestamp - particularStudent.passwordResetTimestamp < fortyEightHrs){
+        }else if(particularStudent.passwordResetType === 'setup' && currentTimesstamp - particularStudent.passwordResetTimestamp < fortyEightHrs){
           const { saltHex, hashHex } = await hashPassword(resetPasswordInput.value);
           particularStudent.passwordSalt = saltHex;
           particularStudent.passwordHash = hashHex;
           saveCollection('teachers', TeachersArray);
         }
-      }else if(TeachersArray.some(user=> user.passwordResetCode === resetCodeInput.value)){
-        const particularTeacher = studentsArray.find(user => user.passwordResetCode === resetCodeInput.value);
+      }else if(TeachersArray.some(user=> user.passwordResetCode === Number(resetCodeInput.value))){
+        const particularTeacher = TeachersArray.find(user => user.passwordResetCode === Number(resetCodeInput.value));
         console.log(particularTeacher);
         let currentTimesstamp = Date.now();
-        if (particularTeacher.passwordResetType === 'password reset' &&currentTimestsamp - particularTeacher.passwordResetTimestamp >= fifteenMinutes){
+        if (particularTeacher.passwordResetType === 'password reset' && currentTimesstamp - particularTeacher.passwordResetTimestamp >= fifteenMinutes){
            console.log('you code has expired')
         }else if(particularTeacher.passwordResetType === 'password reset' && currentTimesstamp - particularTeacher.passwordResetTimestamp < fifteenMinutes){
           const { saltHex, hashHex } = await hashPassword(resetPasswordInput.value);
@@ -126,6 +126,8 @@ resetBtn.addEventListener('click', async() => {
           particularTeacher.passwordHash = hashHex;
           saveCollection('teachers', TeachersArray);
         }
+      }else{
+         console.log('wrong code');
       }
 //     }else if(Number(resetCodeInput.value) !== userTochangePassword.passwordResetCode && userTochangePassword.passwordResetCode !== null){
 //       console.log(typeof resetCodeInput.value);

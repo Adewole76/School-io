@@ -4,9 +4,10 @@ import {schoolClasses} from "../module.js"
 
 export const mappingStudentsArray = (arr, container) => {
     const mappedStudentArray = arr.map(user =>{
+        console.log(schoolClasses);
         const particularClass = schoolClasses.find(cla => cla.id === user.Classid)
         console.log(particularClass);
-        return `<div class="student">
+        return `<div class="student" data-user-id="${user.studentId}">
           <section>
           <header>
                 <h3>${user.Name}</h3>
