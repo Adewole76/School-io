@@ -14,15 +14,15 @@ export const mappingStudentsArray = (arr, container) => {
                 <p>${particularClass.name}</p>
            </header>
 
-           <main>
+           <main class="number-dob">
                 <p>Guardian: ${user.ParentGuardianNo}</p>
                 <p>Date of Birth: ${user.dateOfBirth}</p>
                 <p>Email: ${user.Email}</p>
            </main>
           <hr>
            <footer>
-              <button>Edit</button>
-              <button>View records</button>
+              <button class="edit-btn">Edit</button>
+              <button class="view-btn">View records</button>
            </footer>
           </section>
         </div>`

@@ -7,6 +7,7 @@ import {studentsArray} from "../module.js";
 import {schoolClasses} from "../module.js";
 import {mappingStudentsArray} from "../views/admin-manage-students-view.js"
 import {addStudent} from "../module.js";
+import {updateStudent} from "../module.js";
 window.addEventListener('pageshow', (event) => {
     if (event.persisted) {
         const freshUserId = gettingUser('currentUserId');
@@ -30,6 +31,11 @@ const dateInput = document.querySelector('.date-input');
 const classSelect = document.querySelector('.class-select');
 const guardianNo = document.querySelector('.guardian-No');
 const emailInput =  document.querySelector('.email-input');
+const emptyState = document.querySelector('.empty-state');
+const editStudent = document.querySelector('.edit-student');
+const saveEdit = document.querySelector('.save-edit');
+const cancelEdit = document.querySelector('.cancel-edit');
+
 
 activateFormButton.addEventListener('click', async()=>{
     addStudentForm.classList.remove('hidden');
@@ -48,3 +54,16 @@ addBtn.addEventListener('click', async()=>{
         addStudentForm.classList.add('hidden');
     }
 });
+
+classContainer.addEventListener('click', (event) => {
+    if(event.target.closest('.edit-btn')){
+        const particularStudent = event.target.closest('.student');
+        console.log(particularStudent);
+        editStudent.classList.remove('hidden');
+        let studentToEdit = particularStudent.dataset.userId;
+        console.log(studentToEdit);
+        saveEdit.addEventListener('click', function(){
+           updateStudent(studentToEdit, )
+         })   
+    }
+})

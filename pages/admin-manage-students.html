@@ -55,6 +55,8 @@
             <option value="Ss3">Ss3</option>
         </select>
     </section>
+
+    <div class="overlay"></div>
 <form class="add-student-form hidden">
     <header>
         <div>
@@ -99,6 +101,56 @@
     <button>Cancel</button>
     <button type="button" class="add-btn">Add button</button>
   </footer>
+</form>
+
+<form class="edit-student hidden">
+    <header>
+        <h3>Edit Student</h3>
+        <p></p>
+    </header>
+    
+    <section>
+        <label>
+            Full Name
+            <input class="edit-Name" type="text" placeholder="Full Name">
+        </label>
+        <section>
+            <label for="">
+                Email
+                <input type="email" class="edit-Email" placeholder="">
+            </label>
+            <label for="">
+                Date of Birth
+                <input type="date" class="" placeholder="">
+            </label>
+            <label for="">
+                Guardian No
+                <input type="number" class="" placeholder="">
+            </label>
+            <label for="">
+                <select>
+                    <option value="">Select a class</option>
+                    <option value="Js1">Js1</option>
+                    <option value="Js2">Js2</option>
+                    <option value="Js3">Js3</option>
+                    <option value="Ss1">Ss1</option>
+                    <option value="Ss2">Ss2</option>
+                    <option value="Ss3">Ss3</option>
+                </select>
+            </label>
+        </section>
+    </section>
+    <p>
+        Password Resets are handled Seperately,
+        from the students account settings.
+    </p>
+    <hr>
+    <h4>Danger zone</h4>
+    <button>Delete student</button>
+    <section>
+        <button class="cancel-edit">cancel</button>
+        <button class="save-edit">Save changes</button>
+    </section>
 </form>
     <main class="class-container">
 

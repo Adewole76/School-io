@@ -179,12 +179,11 @@ export const deleteStudent = (deletedStudentId) => {
    saveCollection('attends', attendanceArray);
 }
 
-const keyNewValueInputs = []
-export const updateStudent = (updatedStudentId,nameNewValue, emailnewValue, ageNewValue, DOBnewValue, parentNoNewValue, classIdNewValue) => {
+//const keyNewValueInputs = []
+export const updateStudent = (updatedStudentId,nameNewValue, emailnewValue, DOBnewValue, parentNoNewValue, classIdNewValue) => {
   const studentTobeUpdated = studentsArray.find(student => student.studentId === updatedStudentId)
   studentTobeUpdated.Email = !emailnewValue?studentTobeUpdated.Email:emailnewValue;
   studentTobeUpdated.name = !nameNewValue?studentTobeUpdated.name:nameNewValue;
-  studentTobeUpdated.age = !ageNewValue?studentTobeUpdated.age:ageNewValue;
   studentTobeUpdated.dateOfBirth = !DOBnewValue?studentTobeUpdated.dateOfBirth:DOBnewValue
   studentTobeUpdated.ParentGuardianNo = !parentNoNewValue?studentTobeUpdated.ParentGuardianNo:parentNoNewValue
   studentTobeUpdated.Classid = !emailnewValue?studentTobeUpdated.ClassId:classIdNewValue;
