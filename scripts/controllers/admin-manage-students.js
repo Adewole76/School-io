@@ -26,11 +26,20 @@ const activateFormButton = document.querySelector('.add-button');
 const logoutButton = document.querySelector('.logout-btn');
 const addStudentForm = document.querySelector('.add-student-form');
 const addBtn = document.querySelector('.add-btn');
+// add student form Input variables
 const nameInput = document.querySelector('.name-input');
 const dateInput = document.querySelector('.date-input');
 const classSelect = document.querySelector('.class-select');
 const guardianNo = document.querySelector('.guardian-No');
 const emailInput =  document.querySelector('.email-input');
+// edit student form input variables
+const editStudentNameInput = document.querySelector('.edit-Name');
+const editStudentEmailInput = document.querySelector('.edit-Email');
+const editStudentDobInput = document.querySelector('.edit-date');
+const editStudentGuardianNo = document.querySelector('.edit-guardian-no');
+const editStudentClassId = document.querySelector('.edit-student-class');
+const closeEditForm = document.querySelector('.close-edit-form');
+//
 const emptyState = document.querySelector('.empty-state');
 const editStudent = document.querySelector('.edit-student');
 const saveEdit = document.querySelector('.save-edit');
@@ -48,7 +57,6 @@ addBtn.addEventListener('click', async()=>{
         let studentClass = schoolClasses.find(cla => cla.name === classSelect.value);
         console.log(studentClass);
         await addStudent(nameInput.value, emailInput.value, dateInput.value, guardianNo.value, studentClass.id)
-        saveCollection('students', studentsArray);
         saveCollection('classes', schoolClasses);
         mappingStudentsArray(studentsArray, classContainer);
         addStudentForm.classList.add('hidden');
@@ -63,7 +71,13 @@ classContainer.addEventListener('click', (event) => {
         let studentToEdit = particularStudent.dataset.userId;
         console.log(studentToEdit);
         saveEdit.addEventListener('click', function(){
-           updateStudent(studentToEdit, )
-         })   
+            let newstudentClass = schoolClasses.find(cla => cla.name === editStudentClassId.value);
+        console.log(newstudentClass);
+           updateStudent(studentToEdit, editStudentNameInput.value, editStudentEmailInput.value, editStudentDobInput.value, editStudentGuardianNo.value, newstudentClass.name)
+           editStudent.classList.add('hidden');
+           saveCollection('students', studentsArray);
+           saveCollection('classes', schoolClasses);
+           mappingStudentsArray(studentsArray, classContainer);
+        });   
     }
 })

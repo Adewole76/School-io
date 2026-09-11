@@ -105,8 +105,11 @@
 
 <form class="edit-student hidden">
     <header>
+        <section>
         <h3>Edit Student</h3>
         <p></p>
+        </section>
+        <button type="button" class="close-edit-form">close</button>
     </header>
     
     <section>
@@ -121,14 +124,14 @@
             </label>
             <label for="">
                 Date of Birth
-                <input type="date" class="" placeholder="">
+                <input type="date" class="edit-date" placeholder="">
             </label>
             <label for="">
                 Guardian No
-                <input type="number" class="" placeholder="">
+                <input type="number" class="edit-guardian-no" placeholder="">
             </label>
             <label for="">
-                <select>
+                <select class="edit-student-class">
                     <option value="">Select a class</option>
                     <option value="Js1">Js1</option>
                     <option value="Js2">Js2</option>
@@ -148,8 +151,8 @@
     <h4>Danger zone</h4>
     <button>Delete student</button>
     <section>
-        <button class="cancel-edit">cancel</button>
-        <button class="save-edit">Save changes</button>
+        <button type="button" class="cancel-edit">cancel</button>
+        <button type="button" class="save-edit">Save changes</button>
     </section>
 </form>
     <main class="class-container">
