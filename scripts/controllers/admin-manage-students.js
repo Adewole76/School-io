@@ -69,13 +69,14 @@ classContainer.addEventListener('click', (event) => {
         console.log(particularStudent);
         editStudent.classList.remove('hidden');
         let studentToEdit = particularStudent.dataset.userId;
+        let particularStudentObject = studentsArray.find(user => user.studentId === studentToEdit)
         console.log(studentToEdit);
         saveEdit.addEventListener('click', function(){
-            let newstudentClass = schoolClasses.find(cla => cla.name === editStudentClassId.value);
+        let newstudentClass = schoolClasses.find(cla => cla.name === editStudentClassId.value);
         console.log(newstudentClass);
-           updateStudent(studentToEdit, editStudentNameInput.value, editStudentEmailInput.value, editStudentDobInput.value, editStudentGuardianNo.value, newstudentClass.name)
+           updateStudent(studentToEdit, editStudentNameInput.value, editStudentEmailInput.value, editStudentDobInput.value, editStudentGuardianNo.value, !newstudentClass?particularStudentObject.Classid:newstudentClass.id);
            editStudent.classList.add('hidden');
-           saveCollection('students', studentsArray);
+           //saveCollection('students', studentsArray);
            saveCollection('classes', schoolClasses);
            mappingStudentsArray(studentsArray, classContainer);
         });   

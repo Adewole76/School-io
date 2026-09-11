@@ -183,10 +183,10 @@ export const deleteStudent = (deletedStudentId) => {
 export const updateStudent = (updatedStudentId,nameNewValue, emailnewValue, DOBnewValue, parentNoNewValue, classIdNewValue) => {
   const studentTobeUpdated = studentsArray.find(student => student.studentId === updatedStudentId)
   studentTobeUpdated.Email = !emailnewValue?studentTobeUpdated.Email:emailnewValue;
-  studentTobeUpdated.name = !nameNewValue?studentTobeUpdated.name:nameNewValue;
+  studentTobeUpdated.Name = !nameNewValue?studentTobeUpdated.Name:nameNewValue;
   studentTobeUpdated.dateOfBirth = !DOBnewValue?studentTobeUpdated.dateOfBirth:DOBnewValue
   studentTobeUpdated.ParentGuardianNo = !parentNoNewValue?studentTobeUpdated.ParentGuardianNo:parentNoNewValue
-  studentTobeUpdated.Classid = !emailnewValue?studentTobeUpdated.ClassId:classIdNewValue;
+  studentTobeUpdated.Classid = !classIdNewValue?studentTobeUpdated.ClassId:classIdNewValue;
   console.log(studentTobeUpdated) 
 
   saveCollection('students', studentsArray);
