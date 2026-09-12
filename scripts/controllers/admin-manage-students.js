@@ -45,6 +45,11 @@ const editStudent = document.querySelector('.edit-student');
 const saveEdit = document.querySelector('.save-edit');
 const cancelEdit = document.querySelector('.cancel-edit');
 
+//delete student variables
+const studentDeleteSection = document.querySelector('.student-delete-confirmation');
+const cancelDeleteBtn = document.querySelector('.cancel-del');
+const deletStudentBtn = document.querySelector('.delete-student');
+const showDeleteBtn = document.querySelector('.show-delete');
 
 activateFormButton.addEventListener('click', async()=>{
     addStudentForm.classList.remove('hidden');

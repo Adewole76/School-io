@@ -149,7 +149,12 @@
     </p>
     <hr>
     <h4>Danger zone</h4>
-    <button>Delete student</button>
+    <section class="student-delete-confirmation hidden">
+      <p>This can't be undone deleting this students' record will also delete her attendance history and also his/her grade history</p>
+      <button type="button" class="cancel-del">Cancel</button>
+      <button type="button" class="delete-student">Yes, delete permanently</button>
+    </section>
+    <button class="show-delete">Delete student</button>
     <section>
         <button type="button" class="cancel-edit">cancel</button>
         <button type="button" class="save-edit">Save changes</button>
