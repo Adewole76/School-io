@@ -99,6 +99,7 @@ classContainer.addEventListener('click', (event) => {
         deleteStudentBtn.addEventListener('click', function(){
             deleteStudent(studentToEdit);
             mappingStudentsArray(studentsArray, classContainer);
-        })
+            editStudent.classList.add('hidden');
+        });
     }
 })
