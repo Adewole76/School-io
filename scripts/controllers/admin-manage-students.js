@@ -40,12 +40,14 @@ const editStudentDobInput = document.querySelector('.edit-date');
 const editStudentGuardianNo = document.querySelector('.edit-guardian-no');
 const editStudentClassId = document.querySelector('.edit-student-class');
 const closeEditForm = document.querySelector('.close-edit-form');
-//
+// essential edit student variables
 const emptyState = document.querySelector('.empty-state');
 const editStudent = document.querySelector('.edit-student');
 const saveEdit = document.querySelector('.save-edit');
 const cancelEdit = document.querySelector('.cancel-edit');
-
+// search bar
+const searchBar = document.querySelector('.search-bar');
+const searchClassDropdown = document.querySelector('.search-class-dropdown');
 //delete student variables
 const studentDeleteSection = document.querySelector('.student-delete-confirmation');
 const cancelDeleteBtn = document.querySelector('.cancel-del');
@@ -103,3 +105,33 @@ classContainer.addEventListener('click', (event) => {
         });
     }
 })
+
+function fetchSearchResults(query) {
+  console.log(`🔍 Getting student with record: "${query}"`);
+  let filteredStudentsArray = studentsArray.filter(user => user.Name === query);
+  mappingStudentsArray(filteredStudentsArray, classContainer);
+}
+
+// Wrap the original function in your debounce utility with a 500ms delay
+const debouncedSearch = debounce((event) => {
+  fetchSearchResults(event.target.value);
+}, 500);
+
+// Attach the debounced function to the event listener
+
+searchBar.addEventListener('input', debouncedSearch);
+
+function fetchSearchDropdown(query) {
+  console.log(`🔍 Getting student with record: "${query}"`);
+  const particularClass = schoolClasses.find()
+  const filteredStudentsArray = studentsArray.filter(user => user.class === query);
+}
+
+// Wrap the original function in your debounce utility with a 500ms delay
+const debouncedSearchDropdown = debounce((event) => {
+  fetchSearchDropdown(event.target.value);
+}, 500);
+
+// Attach the debounced function to the event listener
+
+searchClassDropdown.addEventListener('input', debouncedSearchDropdown);

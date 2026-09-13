@@ -11,14 +11,14 @@ export const getCollection = (name) =>{
 }
 
 const sendEmailToStudents = (userName, resetCode, userEmail, duration, headWording) => {
-
+ let resetLink = '/pages/reset-password.html'
 // templateParams object package
 const templateParams = {
     name: userName,
     reset_code: resetCode, // maps to EmailJS template variable
     user_email:  userEmail,
     duration: duration,
-    headWording: "Welcome to Greendale Portal! Use code use the code to set your password"
+    headWording: `Welcome to Greendale Portal! go to the reset page using the link and Use code use the code to set your password ${window.location.origin}/pages/admin-manage-students.html`
 };
 
 //  Service ID and Template ID
