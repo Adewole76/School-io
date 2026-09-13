@@ -8,6 +8,7 @@ import {schoolClasses} from "../module.js";
 import {mappingStudentsArray} from "../views/admin-manage-students-view.js"
 import {addStudent} from "../module.js";
 import {updateStudent} from "../module.js";
+import {deleteStudent} from "../module.js";
 window.addEventListener('pageshow', (event) => {
     if (event.persisted) {
         const freshUserId = gettingUser('currentUserId');
@@ -48,8 +49,10 @@ const cancelEdit = document.querySelector('.cancel-edit');
 //delete student variables
 const studentDeleteSection = document.querySelector('.student-delete-confirmation');
 const cancelDeleteBtn = document.querySelector('.cancel-del');
-const deletStudentBtn = document.querySelector('.delete-student');
+const deleteStudentBtn = document.querySelector('.delete-student');
 const showDeleteBtn = document.querySelector('.show-delete');
+
+
 
 activateFormButton.addEventListener('click', async()=>{
     addStudentForm.classList.remove('hidden');
@@ -85,5 +88,17 @@ classContainer.addEventListener('click', (event) => {
            saveCollection('classes', schoolClasses);
            mappingStudentsArray(studentsArray, classContainer);
         });   
+        showDeleteBtn.addEventListener('click', function(){
+        studentDeleteSection.classList.remove('hidden');
+        showDeleteBtn.classList.add('hidden');
+        })
+        cancelDeleteBtn.addEventListener('click', function(){
+        studentDeleteSection.classList.add('hidden');
+        showDeleteBtn.classList.remove('hidden');
+        });
+        deleteStudentBtn.addEventListener('click', function(){
+            deleteStudent(studentToEdit);
+            mappingStudentsArray(studentsArray, classContainer);
+        })
     }
 })
