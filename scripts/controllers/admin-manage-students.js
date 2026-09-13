@@ -9,6 +9,17 @@ import {mappingStudentsArray} from "../views/admin-manage-students-view.js"
 import {addStudent} from "../module.js";
 import {updateStudent} from "../module.js";
 import {deleteStudent} from "../module.js";
+
+function debounce(func, delay) {
+  let timerId;
+  return function (...args) {
+    clearTimeout(timerId);
+    timerId = setTimeout(() => {
+      func.apply(this, args);
+    }, delay);
+  };
+}
+
 window.addEventListener('pageshow', (event) => {
     if (event.persisted) {
         const freshUserId = gettingUser('currentUserId');
@@ -109,7 +120,12 @@ classContainer.addEventListener('click', (event) => {
 function fetchSearchResults(query) {
   console.log(`🔍 Getting student with record: "${query}"`);
   let filteredStudentsArray = studentsArray.filter(user => user.Name === query);
-  mappingStudentsArray(filteredStudentsArray, classContainer);
+  if(filteredStudentsArray.length > 0){
+  mappingStudentsArray(filteredStudentsArray, classContainer)
+  }else if (filteredStudentsArray.length === 0){
+    classContainer.innerHTML = 
+  }
+;
 }
 
 // Wrap the original function in your debounce utility with a 500ms delay
@@ -123,8 +139,9 @@ searchBar.addEventListener('input', debouncedSearch);
 
 function fetchSearchDropdown(query) {
   console.log(`🔍 Getting student with record: "${query}"`);
-  const particularClass = schoolClasses.find()
-  const filteredStudentsArray = studentsArray.filter(user => user.class === query);
+  const particularClass = schoolClasses.find(cla => cla.name === query.name)
+  const filteredStudentsArray = studentsArray.filter(user => user.Classid === particularClass.id);
+  mappingStudentsArray(filteredStudentsArray, classContainer);
 }
 
 // Wrap the original function in your debounce utility with a 500ms delay
@@ -134,4 +151,4 @@ const debouncedSearchDropdown = debounce((event) => {
 
 // Attach the debounced function to the event listener
 
-searchClassDropdown.addEventListener('input', debouncedSearchDropdown);
+searchClassDropdown.addEventListener('change', debouncedSearchDropdown);
