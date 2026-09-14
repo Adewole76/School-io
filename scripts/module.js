@@ -150,7 +150,7 @@ function generate4DigitNumber() {
   const newStudentObject = {
     Name: studentName,
     Email: email,
-    dateOfBirth: DOB,
+    dateOfBirth: DOB,  
     ParentGuardianNo: parentNo,
     Classid: classId,
     passwordHash: hashHex,   

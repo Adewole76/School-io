@@ -24,13 +24,15 @@
     <nav>
         <h2>Prime Touch <span>Portal</span></h2>
         <section class=info-section>
-            <section>
-            <a href="/pages/forgot-password.html">Change Password</a>
+            <section class="link-logout">
+            <a class="forgot-password-link" href="/pages/forgot-password.html">Change Password</a>
             <button class="logout-btn">log out</button>
             </section>
-            <div>
+            <div class="img-admin-name">
                 <img src="/images/user.png">
+                <section class="admin-name-section">
                 <p class="admin-name"></p>
+                </section>
             </div>
         </section>
     </nav>
@@ -38,8 +40,10 @@
         <section>
             <h3>Students</h3>
             <section class="instruction-btn">
-                <p>View, add, and manage every student enrolled at Prime Touch including their class placement and guardian contact</p>
+                <p>View, add, and manage every student enrolled at Prime Touch - including their class placement and guardian contact details</p>
+                <section>
                 <button class="add-button">+ Add Student</button> 
+                </section>
             </section>
         </section>
     </section>
@@ -56,12 +60,14 @@
         </select>
     </section>
 
-    <div class="overlay"></div>
+    <div class="overlay hidden"></div>
 <form class="add-student-form hidden">
     <header>
-        <div>
+        <div class="header-btn">
             <h3>Add student</h3>
+        <div>
             <button type="button" class="close-addStudent-form">close</button>
+        </div>
         </div>
         <p>This creates a student profile and enrolls them in the selected class.</p>
     </header>
@@ -70,7 +76,7 @@
            Full name
             <input class="name-input" type="text" placeholder="e.g. Chidinma">
         </label>
-        <section>
+        <section class="main-student-data">
             <label for="">
                 Date of Birth
                 <input class="date-input" type="date" placeholder="">
@@ -98,7 +104,7 @@
         </section>
     </main>
   <footer>
-    <button>Cancel</button>
+    <button type="button" class="cancel-btn">Cancel</button>
     <button type="button" class="add-btn">Add button</button>
   </footer>
 </form>
@@ -107,17 +113,17 @@
     <header>
         <section>
         <h3>Edit Student</h3>
-        <p></p>
         </section>
         <button type="button" class="close-edit-form">close</button>
     </header>
+    <p class="student-for-edit"></p>
     
     <section>
         <label>
             Full Name
             <input class="edit-Name" type="text" placeholder="Full Name">
         </label>
-        <section>
+        <section class="student-edit-data">
             <label for="">
                 Email
                 <input type="email" class="edit-Email" placeholder="">
@@ -131,6 +137,7 @@
                 <input type="number" class="edit-guardian-no" placeholder="">
             </label>
             <label for="">
+                Class
                 <select class="edit-student-class">
                     <option value="">Select a class</option>
                     <option value="Js1">Js1</option>
@@ -143,7 +150,7 @@
             </label>
         </section>
     </section>
-    <p>
+    <p class="password-reset-instructions">
         Password Resets are handled Seperately,
         from the students account settings.
     </p>
@@ -155,7 +162,7 @@
       <button type="button" class="delete-student">Yes, delete permanently</button>
     </section>
     <button type="button" class="show-delete">Delete student</button>
-    <section>
+    <section class="cancel-save">
         <button type="button" class="cancel-edit">cancel</button>
         <button type="button" class="save-edit">Save changes</button>
     </section>

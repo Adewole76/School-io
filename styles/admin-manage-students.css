@@ -76,20 +76,168 @@
   body{
 	background-color:var(--color-bg);
 	position: relative;
-	padding-top: 3em;
+	padding: 3em 3em 0 3em; 
+	margin: 0;
+
   }
   nav{
 	display:flex;
 	justify-content: space-between;
     position: fixed;
-	padding: 1em 1em 0 1em;
+	padding: 1em;
+	background-color:var(--color-bg);
 	top:0;
 	right: 0;
 	left: 0;
 	border-bottom: 1px solid var(--color-border);
   }
+  nav h2{
+	font-family: var(--font-display);
+	color: var(--color-primary-dark)
+  }
+  nav h2 span{
+	color: var(--color-accent);
+  }
+  .link-logout{
+	padding-top: 6px;
+  }
+  .logout-btn{
+	background-color: transparent;
+	color: var(--color-text-secondary);
+	cursor: pointer;
+	border-color: transparent;
+    font-family: var(--font-body);
+}
+  .edit-student{
+	position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding:2em 2em;
+    border-radius: 8px;
+    z-index: 120
+  }
+  .edit-Name{
+	width: 100%;
+  }
+  .edit-student label{
+  margin-bottom: 1em;
+	font-family: var(--font-body);
+	color: var(--color-text-secondary);
+	font-size: 14px;
+}
+.edit-student header{
+	display: flex;
+	justify-content: space-between;
+}
+.edit-student header h3{
+	margin: 0;
+	font-family: var(--font-display);
+}
+.edit-student .student-for-edit{
+	font-family: var(--font-body);
+	color: var(--color-text-secondary);
+	font-size: 14px;
+}
+.password-reset-instructions{
+	background-color:var(--color-primary-light);
+	color: var(--color-primary-dark);
+	font-family:var(--font-body);
+	max-width: 450px;
+	font-size: 14px;
+	display: block;
+	padding: 1em;
+	border-radius: 8px;
+}
+.edit-student h4{
+	font-family: var(--font-body);
+	color: var(--color-text-muted);
+	font-size: 14px;
+}
+.show-delete{
+	background-color: transparent;
+	color:var(--color-danger);
+	padding: 1em 2em;
+	font-weight:var(--weight-semibold);
+	border-radius: 8px;
+	border: 1px solid var(--color-border);
+}
+.edit-student label input{
+	display: block;
+	margin-top: 6px;
+	width: 100%;
+	padding: 10px;
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-sm);
+  }
+  .student-edit-data{
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+    column-gap: 1em;  
+	margin-top: 1em;
+  }
+  .edit-student select{
+	display: block;
+	margin-top: 6px;
+	width: 100%;
+	padding: 10px;
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-sm);
+  }
+  .cancel-save{
+	text-align: right;
+	margin-top: 1em;
+  }
+  .cancel-save button{
+	padding: 10px;
+	font-family: var(--font-body);
+	font-weight: var(--weight-bold);
+  }
+  .cancel-edit{
+  background-color: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+}
+
+.save-edit{
+	background-color:var(--color-primary-dark);
+	color: white;
+	border-radius: 6px;
+	border: 1px solid transparent;
+	margin-left: 6px;
+}
+.student-delete-confirmation{
+	background-color:var(--color-danger-bg);
+	padding: 1em 0 1em 1em;
+	border-radius: 6px;
+}
+.student-delete-confirmation p{
+	color:var(--color-danger);
+	font-family:var(--font-body);
+	font-size: 14px;
+	max-width: 450px;
+}
+.cancel-del{
+	background-color: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 10px;
+	font-family: var(--font-body);
+	font-weight: var(--weight-bold);
+	background-color: white;
+}
+.delete-student{
+	background-color:var(--color-danger);
+	color: white;
+	font-family: var(--font-body);
+	padding: 10px;
+	border: 1px solid transparent;
+	border-radius: 6px;
+}
   .info-section{
 	display: flex;
+	column-gap: 1em;
   }
   nav h2{
 	margin: 0;
@@ -98,7 +246,28 @@
 	width: 30px;
 	height: 30px;
   }
-
+  nav .img-admin-name{
+	display: flex;
+  }
+  .img-admin-name {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+  }
+  
+  nav .admin-name{
+	display: inline-block;
+	margin: 0;
+	padding-left: 4px;
+	font-family: var(--font-body);
+	color:var(--color-text-secondary);
+	vertical-align: top
+  }
+  nav .forgot-password-link{
+	color: var(--color-text-secondary);
+	font-family: var(--font-body);
+	text-decoration: none;
+  }
   .instruction-btn{
 	display: flex;
 	justify-content: space-between;
@@ -106,3 +275,153 @@
   .instruction-btn p{
 	margin: 0;
   }
+
+  .banner h3{
+	font-family: var(--font-display);
+	font-size: var(--text-2xl);
+  }
+  .banner p{
+	font-family: var(--font-body);
+    font-size: var(--text-base);
+	color:var(--color-text-secondary);
+	max-width: 500px;
+  }
+  .banner button{
+   background-color:#1D2A5C;
+   color: white;
+   font-family: var(--font-body);
+   border: 1px solid transparent;
+   padding: 12px 16px;
+   font-weight:var(--weight-bold);
+   border-radius:var(--radius-md);
+  }
+
+  .search-bar{
+	padding: 10px;
+	border-radius: var(--radius-sm);
+	border: 1px solid var(--color-border);
+  }
+  .search-class-dropdown{
+	padding: 10px;
+	border-radius: var(--radius-sm);
+	border: 1px solid var(--color-border);
+  }
+  .class-container{
+	margin-top: 1em;
+	display: grid;
+  }
+  .student{
+	background-color: white;
+	padding: 1em;
+	border: 1px solid var(--color-border);
+	box-shadow: var(--shadow-md);
+	border-radius: 6px;
+  }
+  .student header{
+	display: flex;
+	justify-content: space-between;
+  }
+  .student footer{
+	display: flex;
+	justify-content: space-between;
+  }
+  .empty-state{
+	text-align: center;
+  }
+  .empty-state h3{
+	font-family: var(--font-display);
+	font-size: var(--text-xl);
+	margin: 0;
+  }
+  .empty-state p{
+	font-family: var(--font-body);
+	color:var(--color-text-secondary);
+	margin: 0;
+  }
+  .overlay{
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+    background-color: rgba(0, 0, 0, 0.169);
+  }
+  .add-student-form{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding:2em 2em;
+    border-radius: 8px;
+    z-index: 120
+  }
+
+  .add-student-form header .header-btn{
+	display: flex;
+	justify-content: space-between;
+  }
+
+  .add-student-form header h3{
+	margin: 0;
+	font-family: var(--font-display);
+	font-size: var(--text-lg);
+  }
+  .add-student-form p{
+	font-family: var(--font-body);
+	color: var(--color-text-secondary);
+	font-size: 14px;
+  }
+  .add-student-form label{
+	margin-bottom: 1em;
+	font-family: var(--font-body);
+	color: var(--color-text-secondary);
+	font-size: 14px;
+  }
+  .add-student-form label input{
+	display: block;
+	margin-top: 6px;
+	width: 100%;
+	padding: 10px;
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-sm);
+  }
+
+  .add-student-form select{
+	display: block;
+	margin-top: 6px;
+	width: 100%;
+	padding: 10px;
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-sm);
+  }
+  .name-input{
+	width: 100%;
+  }
+  .main-student-data{
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+    column-gap: 1em;  
+	margin-top: 1em;
+}
+.add-student-form footer{
+	text-align: right;
+}
+.add-student-form footer button{
+	padding: 10px;
+	font-family: var(--font-body);
+	font-weight: var(--weight-bold);
+}
+.cancel-btn{
+  background-color: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+}
+
+.add-btn{
+	background-color:var(--color-primary-dark);
+	color: white;
+	border-radius: 6px;
+	border: 1px solid transparent;
+	margin-left: 6px;
+}

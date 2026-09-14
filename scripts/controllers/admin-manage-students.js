@@ -27,8 +27,12 @@ window.addEventListener('pageshow', (event) => {
         requireAuth(freshUserId, "adminid", adminArray, freshUserRole, 'admin');
     }
 });
+
 const currentUser = gettingUser('currentUserId');
 console.log(currentUser);
+const adminName = document.querySelector('.admin-name');
+const userName = adminArray.find(user => user.adminid === currentUser);
+adminName.textContent = userName.name;
 console.log(typeof adminArray);
 const currentUserRole = gettingUser('currentUserRole');
 requireAuth(currentUser, "adminid", adminArray, currentUserRole, 'admin');
@@ -38,12 +42,15 @@ const activateFormButton = document.querySelector('.add-button');
 const logoutButton = document.querySelector('.logout-btn');
 const addStudentForm = document.querySelector('.add-student-form');
 const addBtn = document.querySelector('.add-btn');
+const formOverlay = document.querySelector('.overlay');
 // add student form Input variables
 const nameInput = document.querySelector('.name-input');
 const dateInput = document.querySelector('.date-input');
 const classSelect = document.querySelector('.class-select');
 const guardianNo = document.querySelector('.guardian-No');
 const emailInput =  document.querySelector('.email-input');
+const CancelAddBtn = document.querySelector('.cancel-btn');
+const closeAddForm = document.querySelector('.close-addStudent-form');
 // edit student form input variables
 const editStudentNameInput = document.querySelector('.edit-Name');
 const editStudentEmailInput = document.querySelector('.edit-Email');
@@ -51,6 +58,7 @@ const editStudentDobInput = document.querySelector('.edit-date');
 const editStudentGuardianNo = document.querySelector('.edit-guardian-no');
 const editStudentClassId = document.querySelector('.edit-student-class');
 const closeEditForm = document.querySelector('.close-edit-form');
+const studentEditInstruction = document.querySelector('.student-for-edit');
 // essential edit student variables
 const emptyState = document.querySelector('.empty-state');
 const editStudent = document.querySelector('.edit-student');
@@ -66,9 +74,12 @@ const deleteStudentBtn = document.querySelector('.delete-student');
 const showDeleteBtn = document.querySelector('.show-delete');
 
 
-
+logoutButton.addEventListener('click', function(){
+  clearSessionStorage()
+})
 activateFormButton.addEventListener('click', async()=>{
     addStudentForm.classList.remove('hidden');
+    formOverlay.classList.remove('hidden');
 });
 addBtn.addEventListener('click', async()=>{
     if(!nameInput.value||!dateInput.value||classSelect.value === 'Select a class'||!guardianNo.value||!emailInput.value){
@@ -81,22 +92,35 @@ addBtn.addEventListener('click', async()=>{
         saveCollection('classes', schoolClasses);
         mappingStudentsArray(studentsArray, classContainer);
         addStudentForm.classList.add('hidden');
+        formOverlay.classList.add('hidden');
     }
 });
+
+CancelAddBtn.addEventListener('click', function(){
+  addStudentForm.classList.add('hidden');
+  formOverlay.classList.add('hidden');
+});
+closeAddForm.addEventListener('click', function(){
+  addStudentForm.classList.add('hidden');
+  formOverlay.classList.add('hidden');
+})
 
 classContainer.addEventListener('click', (event) => {
     if(event.target.closest('.edit-btn')){
         const particularStudent = event.target.closest('.student');
         console.log(particularStudent);
         editStudent.classList.remove('hidden');
+        formOverlay.classList.remove('hidden')
         let studentToEdit = particularStudent.dataset.userId;
         let particularStudentObject = studentsArray.find(user => user.studentId === studentToEdit)
         console.log(studentToEdit);
+        studentEditInstruction.textContent = `Update ${particularStudentObject.Name}'s profile details below`;
         saveEdit.addEventListener('click', function(){
         let newstudentClass = schoolClasses.find(cla => cla.name === editStudentClassId.value);
         console.log(newstudentClass);
            updateStudent(studentToEdit, editStudentNameInput.value, editStudentEmailInput.value, editStudentDobInput.value, editStudentGuardianNo.value, !newstudentClass?particularStudentObject.Classid:newstudentClass.id);
            editStudent.classList.add('hidden');
+           formOverlay.classList.add('hidden');
            //saveCollection('students', studentsArray);
            saveCollection('classes', schoolClasses);
            mappingStudentsArray(studentsArray, classContainer);
@@ -113,6 +137,7 @@ classContainer.addEventListener('click', (event) => {
             deleteStudent(studentToEdit);
             mappingStudentsArray(studentsArray, classContainer);
             editStudent.classList.add('hidden');
+            formOverlay.classList.add('hidden');
         });
     }
 })
@@ -123,7 +148,7 @@ function fetchSearchResults(query) {
   if(filteredStudentsArray.length > 0){
   mappingStudentsArray(filteredStudentsArray, classContainer)
   }else if (filteredStudentsArray.length === 0){
-    classContainer.innerHTML = 
+    // classContainer.innerHTML= 
   }
 ;
 }
