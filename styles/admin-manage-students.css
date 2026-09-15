@@ -108,6 +108,23 @@
 	border-color: transparent;
     font-family: var(--font-body);
 }
+.edit-btn{
+	background-color: transparent;
+	font-family: var(--font-body);
+	color:var(--color-text);
+	border-color: transparent;
+	cursor: pointer;
+}
+.number-dob{
+  font-family: var(--font-body);
+}
+.view-btn{
+	background-color: transparent;
+	font-family:var(--font-body);
+	color:var(--color-text);
+	border-color: transparent;
+	cursor: pointer
+}
   .edit-student{
 	position: fixed;
     top: 50%;
@@ -307,8 +324,11 @@
 	border: 1px solid var(--color-border);
   }
   .class-container{
+	width: 100%;
 	margin-top: 1em;
 	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	column-gap: 1em;
   }
   .student{
 	background-color: white;
@@ -316,6 +336,17 @@
 	border: 1px solid var(--color-border);
 	box-shadow: var(--shadow-md);
 	border-radius: 6px;
+  }
+  .student h3{
+	font-family: var(--font-display);
+  }
+  .student header p{
+	font-family: var(--font-body);
+	color:var(--color-primary-dark);
+	background-color: var(--color-primary-light);
+	padding: 6px;
+	border-radius: 6px;
+	font-weight:var(--weight-semibold);
   }
   .student header{
 	display: flex;

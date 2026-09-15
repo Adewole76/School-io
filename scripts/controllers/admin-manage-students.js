@@ -128,6 +128,10 @@ classContainer.addEventListener('click', (event) => {
         showDeleteBtn.addEventListener('click', function(){
         studentDeleteSection.classList.remove('hidden');
         showDeleteBtn.classList.add('hidden');
+        });
+        closeEditForm.addEventListener('click', function(){
+        editStudent.classList.add('hidden');
+        formOverlay.classList.add('hidden');
         })
         cancelDeleteBtn.addEventListener('click', function(){
         studentDeleteSection.classList.add('hidden');
@@ -144,7 +148,8 @@ classContainer.addEventListener('click', (event) => {
 
 function fetchSearchResults(query) {
   console.log(`🔍 Getting student with record: "${query}"`);
-  let filteredStudentsArray = studentsArray.filter(user => user.Name === query);
+  let filteredStudentsArray = studentsArray.filter(user => user.Name.toLowerCase().includes(query.toLowerCase()));
+  
   if(filteredStudentsArray.length > 0){
   mappingStudentsArray(filteredStudentsArray, classContainer)
   }else if (filteredStudentsArray.length === 0){
@@ -164,9 +169,11 @@ searchBar.addEventListener('input', debouncedSearch);
 
 function fetchSearchDropdown(query) {
   console.log(`🔍 Getting student with record: "${query}"`);
-  const particularClass = schoolClasses.find(cla => cla.name === query.name)
+  if(query !== 'All classes'){
+  const particularClass = schoolClasses.find(cla => cla.name === query);
   const filteredStudentsArray = studentsArray.filter(user => user.Classid === particularClass.id);
   mappingStudentsArray(filteredStudentsArray, classContainer);
+}
 }
 
 // Wrap the original function in your debounce utility with a 500ms delay
@@ -175,5 +182,4 @@ const debouncedSearchDropdown = debounce((event) => {
 }, 500);
 
 // Attach the debounced function to the event listener
-
 searchClassDropdown.addEventListener('change', debouncedSearchDropdown);

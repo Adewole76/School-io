@@ -29,16 +29,12 @@ export const mappingStudentsArray = (arr, container) => {
     }).join('');
     if(arr.length > 0){
         container.innerHTML = mappedStudentArray;
-    }else if(arr.length === 0){
+    }else{
         container.innerHTML = `<section class="empty-state">
             <h3>No students yet</h3>
             <p>Once you add a student, their profile, class, and guardian details will show up here as a card</p>
         </section>`
         container.style.height = '50vh';
         container.style.placeItems = 'center';
-    }else if(arr.length === 2){
-        container.style.gridTemplateColumns = '1fr 1fr';
-    }else if(arr.length >= 3){
-        container.style.gridTemplateColumns = '1fr 1fr 1fr';
     }
 }
