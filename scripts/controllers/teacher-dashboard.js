@@ -21,11 +21,18 @@ const userName2 = document.querySelector('.user-name-2')
 const userSubject = document.querySelector('.user-subject');
 const logOutBtn = document.querySelector('.log-out-btn');
 const emptyState = document.querySelector('.empty-state');
+const teacherDashboard = document.querySelector('.teacher-dashboard-section')
 console.log(TeachersArray);
-
 userName.textContent = currentTeacher.Name;
 userName2.textContent = currentTeacher.Name;
 userSubject.textContent = currentTeacher.teacherSubject;
+const loadTeacherDashboard = () => {
+    if(currentTeacher.ClassId === null){
+        emptyState.classList.remove('hidden');
+        teacherDashboard.classList.add('hidden');
+    }
+}
+
 
 logOutBtn.addEventListener('click', function(){
     clearSessionStorage();
