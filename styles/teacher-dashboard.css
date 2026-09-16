@@ -74,12 +74,18 @@
   body{
     display: flex;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
     width: 100%;
     margin: 0;
     height: 100vh;
-    padding: 2em 0 0 0;
+    padding: 2em 2em 0 2em;
     background-color: var(--color-bg);
+  }
+  .main-container{
+    width: 100%;
+  }
+  .hidden{
+    display: none;
   }
   nav{
     display: flex;
@@ -115,6 +121,9 @@
   .main-container header{
     text-align: center;
   }
+  .main-container .teacher-dashboard-section header{
+    text-align: left;
+  }
   .main-container h1{
     font-size: 3em;
     font-family: var(--font-display);
@@ -135,4 +144,34 @@
     border: 1px solid var(--color-border);
     border-radius: 8px;
     background-color: var(--color-surface);
+  }
+  .stats-section{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 2em;
+  }
+  .stats-section img{
+    width: 50px;
+    height: 50px;
+  }
+  .stat{
+    background-color:var(--color-surface);
+    border: 1px solid var(--color-border);
+    padding: 2em;
+    border-radius: 6px;
+    box-shadow:var(--shadow-sm);
+  }
+  .teacher-actions{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 100%;
+    margin-top: 2em;
+    column-gap: 2em;
+  }
+  .action{
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    padding: 2em;
+    border-radius: 6px;
+    box-shadow: var(--shadow-sm);
   }
