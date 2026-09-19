@@ -3,6 +3,8 @@ import { TeachersArray } from "../module.js";
 import { clearSessionStorage } from "../module.js";
 import { gettingUser } from "../module.js";
 import { requireAuth } from "../module.js";
+import { studentsArray } from "../module.js";
+import { schoolClasses } from "../module.js";
 
 const currentUser = gettingUser('currentUserId');
 const currentUserRole = gettingUser("currentUserRole");
@@ -23,17 +25,32 @@ const logOutBtn = document.querySelector('.log-out-btn');
 const emptyState = document.querySelector('.empty-state');
 const teacherDashboard = document.querySelector('.teacher-dashboard-section')
 console.log(TeachersArray);
+
+//navbar dom elements
 userName.textContent = currentTeacher.Name;
 userName2.textContent = currentTeacher.Name;
 userSubject.textContent = currentTeacher.teacherSubject;
-const loadTeacherDashboard = () => {
-    if(currentTeacher.ClassId === null){
-        emptyState.classList.remove('hidden');
-        teacherDashboard.classList.add('hidden');
-    }
-}
 
-
+//stats section dom elements
+const noOfStudents = document.querySelector('.no-of-students');
 logOutBtn.addEventListener('click', function(){
+    console.log("i am working");
     clearSessionStorage();
 })
+ const loadTeacherDashboard = () => {
+     if(currentTeacher.ClassId === null){
+         emptyState.classList.remove('hidden');
+         teacherDashboard.classList.add('hidden');
+     }else{
+         emptyState.classList.add("hidden");    
+         teacherDashboard.classList.remove('hidden');
+         const particularClass = schoolClasses.find(cla => cla.teacherId === currentTeacher.teacherId);
+         console.log(particularClass);
+         const classStudents = studentsArray.filter(student => student.Class.id === particularClass.id);
+         noOfStudents.innerHTML = classStudents.length?classStudents.length:0;
+     }
+ }
+ loadTeacherDashboard();
+
+
+

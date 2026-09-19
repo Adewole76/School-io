@@ -164,6 +164,7 @@ teachersSection.addEventListener('click', (event)=>{
         mapAssignedTeachers(assignedTeachers, assignedContainer);
         removeBtn.classList.remove('hidden')
         AssignmentForm.classList.add('hidden');
+        formOverlay.classList.add('hidden');
         checkIfThereAreAnyteachers(TeachersArray, emptyState, teachersSection)
      })
    }

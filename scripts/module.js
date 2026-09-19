@@ -233,7 +233,7 @@ async function hashPassword(password) {
  
     const { saltHex, hashHex } = await hashPassword(password);
     
-    // JavaScript is likely crashing on the line below:
+
     const newTeacherObject = {
       teacherId: generateIdForUsers('teacher'), 
       Name: name,
