@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/styles/classroster.css">
 </head>
 <body>
     <nav>
@@ -14,6 +15,25 @@
             <li><button class="log-out-btn">log out</button></li>
         </ul>
     </nav>
-    <script src="/scripts/controllers/classroster.js"></script>
+    <main>
+        <header>
+            <p class="class-name-tag"></p>
+            <div>
+                <h1 class="class-name"></h1>
+                <div>
+                    <p>View and manage the students in your class - their biodata, attendance, and grades by term</p>
+                    <button class="show-addStudentform">+ Add student</button>
+                </div>
+                <input class="student-search" type="text" placeholder="search-students">
+                <p class="students-number"></p>
+            </div>
+        </header>
+
+        <section class="students-container">
+           
+        </section>
+        
+    </main>
+    <script type="module" src="/scripts/controllers/classroster.js"></script>
 </body>
 </html>
