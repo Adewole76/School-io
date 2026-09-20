@@ -78,7 +78,7 @@
     width: 100%;
     margin: 0;
     height: 100vh;
-    padding: 2em 2em 0 2em;
+    padding: 4em 2em 0 2em;
     background-color: var(--color-bg);
   }
   .main-container{
@@ -94,9 +94,20 @@
     top: 0;
     left: 0;
     right: 0;
-    padding: 0 2em;
+    padding: 0.5em 2em;
     background-color: var(--color-bg);
     border-bottom: 1px solid var(--color-border-strong);
+  }
+  body p{
+    font-family:var(--font-body);
+  }
+  nav h1{
+    font-family: var(--font-display);
+    margin: 0;
+    color:var(--color-primary-dark)
+  }
+  nav h1 span{
+    color:var(--color-accent);
   }
 
   nav a{
@@ -161,6 +172,12 @@
     border-radius: 6px;
     box-shadow:var(--shadow-sm);
   }
+  .stat p{
+   font-family: var(--font-body);
+  }
+  .no-of-students{
+    font-family: var(--font-display);
+  }
   .teacher-actions{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -168,10 +185,30 @@
     margin-top: 2em;
     column-gap: 2em;
   }
+
   .action{
     background-color: var(--color-surface);
     border: 1px solid var(--color-border);
     padding: 2em;
     border-radius: 6px;
     box-shadow: var(--shadow-sm);
+    transition: transform 0.3s ease, border 0.3s ease;
   }
+  .action-label{
+  
+  }
+  .action h3{
+   font-family: var(--font-display);
+  }
+  .action p{
+    font-family: var(--font-body);
+  }
+   .action img{
+    width: 50px;
+  }
+  .action:hover{
+    border: 1px solid var(--color-primary-dark);
+    transform: translateY(-3px);
+    box-shadow:var(--shadow-lg);
+  }
+  

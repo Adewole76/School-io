@@ -24,12 +24,15 @@ const userSubject = document.querySelector('.user-subject');
 const logOutBtn = document.querySelector('.log-out-btn');
 const emptyState = document.querySelector('.empty-state');
 const teacherDashboard = document.querySelector('.teacher-dashboard-section')
+const teacherClassBadge = document.querySelector('.teacher-class-badge');
+const teacherGreeting = document.querySelector('.teacher-greeting');
 console.log(TeachersArray);
 
 //navbar dom elements
 userName.textContent = currentTeacher.Name;
 userName2.textContent = currentTeacher.Name;
 userSubject.textContent = currentTeacher.teacherSubject;
+
 
 //stats section dom elements
 const noOfStudents = document.querySelector('.no-of-students');
@@ -45,6 +48,8 @@ logOutBtn.addEventListener('click', function(){
          emptyState.classList.add("hidden");    
          teacherDashboard.classList.remove('hidden');
          const particularClass = schoolClasses.find(cla => cla.teacherId === currentTeacher.teacherId);
+         teacherClassBadge.textContent = `Coordinating ${particularClass.name}`
+         teacherGreeting.textContent = `Welcome ${currentTeacher.Name},`
          console.log(particularClass);
          const classStudents = studentsArray.filter(student => student.Class.id === particularClass.id);
          noOfStudents.innerHTML = classStudents.length?classStudents.length:0;

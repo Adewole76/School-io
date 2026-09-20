@@ -2,6 +2,7 @@ import { addTeacher } from "../module.js";
 import { TeachersArray } from "../module.js";
 import { validateEmail } from "../module.js";
 import { studentsArray } from "../module.js";
+import { adminArray } from "../module.js"
 // import { generateIdForUsers } from "../module.js";
 // import { saveCollection } from "../module.js";
 import { saveUserIdOnLogin } from "../module.js";
@@ -19,7 +20,7 @@ createTeacherBtn.addEventListener('click', async () => {
             console.log('all fields are compulsory');
         }else if(confirmPassword.value !== passwordInput.value){
             console.log('you password confirmation is wrong');
-        }else if(TeachersArray.some(user => user.Email === emailInput.value) || studentsArray.some(user => user.Email === emailInput.value)){
+        }else if(TeachersArray.some(user => user.Email === emailInput.value) || studentsArray.some(user => user.Email === emailInput.value) || adminArray.some(user => user.email === emailInput.value)){
            console.log('a user already exists with this email')
         }else if(!validateEmail(emailInput.value)){
             console.log('invalid email');
