@@ -36,6 +36,23 @@ userSubject.textContent = currentTeacher.teacherSubject;
 
 //stats section dom elements
 const noOfStudents = document.querySelector('.no-of-students');
+
+//class tool dom elements
+const classRoster = document.querySelector('.classRoster');
+const markAttendance = document.querySelector('.attendance');
+const recordGrades = document.querySelector('.grades');
+//event listeners for link to class actions
+classRoster.addEventListener('click', function(){
+    window.location.href = '/pages/classroster.html';
+});
+markAttendance.addEventListener('click', function(){
+    window.location.href = '/pages/attendance.html';
+})
+recordGrades.addEventListener('click', function(){
+    window.location.href = '/pages/record-grades.html';
+})
+
+
 logOutBtn.addEventListener('click', function(){
     console.log("i am working");
     clearSessionStorage();
@@ -51,7 +68,7 @@ logOutBtn.addEventListener('click', function(){
          teacherClassBadge.textContent = `Coordinating ${particularClass.name}`
          teacherGreeting.textContent = `Welcome ${currentTeacher.Name},`
          console.log(particularClass);
-         const classStudents = studentsArray.filter(student => student.Class.id === particularClass.id);
+         const classStudents = studentsArray.filter(student => student.Classid === particularClass.id);
          noOfStudents.innerHTML = classStudents.length?classStudents.length:0;
      }
  }
