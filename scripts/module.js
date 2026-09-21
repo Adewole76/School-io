@@ -11,7 +11,6 @@ export const getCollection = (name) =>{
 }
 
 const sendEmailToStudents = (userName, resetCode, userEmail, duration, headWording) => {
- let resetLink = '/pages/reset-password.html'
 // templateParams object package
 const templateParams = {
     name: userName,
