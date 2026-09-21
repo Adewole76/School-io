@@ -67,3 +67,16 @@
 	--transition-fast: 120ms ease;
 	--transition-base: 200ms ease;
   }
+*{
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+nav {
+	display: flex;
+	justify-content: space-between;
+}
+nav ul {
+	list-style-type: none;
+}

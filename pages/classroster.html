@@ -10,7 +10,7 @@
     <nav>
         <h1>Prime Touch <span>Portal</span></h1>
         <ul class="user-profile">
-            <li><p>class="user-name"</p></li> 
+            <li><p class="user-name"></p></li> 
             <li><a href="">change password</a></li> 
             <li><button class="log-out-btn">log out</button></li>
         </ul>
@@ -32,6 +32,113 @@
         <section class="students-container">
            
         </section>
+
+        <form class="add-student-form hidden">
+    <header>
+        <div class="header-btn">
+            <h3>Add student</h3>
+        <div>
+            <button type="button" class="close-addStudent-form">close</button>
+        </div>
+        </div>
+        <p>This creates a student profile and enrolls them in the selected class.</p>
+    </header>
+    <main>
+        <label>
+           Full name
+            <input class="name-input" type="text" placeholder="e.g. Chidinma">
+        </label>
+        <section class="main-student-data">
+            <label for="">
+                Date of Birth
+                <input class="date-input" type="date" placeholder="">
+            </label>
+            <label for="">
+                Class
+                <select class="class-select">
+                    <option value="Select a class">Select a class</option>
+                    <option value="Js1">Js1</option>
+                    <option value="Js2">Js2</option>
+                    <option value="Js3">Js3</option>
+                    <option value="Ss1">Ss1</option>
+                    <option value="Ss2">Ss2</option>
+                    <option value="Ss3">Ss3</option>
+                </select>
+            </label>
+            <label for="">
+                Guardian/Parent No
+                <input class="guardian-No" type="tel" placeholder="+234 800 000 000">
+            </label>
+            <label for="">
+                Email
+                <input class="email-input" type="email" placeholder="student@greendale.edu">
+            </label>
+        </section>
+    </main>
+  <footer>
+    <button type="button" class="cancel-btn">Cancel</button>
+    <button type="button" class="add-btn">Add button</button>
+  </footer>
+</form>
+
+<form class="edit-student hidden">
+    <header>
+        <section>
+        <h3>Edit Student</h3>
+        </section>
+        <button type="button" class="close-edit-form">close</button>
+    </header>
+    <p class="student-for-edit"></p>
+    
+    <section>
+        <label>
+            Full Name
+            <input class="edit-Name" type="text" placeholder="Full Name">
+        </label>
+        <section class="student-edit-data">
+            <label for="">
+                Email
+                <input type="email" class="edit-Email" placeholder="">
+            </label>
+            <label for="">
+                Date of Birth
+                <input type="date" class="edit-date" placeholder="">
+            </label>
+            <label for="">
+                Guardian No
+                <input type="number" class="edit-guardian-no" placeholder="">
+            </label>
+            <label for="">
+                Class
+                <select class="edit-student-class">
+                    <option value="">Select a class</option>
+                    <option value="Js1">Js1</option>
+                    <option value="Js2">Js2</option>
+                    <option value="Js3">Js3</option>
+                    <option value="Ss1">Ss1</option>
+                    <option value="Ss2">Ss2</option>
+                    <option value="Ss3">Ss3</option>
+                </select>
+            </label>
+        </section>
+    </section>
+    <p class="password-reset-instructions">
+        Password Resets are handled Seperately,
+        from the students account settings.
+    </p>
+    <hr>
+    <h4>Danger zone</h4>
+    <section class="student-delete-confirmation hidden">
+      <p>This can't be undone deleting this students' record will also delete her attendance history and also his/her grade history</p>
+      <button type="button" class="cancel-del">Cancel</button>
+      <button type="button" class="delete-student">Yes, delete permanently</button>
+    </section>
+    <button type="button" class="show-delete">Delete student</button>
+    <section class="cancel-save">
+        <button type="button" class="cancel-edit">cancel</button>
+        <button type="button" class="save-edit">Save changes</button>
+    </section>
+</form>
         
     </main>
     <script type="module" src="/scripts/controllers/classroster.js"></script>
