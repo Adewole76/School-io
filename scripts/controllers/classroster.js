@@ -70,3 +70,7 @@ addButton.addEventListener('click', async()=>{
     }
 });
 
+logOutButton.addEventListener('click', function(){
+    clearSessionStorage();
+})
+

@@ -163,7 +163,7 @@ function generate4DigitNumber() {
 
   sendEmailToStudents(studentName, newStudentObject.passwordResetCode, email, '48hrs', 'Welcome to Prime touch portal use the code to set your password');
   
-
+if(sendEmailToStudents(studentName, newStudentObject.passwordResetCode, email, '48hrs', 'Welcome to Prime touch portal use the code to set your password'))
   studentsArray.push(newStudentObject);
   saveCollection('students', studentsArray)
 
