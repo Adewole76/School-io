@@ -24,6 +24,26 @@ requireAuth(currentUser,"teacherId", TeachersArray, currentRole, "teacher");
 const userName = document.querySelector('.user-name');
 const studentsContainer = document.querySelector('.students-container');
 userName.textContent = currentTeacher.Name; 
+
+//add student form dom elements
+const addStudentForm = document.querySelector('.add-student-form');
+const closeaddStudentForm = document.querySelector('.close-addStudent-form');
+const nameInput = document.querySelector('.name-input');
+const dateInput = document.querySelector('.date-input');
+const guardianNo = document.querySelector('.guardian-No');
+const emailInput =  document.querySelector('.email-input');
+const CancelAddBtn = document.querySelector('.cancel-btn');
+
+//edit student form dom elements
+const editStudentNameInput = document.querySelector('.edit-Name');
+const editStudentEmailInput = document.querySelector('.edit-Email');
+const editStudentDobInput = document.querySelector('.edit-date');
+const editStudentGuardianNo = document.querySelector('.edit-guardian-no');
+const closeEditForm = document.querySelector('.close-edit-form');
+const studentEditInstruction = document.querySelector('.student-for-edit');
+
+
+const editStudentForm = document.querySelector('.edit-student')
 const loadClassRoster = () =>{
     const teachersClassRoster = studentsArray.filter(users => users.Classid === currentTeacher.ClassId);
     mappingClassRoster(teachersClassRoster, studentsContainer);
