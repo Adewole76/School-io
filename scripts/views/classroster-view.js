@@ -19,7 +19,12 @@ export const mappingClassRoster = (arr, container) => {
     </div>`
   }).join('');
 if(arr.length === 0){
-    container.innerHTML = `<p>No student in your clas yet</p>`
+    container.style.width = '100%';
+    container.style.height = '50vh';
+    container.style.display = 'flex';
+    container.style.justifyContent = 'center';
+    container.style.alignItems = 'center'
+    container.innerHTML = `<p class=empty-state>No student in your class yet</p>`
 }else if(arr.length > 0){
     container.innerHTML = mappedClassRoster;
 }

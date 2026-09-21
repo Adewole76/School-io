@@ -9,7 +9,6 @@ import {mappingStudentsArray} from "../views/admin-manage-students-view.js"
 import {addStudent} from "../module.js";
 import {updateStudent} from "../module.js";
 import {deleteStudent} from "../module.js";
-
 function debounce(func, delay) {
   let timerId;
   return function (...args) {
@@ -29,13 +28,13 @@ window.addEventListener('pageshow', (event) => {
 });
 
 const currentUser = gettingUser('currentUserId');
+const currentUserRole = gettingUser('currentUserRole');
+requireAuth(currentUser, "adminid", adminArray, currentUserRole, 'admin');
 console.log(currentUser);
 const adminName = document.querySelector('.admin-name');
 const userName = adminArray.find(user => user.adminid === currentUser);
 adminName.textContent = userName.name;
 console.log(typeof adminArray);
-const currentUserRole = gettingUser('currentUserRole');
-requireAuth(currentUser, "adminid", adminArray, currentUserRole, 'admin');
 const classContainer = document.querySelector('.class-container');
 mappingStudentsArray(studentsArray, classContainer);
 const activateFormButton = document.querySelector('.add-button');

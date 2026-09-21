@@ -4,6 +4,7 @@ import { TeachersArray } from "../module.js";
 import { gettingUser } from "../module.js";
 import { saveCollection } from "../module.js";
 import { requireAuth } from "../module.js";
+import { schoolClasses } from "../module.js";
 import { addStudent } from "../module.js";
 import { deleteStudent } from "../module.js";
 import { clearSessionStorage } from "../module.js";
@@ -23,9 +24,19 @@ requireAuth(currentUser,"teacherId", TeachersArray, currentRole, "teacher");
 //nav bar dom element
 const userName = document.querySelector('.user-name');
 const logOutButton = document.querySelector('.log-out-btn');
+
+
 const studentsContainer = document.querySelector('.students-container');
 userName.textContent = currentTeacher.Name; 
+const classNameTag = document.querySelector('.class-name-tag');
+const currentTeacherClass = schoolClasses.find(cla => cla.id === currentTeacher.ClassId)
 
+
+//heaader dom elements
+const className = document.querySelector('.class-name');
+className.textContent = `${currentTeacherClass.name} Roster`;
+classNameTag.textContent = currentTeacherClass.name;
+console.log(className);
 const formOverlay = document.querySelector('.form-overlay');
 //add student form dom elements
 const showAddStudentForm = document.querySelector('.show-addStudentform');
@@ -55,16 +66,26 @@ const loadClassRoster = () =>{
 const teacherClassRoster = loadClassRoster();
 console.log(teacherClassRoster);
 
+showAddStudentForm.addEventListener('click', function(){
+    addStudentForm.classList.remove('hidden');
+    //formOverlay.classList.remove('hidden');
+});
+
+CancelAddBtn.addEventListener('click', function(){
+    addStudentForm.classList.add('hidden');
+    //formOverlay.classList.add('hidden');
+})
+
 addButton.addEventListener('click', async()=>{
     if(!nameInput.value||!dateInput.value||!guardianNo.value||!emailInput.value){
-        console.log(nameInput.value, dateInput.value, classSelect.value, guardianNo.value, emailInput.value);
+        console.log(nameInput.value, dateInput.value, guardianNo.value, emailInput.value);
         console.log(`you haven't filled in all the current information`);
     }else{
-        let studentClass = schoolClasses.find(cla => cla.id === currentTeacher.Classid);
+        let studentClass = schoolClasses.find(cla => cla.id === currentTeacher.ClassId);
         console.log(studentClass);
         await addStudent(nameInput.value, emailInput.value, dateInput.value, guardianNo.value, studentClass.id)
         saveCollection('classes', schoolClasses);
-        mappingClassRoster(teacherClassRoster, classContainer);
+        mappingClassRoster(teacherClassRoster, studentsContainer);
         addStudentForm.classList.add('hidden');
         formOverlay.classList.add('hidden');
     }
@@ -72,5 +93,6 @@ addButton.addEventListener('click', async()=>{
 
 logOutButton.addEventListener('click', function(){
     clearSessionStorage();
-})
+});
+
 
