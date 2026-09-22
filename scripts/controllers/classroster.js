@@ -3,6 +3,7 @@ import { studentsArray } from "../module.js";
 import { TeachersArray } from "../module.js";
 import { gettingUser } from "../module.js";
 import { saveCollection } from "../module.js";
+import { adminArray } from "../module.js";
 import { requireAuth } from "../module.js";
 import { schoolClasses } from "../module.js";
 import { addStudent } from "../module.js";
@@ -63,7 +64,16 @@ const showDeleteStudent = document.querySelector('.show-delete');
 const deleteStudentBtn = document.querySelector('.delete-student');
 const deleteConfirmation = document.querySelector('.student-delete-confirmation');
 const hideDeleteConfirmation = document.querySelector('.cancel-del');
-//
+
+// student biodata details
+const studentBiodata = document.querySelector('.student-biodata');
+const closeStudentBiodata = document.querySelector('.close-student-biodata');
+const studentBiodataName = document.querySelector('.student-name');
+const studentDob = document.querySelector('.student-dob');
+const studentGuardianNo = document.querySelector('.student-GuardianNo');
+const studentEmail = document.querySelector('.student-Email');
+const studentID = document.querySelector('.student-Id');
+
 const errorState = document.querySelector('.error-state');
 console.log(errorState);
 const closeErrorState = document.querySelector('.close-error-state');
@@ -148,8 +158,9 @@ studentsContainer.addEventListener('click', (event)=>{
 }else if(event.target.closest('.view-student-btn')){
     const studentContainer = event.target.closest('.student');
     const studentDetails = studentsArray.find(user => user.studentId === studentContainer.dataset.userId); 
+    
 }
-})
+});
 
 logOutButton.addEventListener('click', function(){
     clearSessionStorage();
