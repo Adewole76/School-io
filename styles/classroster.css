@@ -157,3 +157,13 @@ header h2{
     border-radius: 8px;
     z-index: 120;
 }
+.edit-student{
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+    background-color: white;
+    padding:2em 2em;
+    border-radius: 8px;
+    z-index: 120;
+}

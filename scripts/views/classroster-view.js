@@ -1,7 +1,7 @@
 'use strict'
 export const mappingClassRoster = (arr, container) => {
   const mappedClassRoster = arr.map(user =>{
-    return `<div>
+    return `<div class="student" data-user-id="${user.studentId}">
      <div>
         <h3>${user.Name}</h3>
         <p></p>
@@ -13,7 +13,7 @@ export const mappingClassRoster = (arr, container) => {
      </ul>
      <hr>
      <div>
-        <button>Edit</button>
+        <button class="edit-student-btn">Edit</button>
         <button>View records</button>
      </div>
     </div>`

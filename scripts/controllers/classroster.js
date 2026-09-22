@@ -57,6 +57,8 @@ const editStudentDobInput = document.querySelector('.edit-date');
 const editStudentGuardianNo = document.querySelector('.edit-guardian-no');
 const closeEditForm = document.querySelector('.close-edit-form');
 const studentEditInstruction = document.querySelector('.student-for-edit');
+const saveEditChanges = document.querySelector('.save-edit');
+const cancelEditChanges = document.querySelector('.cancel-edit');
 
 //
 const errorState = document.querySelector('.error-state');
@@ -76,7 +78,10 @@ showAddStudentForm.addEventListener('click', function(){
     addStudentForm.classList.remove('hidden');
     formOverlay.classList.remove('hidden');
 });
-
+closeaddStudentForm.addEventListener('click', function(){
+    addStudentForm.classList.add('hidden');
+    formOverlay.classList.add('hidden');
+})
 CancelAddBtn.addEventListener('click', function(){
     addStudentForm.classList.add('hidden');
     formOverlay.classList.add('hidden');
@@ -86,13 +91,14 @@ addButton.addEventListener('click', async()=>{
     if(!nameInput.value||!dateInput.value||!guardianNo.value||!emailInput.value){
         console.log(nameInput.value, dateInput.value, guardianNo.value, emailInput.value);
         console.log(`you haven't filled in all the current information`);
+    }else if(TeachersArray.some(user => user.Email === emailInput.value) || studentsArray.some(user => user.Email === emailInput.value) || adminArray.some(user => user.email === emailInput.value)){
+       console.log('a student already exists with this email');
     }else{
         let studentClass = schoolClasses.find(cla => cla.id === currentTeacher.ClassId);
         console.log(studentClass);
         if(await addStudent(nameInput.value, emailInput.value, dateInput.value, guardianNo.value, studentClass.id)){
         saveCollection('classes', schoolClasses);
         loadClassRoster();
-        mappingClassRoster(teacherClassRoster, studentsContainer);
         addStudentForm.classList.add('hidden');
         formOverlay.classList.add('hidden');
         }else{
@@ -107,9 +113,20 @@ addButton.addEventListener('click', async()=>{
        
     }
 });
+studentsContainer.addEventListener('click', (event)=>{
+  if(event.target.closest('.edit-student-btn')){
+    editStudentForm.classList.remove('hidden')
+    formOverlay.classList.remove('hidden');
+     const studentContainer = event.target.closest('.student');
+     const studentDetails = studentsArray.find(user => user.studentId === studentContainer.dataset.userId); 
+    saveEditChanges.addEventListener('click', function(){
+    updateStudent(studentDetails.studentId, editStudentNameInput.value, editStudentEmailInput.value, editStudentDobInput.value, editStudentGuardianNo.value, studentDetails.Classid)
+    formOverlay.classList.add('hidden');
+    editStudentForm.classList.add('hidden');
+    })
+}
+})
 
 logOutButton.addEventListener('click', function(){
     clearSessionStorage();
 });
-
-
