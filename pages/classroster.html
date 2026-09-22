@@ -145,13 +145,14 @@
      <button class="close-error-state">add later</button>
 </div>
 
-<dialog class="student-biodata">
+<dialog class="student-biodata hidden" open>
 <header>
  <p>Student details</p>
  <button class="close-student-biodata">close</button>
  </header>
  <section>
  <h6 class="student-name"></h6>
+ <p class="student-class"></p>
  </section>
  <section class="student-details">
     <div class="student-data">
@@ -175,6 +176,13 @@
     </div>
  </section>
 
+ <section class="student-attendance-details hidden">
+  <h3>Attendance</h3>
+ </section>
+ 
+ <footer class="student-grades-details hidden">
+   <h3>Grades</h3>
+ </footer>
 </dialog>
     <script type="module" src="/scripts/controllers/classroster.js"></script>
 </body>

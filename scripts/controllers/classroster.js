@@ -73,6 +73,7 @@ const studentDob = document.querySelector('.student-dob');
 const studentGuardianNo = document.querySelector('.student-GuardianNo');
 const studentEmail = document.querySelector('.student-Email');
 const studentID = document.querySelector('.student-Id');
+const studentBiodataClass = document.querySelector('.student-class');
 
 const errorState = document.querySelector('.error-state');
 console.log(errorState);
@@ -158,7 +159,15 @@ studentsContainer.addEventListener('click', (event)=>{
 }else if(event.target.closest('.view-student-btn')){
     const studentContainer = event.target.closest('.student');
     const studentDetails = studentsArray.find(user => user.studentId === studentContainer.dataset.userId); 
-    
+    studentBiodata.classList.remove('hidden');
+    console.log(studentBiodata);
+    studentBiodataName.textContent = studentDetails.Name;
+    studentDob.textContent = studentDetails.dateOfBirth;
+    studentGuardianNo.textContent = studentDetails.ParentGuardianNo;
+    studentEmail.textContent = studentDetails.Email;
+    studentID .textContent = studentDetails.studentId;
+    let studentClass = schoolClasses.find(cla => cla.id === studentDetails.Classid);
+    studentBiodataClass.textContent = studentClass.name;
 }
 });
 
