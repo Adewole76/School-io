@@ -64,7 +64,7 @@ const showDeleteStudent = document.querySelector('.show-delete');
 const deleteStudentBtn = document.querySelector('.delete-student');
 const deleteConfirmation = document.querySelector('.student-delete-confirmation');
 const hideDeleteConfirmation = document.querySelector('.cancel-del');
-
+const studentToBeEdited = document.querySelector('.student-for-edit');
 // student biodata details
 const studentBiodata = document.querySelector('.student-biodata');
 const closeStudentBiodata = document.querySelector('.close-student-biodata');
@@ -133,6 +133,7 @@ studentsContainer.addEventListener('click', (event)=>{
     formOverlay.classList.remove('hidden');
      const studentContainer = event.target.closest('.student');
      const studentDetails = studentsArray.find(user => user.studentId === studentContainer.dataset.userId); 
+     studentToBeEdited.textContent = `Update ${studentDetails.Name} profile details below`
      console.log(studentDetails);
      saveEditChanges.addEventListener('click', function(){
     updateStudent(studentDetails.studentId, editStudentNameInput.value, editStudentEmailInput.value, editStudentDobInput.value, editStudentGuardianNo.value, studentDetails.Classid)

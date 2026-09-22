@@ -147,11 +147,21 @@ header h2{
     border-radius: 8px;
     z-index: 120
 }
+.add-student-form footer{
+	text-align: right;
+}
 label{
 	display: block;
 	margin-bottom: 1em;
 	font-family:var(--font-body);
 	font-size:var(--text-sm);
+	color:var(--color-text-secondary);
+}
+.student-for-edit{
+	font-family:var(--font-body);
+	font-size:var(--text-xs);
+	font-weight:var(--weight-regular);
+	margin: 6px 0;
 	color:var(--color-text-secondary);
 }
 label input{
@@ -219,6 +229,32 @@ label input{
 .edit-student header{
 	display: flex;
 	justify-content: space-between;
+}
+.edit-student header h3{
+	font-family:var(--font-display);
+}
+.edit-student hr{
+	margin: 1em 0;
+	background-color:var(--color-border);
+}
+.password-reset-instructions{
+	font-family:var(--font-body);
+	color:var(--color-text-secondary);
+	display: none;
+}
+.edit-student h4{
+	font-family:var(--font-body);
+	color:var(--color-text-secondary);
+	font-size:var(--text-sm);
+}
+.edit-student .cancel-save{
+	text-align: right;
+	margin-top: 1em;
+}
+.student-edit-data{
+	display:grid;
+	grid-template-columns: 1fr 1fr;
+	column-gap: 1em;
 }
 .student-biodata{
 	position: fixed;
