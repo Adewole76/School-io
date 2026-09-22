@@ -59,7 +59,10 @@ const closeEditForm = document.querySelector('.close-edit-form');
 const studentEditInstruction = document.querySelector('.student-for-edit');
 const saveEditChanges = document.querySelector('.save-edit');
 const cancelEditChanges = document.querySelector('.cancel-edit');
-
+const showDeleteStudent = document.querySelector('.show-delete');
+const deleteStudentBtn = document.querySelector('.delete-student');
+const deleteConfirmation = document.querySelector('.student-delete-confirmation');
+const hideDeleteConfirmation = document.querySelector('.cancel-del');
 //
 const errorState = document.querySelector('.error-state');
 console.log(errorState);
@@ -119,11 +122,32 @@ studentsContainer.addEventListener('click', (event)=>{
     formOverlay.classList.remove('hidden');
      const studentContainer = event.target.closest('.student');
      const studentDetails = studentsArray.find(user => user.studentId === studentContainer.dataset.userId); 
-    saveEditChanges.addEventListener('click', function(){
+     console.log(studentDetails);
+     saveEditChanges.addEventListener('click', function(){
     updateStudent(studentDetails.studentId, editStudentNameInput.value, editStudentEmailInput.value, editStudentDobInput.value, editStudentGuardianNo.value, studentDetails.Classid)
     formOverlay.classList.add('hidden');
     editStudentForm.classList.add('hidden');
-    })
+    loadClassRoster();
+    });
+    closeEditForm.addEventListener('click', function(){
+        editStudentForm.classList.add('hidden');
+        formOverlay.classList.add('hidden');
+    });
+    deleteStudentBtn.addEventListener('click', function(){
+        deleteStudent(studentDetails.studentId); 
+        loadClassRoster();
+        formOverlay.classList.add('hidden');
+        editStudentForm.classList.add('hidden');
+    });
+    showDeleteStudent.addEventListener('click', function(){
+      deleteConfirmation.classList.remove('hidden');
+    });
+    hideDeleteConfirmation.addEvnentListener('click', function(){
+        deleteConfirmation.classList.add('hidden');
+    });
+}else if(event.target.closest('.view-student-btn')){
+    const studentContainer = event.target.closest('.student');
+    const studentDetails = studentsArray.find(user => user.studentId === studentContainer.dataset.userId); 
 }
 })
 

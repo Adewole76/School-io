@@ -14,7 +14,7 @@ export const mappingClassRoster = (arr, container) => {
      <hr>
      <div>
         <button class="edit-student-btn">Edit</button>
-        <button>View records</button>
+        <button class="view-student-btn">View records</button>
      </div>
     </div>`
   }).join('');
@@ -28,4 +28,4 @@ if(arr.length === 0){
 }else if(arr.length > 0){
     container.innerHTML = mappedClassRoster;
 }
-}
+};
