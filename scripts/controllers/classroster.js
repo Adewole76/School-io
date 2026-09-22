@@ -141,6 +141,10 @@ studentsContainer.addEventListener('click', (event)=>{
     editStudentForm.classList.add('hidden');
     loadClassRoster();
     });
+    cancelEditChanges.addEventListener('click', function(){
+        editStudentForm.classList.add('hidden');
+        formOverlay.classList.add('hidden');
+    })
     closeEditForm.addEventListener('click', function(){
         editStudentForm.classList.add('hidden');
         formOverlay.classList.add('hidden');
@@ -153,9 +157,11 @@ studentsContainer.addEventListener('click', (event)=>{
     });
     showDeleteStudent.addEventListener('click', function(){
       deleteConfirmation.classList.remove('hidden');
+      showDeleteStudent.classList.add('hidden');
     });
-    hideDeleteConfirmation.addEvnentListener('click', function(){
+    hideDeleteConfirmation.addEventListener('click', function(){
         deleteConfirmation.classList.add('hidden');
+        showDeleteStudent.classList.remove('hidden');
     });
 }else if(event.target.closest('.view-student-btn')){
     const studentContainer = event.target.closest('.student');

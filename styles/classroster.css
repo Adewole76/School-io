@@ -198,7 +198,7 @@ label input{
 	color:var(--color-text);
 	font-weight: var(--weight-bold);
 }
-.add-student-form .add-btn{
+.add-student-form .add-btn, .save-edit{
 	background-color:var(--color-primary-dark);
 	padding: 1em 1.5em;
 	border: 1px solid transparent;
@@ -249,12 +249,56 @@ label input{
 }
 .edit-student .cancel-save{
 	text-align: right;
-	margin-top: 1em;
+	margin-top: 1.5em;
+}
+.cancel-edit{
+	background-color: transparent;
+	color:var(--color-text);
+	padding: 1em 1.5em;
+	border: 1px solid var(--color-border);
+	border-radius: 6px;
+	font-weight:var(--weight-bold);
+}
+.show-delete{
+	background-color: transparent;
+	border: 1px solid var(--color-border);
+	padding: 1em 1.5em;
+	color:var(--color-danger);
+	border-radius:var(--radius-sm);
+	font-weight:var(--weight-bold);
+	margin-top: 8px;
+	font-size: 14px;
 }
 .student-edit-data{
 	display:grid;
 	grid-template-columns: 1fr 1fr;
 	column-gap: 1em;
+}
+.student-delete-confirmation{
+	background-color:var(--color-danger-bg);
+	padding: 1em;
+}
+.student-delete-confirmation p{
+	color:var(--color-danger);
+	font-family:var(--font-body);
+	font-size:var(--text-sm);
+	margin-bottom: 1em;
+}
+.cancel-del{
+	background-color: white;
+	color:var(--color-text);
+	font-weight:var(--weight-bold);
+	padding: 12px 14px;
+	border-radius:var(--radius-sm);
+	border: 1px solid var(--color-border)
+}
+.delete-student{
+	background-color:var(--color-danger);
+	color: white;
+	font-weight:var(--weight-bold);
+	border: 1px solid transparent;
+	padding: 12px 14px;
+	border-radius:var(--radius-sm);
 }
 .student-biodata{
 	position: fixed;
