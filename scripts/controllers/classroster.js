@@ -68,12 +68,12 @@ console.log(teacherClassRoster);
 
 showAddStudentForm.addEventListener('click', function(){
     addStudentForm.classList.remove('hidden');
-    //formOverlay.classList.remove('hidden');
+    formOverlay.classList.remove('hidden');
 });
 
 CancelAddBtn.addEventListener('click', function(){
     addStudentForm.classList.add('hidden');
-    //formOverlay.classList.add('hidden');
+    formOverlay.classList.add('hidden');
 })
 
 addButton.addEventListener('click', async()=>{
@@ -83,11 +83,15 @@ addButton.addEventListener('click', async()=>{
     }else{
         let studentClass = schoolClasses.find(cla => cla.id === currentTeacher.ClassId);
         console.log(studentClass);
-        await addStudent(nameInput.value, emailInput.value, dateInput.value, guardianNo.value, studentClass.id)
-        saveCollection('classes', schoolClasses);
+        if( await addStudent(nameInput.value, emailInput.value, dateInput.value, guardianNo.value, studentClass.id)){
+           saveCollection('classes', schoolClasses);
         mappingClassRoster(teacherClassRoster, studentsContainer);
         addStudentForm.classList.add('hidden');
         formOverlay.classList.add('hidden');
+        }else{
+            
+        }
+       
     }
 });
 
