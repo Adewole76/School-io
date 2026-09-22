@@ -147,6 +147,55 @@ header h2{
     border-radius: 8px;
     z-index: 120
 }
+label{
+	display: block;
+	margin-bottom: 1em;
+	font-family:var(--font-body);
+	font-size:var(--text-sm);
+	color:var(--color-text-secondary);
+}
+label input{
+	width: 100%;
+	display: block;
+	padding: 8px;
+	border: 1px solid var(--color-border);
+	margin-top: 6px;
+	border-radius:var(--radius-sm);
+}
+.add-student-form .header-btn{
+	display: flex;
+	justify-content: space-between;
+}
+.add-student-form header h3{
+	font-family: var(--font-display);
+}
+.add-student-form header p{
+  font-size:var(--text-xs);
+  color:var(--color-text-secondary);
+  margin-bottom:var(--space-4);
+  margin-top:var(--space-4);
+}
+.add-student-form .main-student-data{
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	column-gap: 1em;
+}
+.add-student-form .cancel-btn{
+	padding: 1em 1.5em;
+	background-color: transparent;
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-sm);
+	color:var(--color-text);
+	font-weight: var(--weight-bold);
+}
+.add-student-form .add-btn{
+	background-color:var(--color-primary-dark);
+	padding: 1em 1.5em;
+	border: 1px solid transparent;
+	color: white;
+	font-weight: bold;
+	border-radius:var(--radius-sm);
+}
 .error-state{
 	position: fixed;
     top: 50%;
@@ -166,6 +215,10 @@ header h2{
     padding:2em 2em;
     border-radius: 8px;
     z-index: 120;
+}
+.edit-student header{
+	display: flex;
+	justify-content: space-between;
 }
 .student-biodata{
 	position: fixed;
