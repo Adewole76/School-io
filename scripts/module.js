@@ -10,7 +10,7 @@ export const getCollection = (name) =>{
     return parsedStoredItem;
 }
 
-const sendEmailToStudents = (userName, resetCode, userEmail, duration, headWording) => {
+const sendEmailToStudents = async (userName, resetCode, userEmail, duration, headWording) => {
 // templateParams object package
 const templateParams = {
     name: userName,
@@ -21,15 +21,25 @@ const templateParams = {
 };
 
 //  Service ID and Template ID
-
-emailjs.send("service_1fzqpt7", "template_625pnsa", templateParams)
-    .then((response) => {
-        console.log("Email sent successfully!", response.status, response.text);
-    })
-    .catch((error) => {
-        console.error("Failed to send email:", error);
-    });
+try{
+  await emailjs.send("service_1fzqpt7", "template_625pnsa", templateParams)
+  return true
 }
+catch(error){
+  console.log(`request failed:${error}`);
+  return false
+}
+}
+// emailjs.send("service_1fzqpt7", "template_625pnsa", templateParams)
+//     .then((response) => {
+//         console.log("Email sent successfully!", response.status, response.text);
+        
+//       })
+//     .catch((error) => {
+//         console.error("Failed to send email:", error);
+//         return false
+//     });
+// }
 //Session Storage helpers
 export const saveUserIdOnLogin = (name, value) => {
    sessionStorage.setItem(name, JSON.stringify(value))
@@ -163,13 +173,14 @@ function generate4DigitNumber() {
 
   //sendEmailToStudents(studentName, newStudentObject.passwordResetCode, email, '48hrs', 'Welcome to Prime touch portal use the code to set your password');
   
-if(sendEmailToStudents(studentName, newStudentObject.passwordResetCode, email, '48hrs', 'Welcome to Prime touch portal use the code to set your password')){
+if(await sendEmailToStudents(studentName, newStudentObject.passwordResetCode, email, '48hrs', 'Welcome to Prime touch portal use the code to set your password')){
   studentsArray.push(newStudentObject);
-  saveCollection('students', studentsArray)
+  saveCollection('students', studentsArray);
+  return true
 }else{
   console.log('student not added there was network issue');
+  return false
 }
-
 };
 
 export const deleteStudent = (deletedStudentId) => {

@@ -8,6 +8,7 @@ import { schoolClasses } from "../module.js";
 import { addStudent } from "../module.js";
 import { deleteStudent } from "../module.js";
 import { clearSessionStorage } from "../module.js";
+import { updateStudent } from "../module.js";
 import { mappingClassRoster } from "../views/classroster-view.js";
 
 const currentUser = gettingUser('currentUserId');
@@ -57,6 +58,11 @@ const editStudentGuardianNo = document.querySelector('.edit-guardian-no');
 const closeEditForm = document.querySelector('.close-edit-form');
 const studentEditInstruction = document.querySelector('.student-for-edit');
 
+//
+const errorState = document.querySelector('.error-state');
+console.log(errorState);
+const closeErrorState = document.querySelector('.close-error-state');
+
 const loadClassRoster = () =>{
     const teachersClassRoster = studentsArray.filter(users => users.Classid === currentTeacher.ClassId);
     mappingClassRoster(teachersClassRoster, studentsContainer);
@@ -83,13 +89,20 @@ addButton.addEventListener('click', async()=>{
     }else{
         let studentClass = schoolClasses.find(cla => cla.id === currentTeacher.ClassId);
         console.log(studentClass);
-        if( await addStudent(nameInput.value, emailInput.value, dateInput.value, guardianNo.value, studentClass.id)){
-           saveCollection('classes', schoolClasses);
+        if(await addStudent(nameInput.value, emailInput.value, dateInput.value, guardianNo.value, studentClass.id)){
+        saveCollection('classes', schoolClasses);
+        loadClassRoster();
         mappingClassRoster(teacherClassRoster, studentsContainer);
         addStudentForm.classList.add('hidden');
         formOverlay.classList.add('hidden');
         }else{
-            
+           addStudentForm.classList.add('hidden');
+           errorState.classList.remove('hidden');
+           console.log(errorState);
+           closeErrorState.addEventListener('click', function(){
+           errorState.classList.add('hidden');
+           formOverlay.classList.add('hidden');
+           });
         }
        
     }
