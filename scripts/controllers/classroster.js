@@ -181,3 +181,4 @@ studentsContainer.addEventListener('click', (event)=>{
 logOutButton.addEventListener('click', function(){
     clearSessionStorage();
 });
+

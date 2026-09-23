@@ -311,3 +311,10 @@ label input{
     z-index: 120;
 	border: none;
 }
+.students-container{
+	width: 100%;
+	margin-top: 1em;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	column-gap: 1em;
+}
