@@ -32,7 +32,7 @@ const studentsContainer = document.querySelector('.students-container');
 userName.textContent = currentTeacher.Name; 
 const classNameTag = document.querySelector('.class-name-tag');
 const currentTeacherClass = schoolClasses.find(cla => cla.id === currentTeacher.ClassId)
-
+const studentsNumber = document.querySelector('.students-number');
 
 //heaader dom elements
 const className = document.querySelector('.class-name');
@@ -82,8 +82,12 @@ const closeErrorState = document.querySelector('.close-error-state');
 const loadClassRoster = () =>{
     const teachersClassRoster = studentsArray.filter(users => users.Classid === currentTeacher.ClassId);
     mappingClassRoster(teachersClassRoster, studentsContainer);
-
-    return teachersClassRoster
+    studentsNumber.textContent = teachersClassRoster.length === 0 ? `${teachersClassRoster.length} students in your class`
+             : teachersClassRoster.length === 1 ?`${teachersClassRoster.length} student in your class `
+             : teachersClassRoster.length > 1 ? `${teachersClassRoster.length} students in your class`
+             : `no students in your class`;
+    console.log(studentsNumber.textContent);
+             return teachersClassRoster
 }
 const teacherClassRoster = loadClassRoster();
 console.log(teacherClassRoster);

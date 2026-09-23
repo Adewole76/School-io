@@ -2,20 +2,20 @@
 export const mappingClassRoster = (arr, container) => {
   const mappedClassRoster = arr.map(user =>{
     return `<div class="student" data-user-id="${user.studentId}">
-     <div>
+     <header>
         <h3>${user.Name}</h3>
         <p></p>
-     </div>
+     </header>
 
      <ul>
-        <li>Guardian:${user.ParentGuardianNo}</li>
-        <li>Date of birth:${user.dateOfBirth}</li>
+        <li>Guardian <span>${user.ParentGuardianNo}</span></li>
+        <li>Date of birth <span>${user.dateOfBirth}</span></li>
      </ul>
      <hr>
-     <div>
+     <footer>
         <button class="edit-student-btn">Edit</button>
         <button class="view-student-btn">View records</button>
-     </div>
+     </footer>
     </div>`
   }).join('');
 if(arr.length === 0){
