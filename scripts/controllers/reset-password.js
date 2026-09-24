@@ -162,7 +162,7 @@ resetBtn.addEventListener('click', async() => {
 //         userTochangePassword.passwordResetCode = null;
 //         userTochangePassword.passwordResetTimestamp = null
 //       }else if(TeachersArray.some(user => user.Email === userTochangePassword.Email)){
-//         const { saltHex, hashHex } = await  hashPassword(resetPasswordInput.value);
+//         const { saltHex, hddashHex } = await  hashPassword(resetPasswordInput.value);
 //         userTochangePassword.passwordSalt = saltHex;
 //         userTochangePassword.passwordHash = hashHex;
 //         console.log(userTochangePassword);

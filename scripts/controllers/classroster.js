@@ -11,6 +11,15 @@ import { deleteStudent } from "../module.js";
 import { clearSessionStorage } from "../module.js";
 import { updateStudent } from "../module.js";
 import { mappingClassRoster } from "../views/classroster-view.js";
+function debounce(func, delay) {
+  let timerId;
+  return function (...args) {
+    clearTimeout(timerId);
+    timerId = setTimeout(() => {
+      func.apply(this, args);
+    }, delay);
+  };
+}
 
 const currentUser = gettingUser('currentUserId');
 const currentRole = gettingUser('currentUserRole');
@@ -26,7 +35,7 @@ requireAuth(currentUser,"teacherId", TeachersArray, currentRole, "teacher");
 //nav bar dom element
 const userName = document.querySelector('.user-name');
 const logOutButton = document.querySelector('.log-out-btn');
-
+const studentSearch = document.querySelector('.student-search')
 
 const studentsContainer = document.querySelector('.students-container');
 userName.textContent = currentTeacher.Name; 
@@ -186,3 +195,24 @@ logOutButton.addEventListener('click', function(){
     clearSessionStorage();
 });
 
+function fetchSearchResults(query) {
+  console.log(`🔍 Getting student with record: "${query}"`);
+  let filteredStudentsArray = studentsArray.filter(user => user.Name.toLowerCase().includes(query.toLowerCase()));
+  
+  if(filteredStudentsArray.length > 0){
+  mappingStudentsArray(filteredStudentsArray, classContainer)
+  }else if (filteredStudentsArray.length === 0){
+    // classContainer.innerHTML= 
+  }
+;
+}
+
+const debouncedSearch = debounce((event) => {
+  fetchSearchResults(event.target.value);
+}, 500);
+
+
+studentSearch.addEventListener('input', debouncedSearch);
+
+
+ 

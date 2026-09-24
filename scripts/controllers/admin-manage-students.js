@@ -18,7 +18,7 @@ function debounce(func, delay) {
     }, delay);
   };
 }
-
+  
 window.addEventListener('pageshow', (event) => {
     if (event.persisted) {
         const freshUserId = gettingUser('currentUserId');
@@ -144,7 +144,6 @@ classContainer.addEventListener('click', (event) => {
         });
     }
 })
-
 function fetchSearchResults(query) {
   console.log(`🔍 Getting student with record: "${query}"`);
   let filteredStudentsArray = studentsArray.filter(user => user.Name.toLowerCase().includes(query.toLowerCase()));
@@ -157,12 +156,10 @@ function fetchSearchResults(query) {
 ;
 }
 
-// Wrap the original function in your debounce utility with a 500ms delay
 const debouncedSearch = debounce((event) => {
   fetchSearchResults(event.target.value);
 }, 500);
 
-// Attach the debounced function to the event listener
 
 searchBar.addEventListener('input', debouncedSearch);
 
@@ -175,10 +172,9 @@ function fetchSearchDropdown(query) {
 }
 }
 
-// Wrap the original function in your debounce utility with a 500ms delay
+
 const debouncedSearchDropdown = debounce((event) => {
   fetchSearchDropdown(event.target.value);
 }, 500);
 
-// Attach the debounced function to the event listener
 searchClassDropdown.addEventListener('change', debouncedSearchDropdown);
