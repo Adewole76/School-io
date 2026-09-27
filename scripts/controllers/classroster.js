@@ -197,10 +197,10 @@ logOutButton.addEventListener('click', function(){
 
 function fetchSearchResults(query) {
   console.log(`🔍 Getting student with record: "${query}"`);
-  let filteredStudentsArray = studentsArray.filter(user => user.Name.toLowerCase().includes(query.toLowerCase()));
+  let filteredStudentsArray = teacherClassRoster.filter(user => user.Name.toLowerCase().includes(query.toLowerCase()));
   
   if(filteredStudentsArray.length > 0){
-  mappingStudentsArray(filteredStudentsArray, classContainer)
+  mappingClassRoster(filteredStudentsArray, studentsContainer)
   }else if (filteredStudentsArray.length === 0){
     // classContainer.innerHTML= 
   }
