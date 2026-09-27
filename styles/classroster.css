@@ -333,6 +333,41 @@ label input{
     z-index: 120;
 	border: none;
 }
+.student-biodata header{
+	display: flex;
+	justify-content:space-between;
+}
+.student-biodata h6{
+	font-size:var(--text-xl);
+	font-family:var(--font-display)
+}
+.student-biodata .name-class{
+	margin: 1em 0;
+	display: inline-block;
+}
+.student-biodata .info{
+	color:var(--color-text);
+	font-weight:var(--weight-semibold);
+}
+.student-biodata .student-class{
+	background-color:var(--color-primary-light);
+	color:var(--color-primary-dark);
+	font-family:var(--font-body);
+	font-weight:var(--weight-regular);
+	padding: var(--space-1);
+	border-radius:var(--space-1);
+}
+.student-biodata .student-details{
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	column-gap: 1em;
+	row-gap:1em;
+	padding: 1em;
+	background-color:var(--color-warning-bg);
+	font-family:var(--font-body);
+	border-radius: var(--space-2);
+	border: 1px solid var(--color-border-strong)
+}
 .students-number{
 	font-family:var(--font-body);
 	color:var(--color-text-secondary);
@@ -385,3 +420,4 @@ label input{
 	font-family:var(--font-body);
 	color:var(--color-text-muted);
 }
+

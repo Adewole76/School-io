@@ -135,6 +135,7 @@
     </section>
 </form>
 
+<!--unable to add student error state-->
 <div class="error-state hidden">
     <header>
       <h5>Add student</h5>
@@ -146,34 +147,35 @@
      <button class="close-error-state">add later</button>
 </div>
 
+<!--student biodata modal-->
 <dialog class="student-biodata hidden" open>
 <header>
  <p>Student details</p>
  <button class="close-student-biodata">close</button>
  </header>
- <section>
+ <section class="name-class">
  <h6 class="student-name"></h6>
  <p class="student-class"></p>
  </section>
  <section class="student-details">
     <div class="student-data">
         <p>Date of birth</p>
-        <p class="student-dob"></p>
+        <p class="student-dob info"></p>
     </div>
 
      <div class="student-data">
         <p>Guardian Contact</p>
-        <p class="student-GuardianNo"></p>
+        <p class="student-GuardianNo info"></p>
     </div>
 
      <div class="student-data">
         <p>Email</p>
-        <p class="student-Email"></p>
+        <p class="student-Email info"></p>
     </div>
 
      <div class="student-data">
         <p>Student ID</p>
-        <p class="student-Id"></p>
+        <p class="student-Id info"></p>
     </div>
  </section>
 

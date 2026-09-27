@@ -180,6 +180,7 @@ studentsContainer.addEventListener('click', (event)=>{
     const studentContainer = event.target.closest('.student');
     const studentDetails = studentsArray.find(user => user.studentId === studentContainer.dataset.userId); 
     studentBiodata.classList.remove('hidden');
+    formOverlay.classList.remove('hidden');
     console.log(studentBiodata);
     studentBiodataName.textContent = studentDetails.Name;
     studentDob.textContent = studentDetails.dateOfBirth;
@@ -188,6 +189,11 @@ studentsContainer.addEventListener('click', (event)=>{
     studentID .textContent = studentDetails.studentId;
     let studentClass = schoolClasses.find(cla => cla.id === studentDetails.Classid);
     studentBiodataClass.textContent = studentClass.name;
+
+    closeStudentBiodata.addEventListener('click', function(){
+        studentBiodata.classList.add('hidden');
+        formOverlay.classList.add('hidden');
+    })
 }
 });
 
