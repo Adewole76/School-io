@@ -365,7 +365,7 @@ export const checkIfEmailExists = (email) => {
 
 //role scoped data-loading function
 export const getStudentsForTeachers = (teacherClassId) => {
-   const teachersStudents = studentsArray.filter(student => student.classId === teacherClassId)
+   const teachersStudents = studentsArray.filter(student => student.Classid === teacherClassId)
    return teachersStudents
 }
 
