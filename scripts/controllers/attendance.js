@@ -42,6 +42,28 @@ particularDay.textContent = dayName;
 fullDate.textContent = today.toDateString(); 
 console.log(dayName);
 
+nextDayBtn.disabled = true;
+
+let dayNum = 0
+prevDayBtn.addEventListener('click', function(){
+    nextDayBtn.disabled = false;
+    const previousDays = new Date(today);
+    dayNum ++
+    previousDays.setDate(previousDays.getDate() - dayNum);
+    const previousDaysName = previousDays.toLocaleString('en-US', { weekday: 'long' });
+    particularDay.textContent = previousDaysName;
+    fullDate.textContent = previousDays.toDateString();
+    console.log(dayNum)
+})
+nextDayBtn.addEventListener('click', function(){
+    nextDayBtn.disabled = false;
+    const previousDays = new Date(today);
+    dayNum --
+    previousDays.setDate(previousDays.getDate() + dayNum);
+    const previousDaysName = previousDays.toLocaleString('en-US', { weekday: 'long' });
+    particularDay.textContent = previousDaysName;
+    fullDate.textContent = previousDays.toDateString();
+})
 
 
 const loadAttendanceList = () =>{
