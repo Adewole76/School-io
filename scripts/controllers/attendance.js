@@ -34,6 +34,9 @@ const terms = document.querySelectorAll('term');
 
 const attendanceContainer = document.querySelector('.mark-attendance-container');
 
+//
+const presentBtn = document.querySelector('.present-btn');
+const absentBtn = document.querySelector('.absent-btn');
 userName.textContent = currentTeacher.Name;
 const today = new Date();
 const dayName = today.toLocaleString('en-US', { weekday: 'long' });
@@ -44,6 +47,7 @@ console.log(dayName);
 
 nextDayBtn.disabled = true;
 
+// previous and next days buttons event listeners
 let dayNum = 0
 prevDayBtn.addEventListener('click', function(){
     nextDayBtn.disabled = false;
@@ -59,10 +63,13 @@ nextDayBtn.addEventListener('click', function(){
     nextDayBtn.disabled = false;
     const previousDays = new Date(today);
     dayNum --
-    previousDays.setDate(previousDays.getDate() + dayNum);
+    previousDays.setDate(previousDays.getDate() - dayNum);
     const previousDaysName = previousDays.toLocaleString('en-US', { weekday: 'long' });
     particularDay.textContent = previousDaysName;
     fullDate.textContent = previousDays.toDateString();
+    if(previousDays.toLocaleString() === today.toLocaleString()){
+        nextDayBtn.disabled = true;
+    }
 })
 
 
@@ -72,3 +79,5 @@ const loadAttendanceList = () =>{
 }
 loadAttendanceList();
 
+attendanceContainer.addEventListener('click', (event)=>{
+})
