@@ -1,7 +1,9 @@
+'use strict'
 import { TeachersArray } from "../module.js";
 import { clearSessionStorage } from "../module.js";
 import { gettingUser } from "../module.js";
 import { requireAuth } from "../module.js";
+import { addAttendance } from "../module.js";
 const currentUser = gettingUser('currentUserId');
 const currentUserRole = gettingUser("currentUserRole");
 console.log(currentUser, currentUserRole);
@@ -14,3 +16,12 @@ window.addEventListener('pageshow', (event) => {
         requireAuth(freshUserId, "teacherId", TeachersArray, freshUserRole, 'teacher');
     }
 });
+
+
+//navbar dom elements 
+const userName = document.querySelector('.user-name');
+
+
+const termPicker = document.querySelector('.term-picker');
+const terms = document.querySelectorAll('term');
+userName.textContent = currentTeacher.Name;
