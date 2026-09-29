@@ -34,7 +34,7 @@ const fullDate = document.querySelector('.full-date');
 
 // term selection elements
 const termPicker = document.querySelector('.term-picker');
-const terms = document.querySelectorAll('term');
+const terms = document.querySelectorAll('.term');
 
 const attendanceContainer = document.querySelector('.mark-attendance-container');
 
@@ -56,6 +56,9 @@ nextDayBtn.disabled = true;
 let dayNum = 0
 prevDayBtn.addEventListener('click', function(){
     nextDayBtn.disabled = false;
+    for(let i = 0; i < terms.length; i++){
+            terms[i].disabled = true;
+        }
     const previousDays = new Date(today);
     dayNum ++
     previousDays.setDate(previousDays.getDate() - dayNum);
@@ -80,7 +83,10 @@ nextDayBtn.addEventListener('click', function(){
 
     if(previousDays.toLocaleString() === today.toLocaleString()){
         nextDayBtn.disabled = true;
-        editableState.textContent = `Editable - today`
+        editableState.textContent = `Editable - today`;
+        for(let i = 0; i < terms.length; i++){
+            terms[i].disabled = false;
+        }
     };
 })
 
@@ -107,7 +113,6 @@ termPicker.addEventListener('click', (event) => {
                 saveCollection('attends', attendanceArray);
             }
         }
-        //console.log(termVValue);
         for(let i = 0; i < terms.length; i++){
             if(terms[i].textContent !== particularButton.textContent){
                 terms[i].classList.remove('active-term');
@@ -120,7 +125,6 @@ attendanceContainer.addEventListener('click', (event)=>{
     if(event.target.closest('.present-btn')){
         const particularPresentButton = event.target.closest('.present-btn');
         console.log(particularPresentButton);
-        //console.log(event.target.closest('.present-btn'))
         const parentContainer = event.target.closest('.attendance-record')
         console.log(parentContainer);
         const particularStudent = studentsArray.find(student => student.studentId === parentContainer.dataset.userId)
