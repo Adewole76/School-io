@@ -8,6 +8,7 @@ import { studentsArray } from "../module.js";
 import { attendanceArray } from "../module.js"
 import { getStudentsForTeachers } from "../module.js";
 import { mappingAttendanceStudents } from "../views/attendance-view.js"
+import { saveCollection } from "../module.js"
 const currentUser = gettingUser('currentUserId');
 const currentUserRole = gettingUser("currentUserRole");
 console.log(currentUser, currentUserRole);
@@ -30,17 +31,16 @@ const particularDay = document.querySelector('.day');
 const prevDayBtn = document.querySelector('.prev-btn');
 const nextDayBtn = document.querySelector('.next-btn');
 const fullDate = document.querySelector('.full-date');
+
+// term selection elements
 const termPicker = document.querySelector('.term-picker');
 const terms = document.querySelectorAll('term');
 
 const attendanceContainer = document.querySelector('.mark-attendance-container');
 
-//
-const presentBtn = document.querySelector('.present-btn');
-const absentBtn = document.querySelector('.absent-btn');
-
 const editableState = document.querySelector('.editable-state');
 editableState.textContent = `Editable - today`;
+
 userName.textContent = currentTeacher.Name;
 const today = new Date();
 const dayName = today.toLocaleString('en-US', { weekday: 'long' });
@@ -90,26 +90,62 @@ const loadAttendanceList = () =>{
 }
 loadAttendanceList();
 
+
+//term picker event Listener
+let termValue;
+console.log(termValue)
+termPicker.addEventListener('click', (event) => {
+    if(event.target.closest('.term')){
+        const particularButton = event.target.closest('.term');
+        particularButton.classList.add('active-term')
+        const terms = termPicker.querySelectorAll('.term');
+        termValue = particularButton.textContent
+        //console.log(termVValue);
+        for(let i = 0; i < terms.length; i++){
+            if(terms[i].textContent !== particularButton.textContent){
+                terms[i].classList.remove('active-term');
+            }
+        }
+    }
+})
 //attendance container event listeners for marking present/absent
 attendanceContainer.addEventListener('click', (event)=>{
     if(event.target.closest('.present-btn')){
         //console.log(event.target.closest('.present-btn'))
         const parentContainer = event.target.closest('.attendance-record')
         console.log(parentContainer);
+        const particularStudent = studentsArray.find(student => student.studentId === parentContainer.dataset.userId)
+        console.log(particularStudent.studentId, particularStudent);
         const absentButton = parentContainer.querySelector('.absent-btn');
         console.log(absentButton);
+        if(attendanceArray.some(attendance => attendance.studentId === particularStudent.studentId && attendance.date === today.toLocaleDateString())){
+           const particularAttendance = attendanceArray.find(attendance => attendance.studentId === particularStudent.studentId && attendance.date === today.toLocaleDateString())
+           particularAttendance.attendanceStatus = `present`; 
+           saveCollection('attends', attendanceArray);
+        }else if(!termValue && !attendanceArray.some(attendance => attendance.studentId === particularStudent.studentId && attendance.date === today.toLocaleDateString())){
+            console.log(`you have not selected a term`);
+        }
+        else{
+            addAttendance(particularStudent.studentId, particularStudent.Classid, today.toLocaleDateString(), termValue, 'present')
+            console.log(attendanceArray) 
+        }
     }else if(event.target.closest('.absent-btn')){
         const parentContainer = event.target.closest('.attendance-record')
         const particularStudent = studentsArray.find(student => student.studentId === parentContainer.dataset.userId)
         console.log(particularStudent.studentId, particularStudent);
         const presentButton = parentContainer.querySelector('.present-btn');
         console.log(presentButton);
-         if(attendanceArray.some(attendance => attendance.studentId === particularStudentId && attendance.date === today.toDateString())){
-           const particularAttendance = attendanceArray.find(attendance => attendance.studentId === particularStudentId && attendance.date === today.toDateString())
+         if(attendanceArray.some(attendance => attendance.studentId === particularStudent.studentId && attendance.date === today.toLocaleDateString())){
+           const particularAttendance = attendanceArray.find(attendance => attendance.studentId === particularStudent.studentId && attendance.date === today.toLocaleDateString())
            particularAttendance.attendanceStatus = `absent`; 
-        }else{
-            addAttendance(particularStudent.studentId, particularStudent.Classid, today.toLocaleDateString(), )
-         }
+           saveCollection('attends', attendanceArray);
+        }else if(!termValue && !attendanceArray.some(attendance => attendance.studentId === particularStudent.studentId && attendance.date === today.toDateString())){
+            console.log(`you have not selected a term`);
+        }
+        else{
+            addAttendance(particularStudent.studentId, particularStudent.Classid, today.toLocaleDateString(), termValue, 'absent')
+            console.log(attendanceArray); 
+        }
     }
 });
 
