@@ -5,6 +5,7 @@ import { gettingUser } from "../module.js";
 import { requireAuth } from "../module.js";
 import { addAttendance } from "../module.js";
 import { studentsArray } from "../module.js";
+import { attendanceArray } from "../module.js"
 import { getStudentsForTeachers } from "../module.js";
 import { mappingAttendanceStudents } from "../views/attendance-view.js"
 const currentUser = gettingUser('currentUserId');
@@ -37,12 +38,16 @@ const attendanceContainer = document.querySelector('.mark-attendance-container')
 //
 const presentBtn = document.querySelector('.present-btn');
 const absentBtn = document.querySelector('.absent-btn');
+
+const editableState = document.querySelector('.editable-state');
+editableState.textContent = `Editable - today`;
 userName.textContent = currentTeacher.Name;
 const today = new Date();
 const dayName = today.toLocaleString('en-US', { weekday: 'long' });
 
 particularDay.textContent = dayName;
 fullDate.textContent = today.toDateString(); 
+console.log(today.toLocaleString())
 console.log(dayName);
 
 nextDayBtn.disabled = true;
@@ -58,6 +63,11 @@ prevDayBtn.addEventListener('click', function(){
     particularDay.textContent = previousDaysName;
     fullDate.textContent = previousDays.toDateString();
     console.log(dayNum)
+    if(previousDays.toLocaleString() !== today.toLocaleString()){
+        editableState.textContent = `View only - Past date`
+    }else{
+        editableState.textContent = `Editable - today`
+    }
 })
 nextDayBtn.addEventListener('click', function(){
     nextDayBtn.disabled = false;
@@ -67,11 +77,12 @@ nextDayBtn.addEventListener('click', function(){
     const previousDaysName = previousDays.toLocaleString('en-US', { weekday: 'long' });
     particularDay.textContent = previousDaysName;
     fullDate.textContent = previousDays.toDateString();
+
     if(previousDays.toLocaleString() === today.toLocaleString()){
         nextDayBtn.disabled = true;
-    }
+        editableState.textContent = `Editable - today`
+    };
 })
-
 
 const loadAttendanceList = () =>{
     getStudentsForTeachers(currentTeacher.ClassId);
@@ -79,5 +90,27 @@ const loadAttendanceList = () =>{
 }
 loadAttendanceList();
 
+//attendance container event listeners for marking present/absent
 attendanceContainer.addEventListener('click', (event)=>{
-})
+    if(event.target.closest('.present-btn')){
+        //console.log(event.target.closest('.present-btn'))
+        const parentContainer = event.target.closest('.attendance-record')
+        console.log(parentContainer);
+        const absentButton = parentContainer.querySelector('.absent-btn');
+        console.log(absentButton);
+    }else if(event.target.closest('.absent-btn')){
+        const parentContainer = event.target.closest('.attendance-record')
+        const particularStudent = studentsArray.find(student => student.studentId === parentContainer.dataset.userId)
+        console.log(particularStudent.studentId, particularStudent);
+        const presentButton = parentContainer.querySelector('.present-btn');
+        console.log(presentButton);
+         if(attendanceArray.some(attendance => attendance.studentId === particularStudentId && attendance.date === today.toDateString())){
+           const particularAttendance = attendanceArray.find(attendance => attendance.studentId === particularStudentId && attendance.date === today.toDateString())
+           particularAttendance.attendanceStatus = `absent`; 
+        }else{
+            addAttendance(particularStudent.studentId, particularStudent.Classid, today.toLocaleDateString(), )
+         }
+    }
+});
+
+

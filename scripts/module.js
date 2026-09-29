@@ -326,7 +326,7 @@ export const updateGrade = (gradeId, termNewValue, subjectNewValue, test1NewValu
 }
 
 //Attendance CRUD operations
-let attendanceArray = getCollection('attends')?getCollection('attends'):[];
+export let attendanceArray = getCollection('attends')?getCollection('attends'):[];
 export const addAttendance = (studentId, classId, date, term, Status) => {
   const newAttendanceObject = { 
     id: generateIdForUsers('attend'), 

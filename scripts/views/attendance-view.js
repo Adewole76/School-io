@@ -1,7 +1,7 @@
 'use strict'
 export const mappingAttendanceStudents = (arr, container) => {
     const mappedStudentAttendance = arr.map(user => {
-        return `<div class="attendance-record">
+        return `<div class="attendance-record" data-user-id="${user.studentId}">
         <section class="student-name">
             <div>
                 <img>
