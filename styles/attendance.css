@@ -76,7 +76,14 @@
   body{
      position: relative;
   }
+
   .active-term{
 	background-color: black;
 	color: white;
+  }
+  .active-status-present{
+    color: green;
+  }
+  .active-status-absent{
+    color:red;
   }

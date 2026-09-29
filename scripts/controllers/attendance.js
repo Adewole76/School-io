@@ -100,6 +100,13 @@ termPicker.addEventListener('click', (event) => {
         particularButton.classList.add('active-term')
         const terms = termPicker.querySelectorAll('.term');
         termValue = particularButton.textContent
+        
+        for(let i = 0; i < attendanceArray.length; i++){
+            if(attendanceArray[i].date === today.toLocaleDateString()){
+                attendanceArray[i].term = particularButton.textContent;
+                saveCollection('attends', attendanceArray);
+            }
+        }
         //console.log(termVValue);
         for(let i = 0; i < terms.length; i++){
             if(terms[i].textContent !== particularButton.textContent){
@@ -111,6 +118,8 @@ termPicker.addEventListener('click', (event) => {
 //attendance container event listeners for marking present/absent
 attendanceContainer.addEventListener('click', (event)=>{
     if(event.target.closest('.present-btn')){
+        const particularPresentButton = event.target.closest('.present-btn');
+        console.log(particularPresentButton);
         //console.log(event.target.closest('.present-btn'))
         const parentContainer = event.target.closest('.attendance-record')
         console.log(parentContainer);
@@ -130,6 +139,8 @@ attendanceContainer.addEventListener('click', (event)=>{
             console.log(attendanceArray) 
         }
     }else if(event.target.closest('.absent-btn')){
+        const particularAbsentButton = event.target.closest('.absent-btn');
+        console.log(particularAbsentButton);
         const parentContainer = event.target.closest('.attendance-record')
         const particularStudent = studentsArray.find(student => student.studentId === parentContainer.dataset.userId)
         console.log(particularStudent.studentId, particularStudent);
