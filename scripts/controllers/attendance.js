@@ -37,6 +37,7 @@ const termPicker = document.querySelector('.term-picker');
 const terms = document.querySelectorAll('.term');
 
 const attendanceContainer = document.querySelector('.mark-attendance-container');
+const saveAttendanceBtn = document.querySelector('.save-attendance-btn');
 
 const editableState = document.querySelector('.editable-state');
 editableState.textContent = `Editable - today`;
@@ -58,6 +59,7 @@ prevDayBtn.addEventListener('click', function(){
     nextDayBtn.disabled = false;
     for(let i = 0; i < terms.length; i++){
             terms[i].disabled = true;
+            terms[i].classList.remove('active-term');
         }
     const previousDays = new Date(today);
     dayNum ++
@@ -92,7 +94,7 @@ nextDayBtn.addEventListener('click', function(){
 
 const loadAttendanceList = () =>{
     getStudentsForTeachers(currentTeacher.ClassId);
-    mappingAttendanceStudents(getStudentsForTeachers(currentTeacher.ClassId), attendanceContainer);
+    mappingAttendanceStudents(getStudentsForTeachers(currentTeacher.ClassId),today,attendanceContainer);
 }
 loadAttendanceList();
 
@@ -104,6 +106,7 @@ termPicker.addEventListener('click', (event) => {
     if(event.target.closest('.term')){
         const particularButton = event.target.closest('.term');
         particularButton.classList.add('active-term')
+        console.log('i am working')
         const terms = termPicker.querySelectorAll('.term');
         termValue = particularButton.textContent
         
@@ -134,12 +137,18 @@ attendanceContainer.addEventListener('click', (event)=>{
         if(attendanceArray.some(attendance => attendance.studentId === particularStudent.studentId && attendance.date === today.toLocaleDateString())){
            const particularAttendance = attendanceArray.find(attendance => attendance.studentId === particularStudent.studentId && attendance.date === today.toLocaleDateString())
            particularAttendance.attendanceStatus = `present`; 
+           particularPresentButton.classList.add('active-status-present');
+           absentButton.classList.remove('active-status-absent');
+           loadAttendanceList()
            saveCollection('attends', attendanceArray);
         }else if(!termValue && !attendanceArray.some(attendance => attendance.studentId === particularStudent.studentId && attendance.date === today.toLocaleDateString())){
             console.log(`you have not selected a term`);
         }
         else{
             addAttendance(particularStudent.studentId, particularStudent.Classid, today.toLocaleDateString(), termValue, 'present')
+            particularPresentButton.classList.add('active-status-present');
+           absentButton.classList.remove('active-status-absent')
+           loadAttendanceList()
             console.log(attendanceArray) 
         }
     }else if(event.target.closest('.absent-btn')){
@@ -153,15 +162,24 @@ attendanceContainer.addEventListener('click', (event)=>{
          if(attendanceArray.some(attendance => attendance.studentId === particularStudent.studentId && attendance.date === today.toLocaleDateString())){
            const particularAttendance = attendanceArray.find(attendance => attendance.studentId === particularStudent.studentId && attendance.date === today.toLocaleDateString())
            particularAttendance.attendanceStatus = `absent`; 
+           particularAbsentButton.classList.add('active-status-absent');
+           presentButton.classList.remove('active-status-present');
+           loadAttendanceList()
            saveCollection('attends', attendanceArray);
         }else if(!termValue && !attendanceArray.some(attendance => attendance.studentId === particularStudent.studentId && attendance.date === today.toDateString())){
             console.log(`you have not selected a term`);
         }
         else{
             addAttendance(particularStudent.studentId, particularStudent.Classid, today.toLocaleDateString(), termValue, 'absent')
+           particularAbsentButton.classList.add('active-status-absent');
+           presentButton.classList.remove('active-status-present');
+           loadAttendanceList();
             console.log(attendanceArray); 
         }
     }
+});
+saveAttendanceBtn.addEventListener('click', function(){
+  
 });
 
 
