@@ -94,7 +94,7 @@ nextDayBtn.addEventListener('click', function(){
 
 const loadAttendanceList = () =>{
     getStudentsForTeachers(currentTeacher.ClassId);
-    mappingAttendanceStudents(getStudentsForTeachers(currentTeacher.ClassId),today,attendanceContainer);
+    mappingAttendanceStudents(getStudentsForTeachers(currentTeacher.ClassId),today.toLocaleDateString(),attendanceContainer);
 }
 loadAttendanceList();
 
