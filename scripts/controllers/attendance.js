@@ -67,7 +67,16 @@ prevDayBtn.addEventListener('click', function(){
     const previousDaysName = previousDays.toLocaleString('en-US', { weekday: 'long' });
     particularDay.textContent = previousDaysName;
     fullDate.textContent = previousDays.toDateString();
+    mappingAttendanceStudents(getStudentsForTeachers(currentTeacher.ClassId),previousDays.toLocaleDateString(),attendanceContainer);
     console.log(dayNum)
+     const absentButtons = document.querySelectorAll('.absent-btn');
+    const presentButtons = document.querySelectorAll('.present-btn');
+    for(let i = 0; i< absentButtons.length; i++){
+        absentButtons[i].disabled = true;
+    }
+     for(let i = 0; i< presentButtons.length; i++){
+        presentButtons[i].disabled = true;
+    }
     if(previousDays.toLocaleString() !== today.toLocaleString()){
         editableState.textContent = `View only - Past date`
     }else{
@@ -82,13 +91,27 @@ nextDayBtn.addEventListener('click', function(){
     const previousDaysName = previousDays.toLocaleString('en-US', { weekday: 'long' });
     particularDay.textContent = previousDaysName;
     fullDate.textContent = previousDays.toDateString();
-
+    mappingAttendanceStudents(getStudentsForTeachers(currentTeacher.ClassId),previousDays.toLocaleDateString(),attendanceContainer);
+    const absentButtons = document.querySelectorAll('.absent-btn');
+    const presentButtons = document.querySelectorAll('.present-btn');
+    for(let i = 0; i< absentButtons.length; i++){
+        absentButtons[i].disabled = true;
+    }
+     for(let i = 0; i< presentButtons.length; i++){
+        presentButtons[i].disabled = true;
+    }
     if(previousDays.toLocaleString() === today.toLocaleString()){
         nextDayBtn.disabled = true;
         editableState.textContent = `Editable - today`;
         for(let i = 0; i < terms.length; i++){
             terms[i].disabled = false;
         }
+    for(let i = 0; i< absentButtons.length; i++){
+        absentButtons[i].disabled = false;
+    }
+     for(let i = 0; i< presentButtons.length; i++){
+        presentButtons[i].disabled = false;
+    }
     };
 })
 

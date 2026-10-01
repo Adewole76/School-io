@@ -3,7 +3,7 @@ import { attendanceArray } from '../module.js'
 export const mappingAttendanceStudents = (arr,date,container) => {
     const mappedStudentAttendance = arr.map(user => {
          const anAttendance = attendanceArray.find(attendance => attendance.studentId === user.studentId && attendance.date === date)?attendanceArray.find(attendance => attendance.studentId === user.studentId && attendance.date === date):[];
-         console.log(anAttendance)
+         console.log(anAttendance);
          if(anAttendance.attendanceStatus === 'present'){
         return `<div class="attendance-record" data-user-id="${user.studentId}">
         <section class="student-name">
