@@ -64,7 +64,7 @@ prevDayBtn.addEventListener('click', function(){
     nextDayBtn.disabled = false;
     for(let i = 0; i < terms.length; i++){
             terms[i].disabled = true;
-            terms[i].classList.remove('active-term');
+            //terms[i].classList.remove('active-term');
         }
     const previousDays = new Date(today);
     dayNum ++
@@ -74,8 +74,19 @@ prevDayBtn.addEventListener('click', function(){
     fullDate.textContent = previousDays.toDateString();
     mappingAttendanceStudents(getStudentsForTeachers(currentTeacher.ClassId),previousDays.toLocaleDateString(),attendanceContainer);
     console.log(dayNum)
-     const absentButtons = document.querySelectorAll('.absent-btn');
+    const absentButtons = document.querySelectorAll('.absent-btn');
     const presentButtons = document.querySelectorAll('.present-btn');
+    const findArrayValue = attendanceArray.find(attendance => attendance.date === previousDays.toLocaleDateString());
+    console.log(findArrayValue);
+    for(let i = 0; i<terms.length;i++){
+        if(findArrayValue && terms[i].textContent === findArrayValue.term){
+            terms[i].classList.add('active-term');
+        }else if(findArrayValue && terms[i].textContent !== findArrayValue.term){
+            terms[i].classList.remove('active-term');
+        }else if(!findArrayValue){
+            terms[i].classList.remove('active-term');
+        }
+    }
     for(let i = 0; i< absentButtons.length; i++){
         absentButtons[i].disabled = true;
     }
@@ -99,6 +110,14 @@ nextDayBtn.addEventListener('click', function(){
     mappingAttendanceStudents(getStudentsForTeachers(currentTeacher.ClassId),previousDays.toLocaleDateString(),attendanceContainer);
     const absentButtons = document.querySelectorAll('.absent-btn');
     const presentButtons = document.querySelectorAll('.present-btn');
+     const findArrayValue = attendanceArray.find(attendance => attendance.date === previousDays.toLocaleDateString());
+    for(let i = 0; i<terms.length;i++){
+        if(terms[i].textContent === findArrayValue.term){
+            terms[i].classList.add('active-term');
+        }else if(terms[i].textContent !== findArrayValue.term){
+            terms[i].classList.remove('active-term');
+        }
+    }
     for(let i = 0; i< absentButtons.length; i++){
         absentButtons[i].disabled = true;
     }
@@ -153,7 +172,7 @@ const loadAttendanceList = () =>{
              }
         }   
     const sum = studentDayCounts.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-    const studentsPresentAverage = sum / 120; 
+    const studentsPresentAverage = sum.toFixed(2) / 120; 
     average.textContent = `${studentsPresentAverage}%`;
     studentBelow80.textContent = studentBelow80attendance.length;
     console.log(studentDayCounts);
