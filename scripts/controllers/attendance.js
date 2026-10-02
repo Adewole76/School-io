@@ -42,6 +42,11 @@ const saveAttendanceBtn = document.querySelector('.save-attendance-btn');
 const editableState = document.querySelector('.editable-state');
 editableState.textContent = `Editable - today`;
 
+//attendance stats important variables
+const average = document.querySelector('.average');
+const noOfDays = document.querySelector('.noOfDays');
+const studentBelow80 = document.querySelector('.studentBelow80');
+
 userName.textContent = currentTeacher.Name;
 const today = new Date();
 const dayName = today.toLocaleString('en-US', { weekday: 'long' });
@@ -118,6 +123,22 @@ nextDayBtn.addEventListener('click', function(){
 const loadAttendanceList = () =>{
     getStudentsForTeachers(currentTeacher.ClassId);
     mappingAttendanceStudents(getStudentsForTeachers(currentTeacher.ClassId),today.toLocaleDateString(),attendanceContainer);
+    let noOfDaysRecorded = [];
+    let idsOfStudents = [];
+    let studentDayCount = [];
+    for(let i = 0; i < attendanceArray.length; i++){
+       if(!noOfDaysRecorded.includes(attendanceArray[i].date)){
+        noOfDaysRecorded.push(attendanceArray[i].date);
+       }
+
+       if(!idsOfStudents.includes(attendanceArray[i].studentId)){
+         idsOfStudents.push(attendanceArray[i].studentId);
+       }
+    }
+
+    
+    console.log(noOfDaysRecorded, idsOfStudents);
+     noOfDays.textContent = noOfDaysRecorded.length;
 }
 loadAttendanceList();
 
