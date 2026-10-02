@@ -125,7 +125,7 @@ const loadAttendanceList = () =>{
     mappingAttendanceStudents(getStudentsForTeachers(currentTeacher.ClassId),today.toLocaleDateString(),attendanceContainer);
     let noOfDaysRecorded = [];
     let idsOfStudents = [];
-    let studentDayCount = [];
+    let studentDayCounts = [];
     for(let i = 0; i < attendanceArray.length; i++){
        if(!noOfDaysRecorded.includes(attendanceArray[i].date)){
         noOfDaysRecorded.push(attendanceArray[i].date);
@@ -133,10 +133,18 @@ const loadAttendanceList = () =>{
 
        if(!idsOfStudents.includes(attendanceArray[i].studentId)){
          idsOfStudents.push(attendanceArray[i].studentId);
+        
        }
-    }
-
+      
     
+    }
+    for(let i = 0; i < idsOfStudents.length; i++){
+        let studentPresentCount = attendanceArray.filter(attendance => attendance.studentId === idsOfStudents[i] && attendance.attendanceStatus === 'present')
+        console.log(studentPresentCount.length);
+        studentDayCounts.push(studentPresentCount.length);
+    }
+     console.log(studentDayCounts);
+     console.log(idsOfStudents)
     console.log(noOfDaysRecorded, idsOfStudents);
      noOfDays.textContent = noOfDaysRecorded.length;
 }
