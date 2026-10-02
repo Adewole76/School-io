@@ -75,15 +75,129 @@
   }
   body{
      position: relative;
+	 padding: 6em 0 0 0;
+	 background-color:var(--color-bg);
+	 display: flex;
+	 justify-content: center;
+	 align-items: center;
   }
-
+  
+  nav{
+	display: flex;
+	justify-content: space-between;
+	position: fixed;
+	top: 0; 
+	left: 0;
+	right: 0;
+	background-color:var(--color-bg);
+	padding: 1em;
+	border-bottom: 1px solid var(--color-border);
+  }
+  nav ul{
+	list-style-type: none;
+	font-family:var(--font-body);
+  }
+  nav ul li{
+	display: inline-block;
+	padding: 6px 8px;
+	color:var(--color-text-secondary);
+	cursor:pointer;
+  }
+  nav ul li a{
+	text-decoration:none;
+	color:var(--color-text-secondary);
+  }
+  nav ul li button{
+	background-color: transparent;
+	border: none;
+	color:var(--color-text-secondary);
+	cursor: pointer;
+  }
+  nav h1{
+	font-family:var(--font-display);
+	color:var(--color-primary-dark)
+  }
+  nav h1 span{
+	color:var(--color-accent);
+  }
   .active-term{
-	background-color: black;
-	color: white;
+	background-color:white;
+	color:var(--color-primary-dark);
   }
   .active-status-present{
     color: green;
   }
   .active-status-absent{
     color:red;
+  }
+
+
+  /*header section styles*/
+  header h2{
+	font-family:var(--font-display)
+  }
+  .action-instruction{
+	font-family:var(--font-body);
+	color:var(--color-text-secondary);
+	max-width: 600px;
+  }
+
+  /*stats section styles*/
+  .stats{
+	display: grid;
+	column-gap: 1em;
+	grid-template-columns: 1fr 1fr 1fr;
+  }
+  .stat-card{
+	background-color:white;
+	padding: 1em;
+  }
+  .stat-card h3{
+	font-family:var(--font-display);
+	color:var(--color-primary-dark);
+	font-size: 1.5em;
+  }
+  .stat-card p{
+	font-family:var(--font-body);
+	color:var(--color-text-secondary);
+  }
+
+  /*outer attendance container styles*/
+  .outer-attendance-container header{
+	display: flex;
+	justify-content: space-between;
+  }
+  .date-select{
+	display: flex;
+  }
+  .date-select button{
+	background-color: white;
+	border: 1px solid var(--color-border-strong);
+    padding: 1em;
+	border-radius: 8px;
+	transition:border-color 0.3s ease;
+  }
+  .date-select button:hover{
+	border-color:var(--color-primary-dark);
+  }
+  .date{
+	margin: 0 8px;
+  }
+  .date .day{
+	font-family:var(--font-mono);
+  }
+  .date .full-date{
+	font-family:var(--font-mono);
+	color: var(--color-text-secondary);
+  }
+
+  /*term picker section*/
+  .term-picker{
+	padding: 1em;
+	border: 1px solid var(--color-border)
+  }
+  .term-picker .term{
+    background-color: transparent;
+	border: 1px solid transparent;
+	color:var(--color-text-secondary);
   }
