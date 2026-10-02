@@ -126,6 +126,7 @@ const loadAttendanceList = () =>{
     let noOfDaysRecorded = [];
     let idsOfStudents = [];
     let studentDayCounts = [];
+    let studentBelow80attendance = [];
     for(let i = 0; i < attendanceArray.length; i++){
        if(!noOfDaysRecorded.includes(attendanceArray[i].date)){
         noOfDaysRecorded.push(attendanceArray[i].date);
@@ -143,7 +144,20 @@ const loadAttendanceList = () =>{
         console.log(studentPresentCount.length);
         studentDayCounts.push(studentPresentCount.length);
     }
-     console.log(studentDayCounts);
+
+      for(let i = 0; i < studentDayCounts.length; i++){
+             let result = (studentDayCounts[i] / 120)*100;
+             console.log(result);
+             if(result < 80){
+                studentBelow80attendance.push(result);
+             }
+        }   
+    const sum = studentDayCounts.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+    const studentsPresentAverage = sum / 120; 
+    average.textContent = `${studentsPresentAverage}%`;
+    studentBelow80.textContent = studentBelow80attendance.length;
+    console.log(studentDayCounts);
+     console.log(sum);
      console.log(idsOfStudents)
     console.log(noOfDaysRecorded, idsOfStudents);
      noOfDays.textContent = noOfDaysRecorded.length;
