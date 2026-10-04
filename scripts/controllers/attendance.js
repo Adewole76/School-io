@@ -25,6 +25,7 @@ window.addEventListener('pageshow', (event) => {
 
 //navbar dom elements 
 const userName = document.querySelector('.user-name');
+const logOutBtn = document.querySelector('.log-out-btn');
 
 //date select elements
 const particularDay = document.querySelector('.day');
@@ -58,6 +59,25 @@ console.log(dayName);
 
 nextDayBtn.disabled = true;
 
+const loadInstructionsAndBadge = () => {
+    if( editableState.textContent = `Editable - today`){
+        editableState.style.backgroundColor = '#E7F3EA';
+        editableState.style.color = '#3F8F5F';
+        editableState.style.fontFamily = `'Work Sans', -apple-system, sans-serif`;
+        editableState.style.padding = '6px 8px';
+        editableState.style.border = 'none';
+        editableState.style.borderRadius = '8px'
+        editableState.style.fontWeight = '700'
+    }else if(editableState.textContent = `View only - Past date`){
+        editableState.style.backgroundColor = 'transparent';
+        editableState.style.color = '#55503F';
+        editableState.style.fontFamily = `'Work Sans', -apple-system, sans-serif;`;
+        editableState.style.padding = '6px 8px'
+        editableState.style.border = '1px solid #CFCBBF'   
+        editableState.style.borderRadius = '8px'
+        editableState.style.fontWeight = '700'
+    }
+}
 // previous and next days buttons event listeners
 let dayNum = 0
 prevDayBtn.addEventListener('click', function(){
@@ -94,9 +114,25 @@ prevDayBtn.addEventListener('click', function(){
         presentButtons[i].disabled = true;
     }
     if(previousDays.toLocaleString() !== today.toLocaleString()){
-        editableState.textContent = `View only - Past date`
+        editableState.textContent = `View only - Past date`;
+        editableState.style.backgroundColor = 'transparent';
+        editableState.style.color = '#55503F';
+        editableState.style.fontFamily = `'Work Sans', -apple-system, sans-serif;`;
+        editableState.style.padding = '6px 8px'
+        editableState.style.border = '1px solid #CFCBBF'
+        editableState.style.borderRadius = '8px'
+        editableState.style.fontWeight = '700'
+        editableState.style.fontSize = '--text-base';
     }else{
-        editableState.textContent = `Editable - today`
+        editableState.textContent = `Editable - today`;
+        editableState.style.backgroundColor = '#E7F3EA';
+        editableState.style.color = '#3F8F5F';
+        editableState.style.fontFamily = `'Work Sans', -apple-system, sans-serif;`;
+        editableState.style.padding = '6px 8px';
+        editableState.style.border = 'none';
+        editableState.style.borderRadius = '8px'
+        editableState.style.fontWeight = '700'
+        editableState.style.fontSize = '--text-base';
     }
 })
 nextDayBtn.addEventListener('click', function(){
@@ -104,6 +140,7 @@ nextDayBtn.addEventListener('click', function(){
     const previousDays = new Date(today);
     dayNum --
     previousDays.setDate(previousDays.getDate() - dayNum);
+    console.log(previousDays.toLocaleDateString());
     const previousDaysName = previousDays.toLocaleString('en-US', { weekday: 'long' });
     particularDay.textContent = previousDaysName;
     fullDate.textContent = previousDays.toDateString();
@@ -112,9 +149,11 @@ nextDayBtn.addEventListener('click', function(){
     const presentButtons = document.querySelectorAll('.present-btn');
      const findArrayValue = attendanceArray.find(attendance => attendance.date === previousDays.toLocaleDateString());
     for(let i = 0; i<terms.length;i++){
-        if(terms[i].textContent === findArrayValue.term){
+        if(findArrayValue && terms[i].textContent === findArrayValue.term){
             terms[i].classList.add('active-term');
-        }else if(terms[i].textContent !== findArrayValue.term){
+        }else if(findArrayValue && terms[i].textContent !== findArrayValue.term){
+            terms[i].classList.remove('active-term');
+        }else if(!findArrayValue){
             terms[i].classList.remove('active-term');
         }
     }
@@ -127,6 +166,14 @@ nextDayBtn.addEventListener('click', function(){
     if(previousDays.toLocaleString() === today.toLocaleString()){
         nextDayBtn.disabled = true;
         editableState.textContent = `Editable - today`;
+        editableState.style.backgroundColor = '#E7F3EA';
+        editableState.style.color = '#3F8F5F';
+        editableState.style.fontFamily = `'Work Sans', -apple-system, sans-serif;`;
+        editableState.style.padding = '6px 8px';
+        editableState.style.border = 'none';
+        editableState.style.borderRadius = '8px';
+        editableState.style.fontWeight = '700'
+        editableState.style.fontSize = '--text-base';
         for(let i = 0; i < terms.length; i++){
             terms[i].disabled = false;
         }
@@ -180,6 +227,7 @@ const loadAttendanceList = () =>{
      console.log(idsOfStudents)
     console.log(noOfDaysRecorded, idsOfStudents);
      noOfDays.textContent = noOfDaysRecorded.length;
+     loadInstructionsAndBadge();
 }
 loadAttendanceList();
 

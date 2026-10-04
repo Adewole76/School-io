@@ -180,7 +180,7 @@
   .date-select button{
 	background-color: white;
 	border: 1px solid var(--color-border-strong);
-    padding: 1em;
+    padding: 1em 1.5em;
 	border-radius: 8px;
 	transition:border-color 0.3s ease;
   }
@@ -211,3 +211,6 @@
 	padding: 8px 10px;
 	font-weight:var(--weight-bold);
   }
+
+
+  
