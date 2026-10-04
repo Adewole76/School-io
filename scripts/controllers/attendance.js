@@ -122,7 +122,6 @@ prevDayBtn.addEventListener('click', function(){
         editableState.style.border = '1px solid #CFCBBF'
         editableState.style.borderRadius = '8px'
         editableState.style.fontWeight = '700'
-        editableState.style.fontSize = '--text-base';
     }else{
         editableState.textContent = `Editable - today`;
         editableState.style.backgroundColor = '#E7F3EA';
@@ -132,7 +131,6 @@ prevDayBtn.addEventListener('click', function(){
         editableState.style.border = 'none';
         editableState.style.borderRadius = '8px'
         editableState.style.fontWeight = '700'
-        editableState.style.fontSize = '--text-base';
     }
 })
 nextDayBtn.addEventListener('click', function(){

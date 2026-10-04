@@ -8,11 +8,11 @@ export const mappingAttendanceStudents = (arr,date,container) => {
         return `<div class="attendance-record" data-user-id="${user.studentId}">
         <section class="student-name">
             <div>
-                <img>
+                <img src="/images/user.png" alt="user-icon">
             </div>
             <aside>
                  <p>${user.Name}</p>
-            <aside>
+            </aside>
         </section>
         <section class=change-status-btn>
                 <button class="present-btn active-status-present">Present</button>
@@ -22,11 +22,11 @@ export const mappingAttendanceStudents = (arr,date,container) => {
              return `<div class="attendance-record" data-user-id="${user.studentId}">
         <section class="student-name">
             <div>
-                <img>
+                <img src="/images/user.png" alt="user-icon">
             </div>
             <aside>
                  <p>${user.Name}</p>
-            <aside>
+            </aside>
         </section>
         <section class=change-status-btn>
                 <button class="present-btn">Present</button>
@@ -37,11 +37,11 @@ export const mappingAttendanceStudents = (arr,date,container) => {
              return `<div class="attendance-record" data-user-id="${user.studentId}">
         <section class="student-name">
             <div>
-                <img>
+                <img src="/images/user.png" alt="user-icon">
             </div>
             <aside>
                  <p>${user.Name}</p>
-            <aside>
+            </aside>
         </section>
         <section class=change-status-btn>
                 <button class="present-btn">Present</button>

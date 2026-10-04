@@ -127,7 +127,8 @@
 	border-radius: 6px
   }
   .active-status-present{
-    color: green;
+    color:var(--color-success);
+	background-color:var(--color-success-bg);
   }
   .active-status-absent{
     color:red;
@@ -212,5 +213,45 @@
 	font-weight:var(--weight-bold);
   }
 
+  .outer-attendance-container header footer{
+	margin-top: 1em;
+  }
 
+  .attendance-record{
+	display:flex;
+	background-color:var(--color-bg);
+    border:1px solid var(--color-border-strong);
+	margin: 1em 0;
+	border-radius: 8px;
+	box-shadow:var(--shadow-md);
+	padding: 0.5em 1.5em;
+	justify-content: space-between;
+  }
+  .attendance-record p{
+	font-family:var(--font-body);
+	color:var(--color-text);
+  }
+  .change-status-btn{
+   padding: 1em 0;
+  }
+  .change-status-btn button{
+	background-color: transparent;
+	border:1px solid var(--color-border);
+	padding: 8px 14px;
+	color:var(--color-text);
+	border-radius: 6px;
+	font-weight:var(--weight-bold);
+  }
+  .attendance-record .student-name{
+	display: flex;
+  }
+  .attendance-record aside{
+	padding: 1em 0;
+  }
+  .attendance-record img{
+	width: 40px;
+	height: 40px;
+	margin: 6px;
+  }
+  
   
