@@ -78,6 +78,10 @@ const loadInstructionsAndBadge = () => {
         editableState.style.fontWeight = '700'
     }
 }
+
+logOutBtn.addEventListener('click', function(){
+    clearSessionStorage();
+})
 // previous and next days buttons event listeners
 let dayNum = 0
 prevDayBtn.addEventListener('click', function(){
@@ -218,7 +222,7 @@ const loadAttendanceList = () =>{
         }   
     const sum = studentDayCounts.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
     const studentsPresentAverage = sum.toFixed(2) / 120; 
-    average.textContent = `${studentsPresentAverage}%`;
+    average.textContent = `${studentsPresentAverage.toFixed(2)}%`;
     studentBelow80.textContent = studentBelow80attendance.length;
     console.log(studentDayCounts);
      console.log(sum);

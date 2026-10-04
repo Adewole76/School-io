@@ -126,12 +126,13 @@
 	box-shadow:var(--shadow-sm);
 	border-radius: 6px
   }
-  .active-status-present{
+  .change-status-btn .active-status-present{
     color:var(--color-success);
 	background-color:var(--color-success-bg);
   }
-  .active-status-absent{
-    color:red;
+  .change-status-btn .active-status-absent{
+    color:var(--color-danger);
+	background-color:var(--color-danger-bg);
   }
 
 
@@ -151,9 +152,25 @@
 	column-gap: 1em;
 	grid-template-columns: 1fr 1fr 1fr;
   }
+  .toast-message{
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	text-align: center;
+	transition: transform 0.5s ease;
+  }
+
+  .active-toast{
+		transition: transform 0.5s ease;
+	transform: translateY(-20px);
+  }
   .stat-card{
 	background-color:white;
-	padding: 1em;
+	padding: 2em 1em;
+	border-radius: 6px;
+	box-shadow: var(--shadow-md);
+	border:1px solid var(--color-border)
   }
   .stat-card h3{
 	font-family:var(--font-display);
