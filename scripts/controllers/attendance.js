@@ -48,6 +48,8 @@ const average = document.querySelector('.average');
 const noOfDays = document.querySelector('.noOfDays');
 const studentBelow80 = document.querySelector('.studentBelow80');
 
+const toastMessage = document.querySelector('.toast-message');
+const closeToast = document.querySelector('.close-toast');
 userName.textContent = currentTeacher.Name;
 const today = new Date();
 const dayName = today.toLocaleString('en-US', { weekday: 'long' });
@@ -314,7 +316,13 @@ attendanceContainer.addEventListener('click', (event)=>{
     }
 });
 saveAttendanceBtn.addEventListener('click', function(){
-  
+    toastMessage.classList.remove('.toast-message')  
+    toastMessage.classList.add('active-toast');
+    console.log('i am a man');
+    setTimeout(() => {
+    toastMessage.classList.remove('active-toast');
+}, 2000);
+
 });
 
 

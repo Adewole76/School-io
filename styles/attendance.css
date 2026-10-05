@@ -158,12 +158,28 @@
 	bottom: 0;
 	left: 0;
 	text-align: center;
-	transition: transform 0.5s ease;
+	transition: transform 0.12s ease;
+	opacity: 0;
+  }
+  .toast-message p{
+	background-color:var(--color-primary-dark);
+	color: white;
+	padding: 12px 14px;
+	display: inline-block;
+	font-family: var(--font-body);
+	border-radius: 8px;
+	font-weight: var(--weight-bold);
   }
 
   .active-toast{
-		transition: transform 0.5s ease;
-	transform: translateY(-20px);
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	text-align: center;
+	transition: transform 0.12s ease;
+	transform: translateY(-2.5em);
+	opacity: 1;
   }
   .stat-card{
 	background-color:white;
@@ -236,7 +252,7 @@
 
   .attendance-record{
 	display:flex;
-	background-color:var(--color-bg);
+	background-color:var(--color-surface);
     border:1px solid var(--color-border-strong);
 	margin: 1em 0;
 	border-radius: 8px;
@@ -270,5 +286,7 @@
 	height: 40px;
 	margin: 6px;
   }
-  
+  .save-attendance-btn{
+	margin-bottom: 4em;
+  }
   
