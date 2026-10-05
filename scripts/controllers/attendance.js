@@ -50,6 +50,7 @@ const studentBelow80 = document.querySelector('.studentBelow80');
 
 const toastMessage = document.querySelector('.toast-message');
 const closeToast = document.querySelector('.close-toast');
+const instructionToEdit = document.querySelector('.instruction')
 const toastMessageText = document.querySelector('.toastMessage-text')
 userName.textContent = currentTeacher.Name;
 const today = new Date();
@@ -129,6 +130,8 @@ prevDayBtn.addEventListener('click', function(){
         editableState.style.border = '1px solid #CFCBBF'
         editableState.style.borderRadius = '8px'
         editableState.style.fontWeight = '700'
+        instructionToEdit.textContent = `This date is view-only-attendance can only be edited on the day it was marked`;
+        instructionToEdit.classList.remove('hidden');
     }else{
         editableState.textContent = `Editable - today`;
         editableState.style.backgroundColor = '#E7F3EA';
@@ -138,6 +141,7 @@ prevDayBtn.addEventListener('click', function(){
         editableState.style.border = 'none';
         editableState.style.borderRadius = '8px'
         editableState.style.fontWeight = '700'
+        instructionToEdit.classList.add('hidden');
     }
 })
 nextDayBtn.addEventListener('click', function(){
@@ -179,6 +183,7 @@ nextDayBtn.addEventListener('click', function(){
         editableState.style.borderRadius = '8px';
         editableState.style.fontWeight = '700'
         editableState.style.fontSize = '--text-base';
+        instructionToEdit.classList.add('hidden');
         for(let i = 0; i < terms.length; i++){
             terms[i].disabled = false;
         }
@@ -247,6 +252,14 @@ termPicker.addEventListener('click', (event) => {
         console.log('i am working')
         const terms = termPicker.querySelectorAll('.term');
         termValue = particularButton.textContent
+          toastMessage.classList.remove('.toast-message')  
+            toastMessage.classList.add('active-toast');
+            toastMessageText.innerHTML = `${particularButton.textContent} selected. <button class="close-toast">&times;</button>`
+            console.log('i am a man');
+            setTimeout(() => {
+            toastMessage.classList.remove('active-toast');
+            toastMessage.classList.add('toast-message');
+            }, 2000);
         
         for(let i = 0; i < attendanceArray.length; i++){
             if(attendanceArray[i].date === today.toLocaleDateString()){
@@ -335,7 +348,7 @@ attendanceContainer.addEventListener('click', (event)=>{
 saveAttendanceBtn.addEventListener('click', function(){
     toastMessage.classList.remove('.toast-message')  
     toastMessage.classList.add('active-toast');
-    toastMessageText.innerHTML = `You have not done something. <button class="close-toast">&times;</button>`
+    toastMessageText.innerHTML = `Attendance has been saved. <button class="close-toast">&times;</button>`
     console.log('i am a man');
     setTimeout(() => {
     toastMessage.classList.remove('active-toast');
