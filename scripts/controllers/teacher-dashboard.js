@@ -5,6 +5,7 @@ import { gettingUser } from "../module.js";
 import { requireAuth } from "../module.js";
 import { studentsArray } from "../module.js";
 import { schoolClasses } from "../module.js";
+import { attendanceArray } from "../module.js";
 
 const currentUser = gettingUser('currentUserId');
 const currentUserRole = gettingUser("currentUserRole");
@@ -40,6 +41,7 @@ const noOfStudents = document.querySelector('.no-of-students');
 //class tool dom elements
 const classRoster = document.querySelector('.classRoster');
 const markAttendance = document.querySelector('.attendance');
+const markAttendanceStatus = document.querySelector('.mark-attendance-status');
 const recordGrades = document.querySelector('.grades');
 //event listeners for link to class actions
 classRoster.addEventListener('click', function(){
@@ -70,7 +72,26 @@ logOutBtn.addEventListener('click', function(){
          console.log(particularClass);
          const classStudents = studentsArray.filter(student => student.Classid === particularClass.id);
          noOfStudents.innerHTML = classStudents.length?classStudents.length:0;
-     }
+         const todaysDate = new Date();
+         const attendanceStatValue = attendanceArray.filter(attendance => attendance.date === todaysDate.toLocaleDateString())
+         console.log(attendanceStatValue);
+         if(attendanceStatValue.length === classStudents.length){
+            markAttendanceStatus.textContent = 'Attendance Marked';
+            markAttendanceStatus.style.color = '#3F8F5F';
+            markAttendanceStatus.style.backgroundColor = '#E7F3EA';
+            markAttendanceStatus.style.display = 'inline-block'
+         }else if(attendanceStatValue.length === 0){
+            markAttendanceStatus.textContent = 'Attendance has not been marked';
+            markAttendanceStatus.style.color = '#BF4A3C';
+            markAttendanceStatus.style.backgroundColor = '#FAEAE7';
+            markAttendanceStatus.style.display = 'inline-block' 
+        }else if(attendanceStatValue.length < classStudents.length){
+            markAttendanceStatus.textContent === 'Attendance partially marked';
+             markAttendanceStatus.style.color = '#C8892E';
+            markAttendanceStatus.style.backgroundColor = '#FBF0DE';
+            markAttendanceStatus.style.display = 'inline-block' 
+        }
+        }
  }
  loadTeacherDashboard();
 

@@ -198,6 +198,7 @@ nextDayBtn.addEventListener('click', function(){
 
 const loadAttendanceList = () =>{
     getStudentsForTeachers(currentTeacher.ClassId);
+    instructionToEdit.classList.add('hidden');
     mappingAttendanceStudents(getStudentsForTeachers(currentTeacher.ClassId),today.toLocaleDateString(),attendanceContainer);
     let noOfDaysRecorded = [];
     let idsOfStudents = [];

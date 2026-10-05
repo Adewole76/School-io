@@ -163,6 +163,7 @@
   }
   .stats-section img{
     width: 50px;
+    display: block;
     height: 50px;
   }
   .stat{
@@ -210,5 +211,10 @@
     border: 1px solid var(--color-primary-dark);
     transform: translateY(-3px);
     box-shadow:var(--shadow-lg);
+  }
+  .mark-attendance-status{
+    padding: 6px;
+    border-radius: 6px;
+    font-weight:var(--weight-semibold);
   }
   
