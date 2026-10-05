@@ -50,6 +50,7 @@ const studentBelow80 = document.querySelector('.studentBelow80');
 
 const toastMessage = document.querySelector('.toast-message');
 const closeToast = document.querySelector('.close-toast');
+const toastMessageText = document.querySelector('.toastMessage-text')
 userName.textContent = currentTeacher.Name;
 const today = new Date();
 const dayName = today.toLocaleString('en-US', { weekday: 'long' });
@@ -280,6 +281,14 @@ attendanceContainer.addEventListener('click', (event)=>{
            saveCollection('attends', attendanceArray);
         }else if(!termValue && !attendanceArray.some(attendance => attendance.studentId === particularStudent.studentId && attendance.date === today.toLocaleDateString())){
             console.log(`you have not selected a term`);
+             toastMessage.classList.remove('.toast-message')  
+            toastMessage.classList.add('active-toast');
+            toastMessageText.innerHTML = `You haven't selected a term. <button class="close-toast">&times;</button>`
+            console.log('i am a man');
+            setTimeout(() => {
+            toastMessage.classList.remove('active-toast');
+            toastMessage.classList.add('toast-message');
+            }, 2000);
         }
         else{
             addAttendance(particularStudent.studentId, particularStudent.Classid, today.toLocaleDateString(), termValue, 'present')
@@ -305,6 +314,14 @@ attendanceContainer.addEventListener('click', (event)=>{
            saveCollection('attends', attendanceArray);
         }else if(!termValue && !attendanceArray.some(attendance => attendance.studentId === particularStudent.studentId && attendance.date === today.toDateString())){
             console.log(`you have not selected a term`);
+             toastMessage.classList.remove('.toast-message')  
+            toastMessage.classList.add('active-toast');
+            toastMessageText.innerHTML = `You haven't selected a term. <button class="close-toast">&times;</button>`
+            console.log('i am a man');
+            setTimeout(() => {
+            toastMessage.classList.remove('active-toast');
+            toastMessage.classList.add('toast-message');
+            }, 2000);
         }
         else{
             addAttendance(particularStudent.studentId, particularStudent.Classid, today.toLocaleDateString(), termValue, 'absent')
@@ -318,11 +335,18 @@ attendanceContainer.addEventListener('click', (event)=>{
 saveAttendanceBtn.addEventListener('click', function(){
     toastMessage.classList.remove('.toast-message')  
     toastMessage.classList.add('active-toast');
+    toastMessageText.innerHTML = `You have not done something. <button class="close-toast">&times;</button>`
     console.log('i am a man');
     setTimeout(() => {
     toastMessage.classList.remove('active-toast');
+    toastMessage.classList.add('toast-message');
 }, 2000);
 
 });
+
+closeToast.addEventListener('click', function(){
+  toastMessage.classList.remove('active-toast');
+})
+
 
 
