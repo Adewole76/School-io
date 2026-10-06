@@ -85,8 +85,8 @@ logOutBtn.addEventListener('click', function(){
             markAttendanceStatus.style.color = '#BF4A3C';
             markAttendanceStatus.style.backgroundColor = '#FAEAE7';
             markAttendanceStatus.style.display = 'inline-block' 
-        }else if(attendanceStatValue.length < classStudents.length){
-            markAttendanceStatus.textContent === 'Attendance partially marked';
+        }else if(attendanceStatValue.length < classStudents.length && attendanceStatValue.length !== 0){
+            markAttendanceStatus.textContent = 'Attendance partially marked';
              markAttendanceStatus.style.color = '#C8892E';
             markAttendanceStatus.style.backgroundColor = '#FBF0DE';
             markAttendanceStatus.style.display = 'inline-block' 
