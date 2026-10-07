@@ -1,3 +1,4 @@
+'use strict'
 import { TeachersArray } from "../module.js";
 import { clearSessionStorage } from "../module.js";
 import { gettingUser } from "../module.js";
@@ -18,3 +19,6 @@ window.addEventListener('pageshow', (event) => {
    }
 });
 
+const loadRecordGrades = ()=>{
+   
+}
