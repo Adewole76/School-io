@@ -3,6 +3,8 @@ import { clearSessionStorage } from "../module.js";
 import { gettingUser } from "../module.js";
 import { requireAuth } from "../module.js";
 import { studentsArray } from "../module.js";
+import { addGrades } from "../module.js";
+import { saveCollection } from "../module.js";
 const currentUser = gettingUser('currentUserId');
 const currentUserRole = gettingUser("currentUserRole");
 console.log(currentUser, currentUserRole);
