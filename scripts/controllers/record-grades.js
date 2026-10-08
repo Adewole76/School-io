@@ -1,5 +1,7 @@
 'use strict'
 import { TeachersArray } from "../module.js";
+import { gradesArray } from "../module.js";
+import { mappingGradesRecords } from "../views/record-grades-view.js"
 import { clearSessionStorage } from "../module.js";
 import { gettingUser } from "../module.js";
 import { requireAuth } from "../module.js";
@@ -19,6 +21,11 @@ window.addEventListener('pageshow', (event) => {
    }
 });
 
+const userName = document.querySelector('.user-name');
+userName.textContent  = currentTeacher.Name
+
 const loadRecordGrades = ()=>{
-   
+   const teachersStudents = studentsArray.filter(student => student.Classid === currentTeacher.ClassId);
+   console.log(teachersStudents);
 }
+loadRecordGrades()
