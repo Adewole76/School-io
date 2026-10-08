@@ -292,7 +292,7 @@ export const updateTeacher = (updatedTeacherId, emailnewValue, phoneNumbernewVal
 
 
 //CRUD for grades
-let gradesArray = getCollection('grades')?getCollection('grades'):[]
+export let gradesArray = getCollection('grades')?getCollection('grades'):[]
 export const addGrades = (studentId, term, subject, test1, test2, Exam) => {
   const newGradeObject = {
     id: generateIdForUsers('grade'),

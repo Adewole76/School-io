@@ -1,7 +1,7 @@
 'use strict'
 import { TeachersArray } from "../module.js";
 import { gradesArray } from "../module.js";
-import { mappingGradesRecords } from "../views/record-grades-view.js"
+import { mappingGradeRecords } from "../views/record-grades-view.js"
 import { clearSessionStorage } from "../module.js";
 import { gettingUser } from "../module.js";
 import { requireAuth } from "../module.js";
@@ -32,13 +32,39 @@ const terms = document.querySelectorAll('.term');
 
 const mainGradesContainer = document.querySelector('.main-grades-container');
 
+
+let activeTerm;
+for(let i = 0; i < terms.length; i++){
+   terms[i].addEventListener('click', function(){
+      terms[i].classList.add('active-term');
+      activeTerm = terms[i].textContent;
+      for(let i =0; i< terms.length; i++){
+         if(terms[i].textContent !== activeTerm){
+            terms[i].classList.remove('active-term');
+         }
+      }
+      
+   })
+}
 const loadRecordGrades = ()=>{
    const teachersStudents = studentsArray.filter(student => student.Classid === currentTeacher.ClassId);
    console.log(teachersStudents);
+   subjectSelect.addEventListener('change', function(){
    if(subjectSelect.value !== "Select a subject"){
-   mappingGradesRecords(teachersStudents, mainGradesContainer)
-   }else {
+   mappingGradeRecords(teachersStudents, mainGradesContainer)
+   }
+   })
+   if(subjectSelect.value === 'Select a subject'){
       mainGradesContainer.innerHTML = `Select a subject above to see the class roster and recording grades`;
    }
 }
-loadRecordGrades()
+loadRecordGrades();
+mainGradesContainer.addEventListener('change', (event) => {
+   if(event.target.closest('.test-1-input')){
+      const particulartest1Input = event.target.closest('.test-1-input');
+      const particularOnPageRecord = event.target.closest('.grade-record')
+      console.log(particularOnPageRecord);
+   }else if(event.target.closest('.test-2-input')){
+
+   }
+})

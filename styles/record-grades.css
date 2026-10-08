@@ -68,11 +68,12 @@
 	--transition-base: 200ms ease;
   }
 
+  /*
   *{
 	margin: 0;
 	padding: 0;
     box-sizing: border-box;
-  }
+  }*/
   .active-term{
 	background-color:black;
 	color: white;

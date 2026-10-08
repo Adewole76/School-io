@@ -28,5 +28,11 @@ export const mappingGradeRecords = (arr, container)=>{
         </div> 
         `
     }).join('');
+    if(arr.length === 0){
+        container.innerHTML = `<p>No students in your class yet</p>
+        <p>Once students are added they will show up here and you can start recording their grades</p>
+        `
+    }else{
     container.innerHTML = mappedGradesRecords
+    }
 }
