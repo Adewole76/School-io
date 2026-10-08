@@ -37,7 +37,7 @@ const mainGradesContainer = document.querySelector('.main-grades-container');
 const loadRecordGrades = ()=>{
    const teachersStudents = studentsArray.filter(student => student.Classid === currentTeacher.ClassId);
    console.log(teachersStudents);
-   if(subjectSelect.value === 'Select a subject' && !activeTerm){
+   if(subjectSelect.value === 'Select a subject' || !activeTerm){
       mainGradesContainer.innerHTML = `Select a subject above to see the class roster and recording grades`;
    }else if(subjectSelect.value !== "Select a subject" && activeTerm){
    mappingGradeRecords(classStudents, mainGradesContainer);
@@ -62,7 +62,6 @@ const classStudents =  loadRecordGrades();
 
 
  subjectSelect.addEventListener('change', function(){
-  
    loadRecordGrades()
  });
 mainGradesContainer.addEventListener('change', (event) => {
