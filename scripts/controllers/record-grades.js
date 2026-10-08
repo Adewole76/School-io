@@ -21,11 +21,24 @@ window.addEventListener('pageshow', (event) => {
    }
 });
 
+//navbar elements
 const userName = document.querySelector('.user-name');
 userName.textContent  = currentTeacher.Name
+
+//subjects and terms pickers
+const subjectSelect = document.querySelector('.subject-select');
+const termPicker = document.querySelector('.term-picker');
+const terms = document.querySelectorAll('.term');
+
+const mainGradesContainer = document.querySelector('.main-grades-container');
 
 const loadRecordGrades = ()=>{
    const teachersStudents = studentsArray.filter(student => student.Classid === currentTeacher.ClassId);
    console.log(teachersStudents);
+   if(subjectSelect.value !== "Select a subject"){
+   mappingGradesRecords(teachersStudents, mainGradesContainer)
+   }else {
+      mainGradesContainer.innerHTML = `Select a subject above to see the class roster and recording grades`;
+   }
 }
 loadRecordGrades()

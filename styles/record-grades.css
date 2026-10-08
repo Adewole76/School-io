@@ -73,3 +73,7 @@
 	padding: 0;
     box-sizing: border-box;
   }
+  .active-term{
+	background-color:black;
+	color: white;
+  }
