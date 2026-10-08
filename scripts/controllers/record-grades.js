@@ -67,9 +67,48 @@ const classStudents =  loadRecordGrades();
 mainGradesContainer.addEventListener('change', (event) => {
    if(event.target.closest('.test-1-input')){
       const particulartest1Input = event.target.closest('.test-1-input');
-      const particularOnPageRecord = event.target.closest('.grade-record')
-      console.log(particularOnPageRecord);
+      const particularOnPageRecord = event.target.closest('.grade-record');
+      const particularStudentId = particularOnPageRecord.dataset.userId;
+      console.log(particularOnPageRecord.dataset.userId);
+      const particularTest2Input = particularOnPageRecord.querySelector('.test-2-input');
+      const particularExamInput = particularOnPageRecord.querySelector('.Exam-input');
+      console.log(particularTest2Input);
+      console.log(particularExamInput);
+       if(gradesArray.find(grade => grade.gradeSubject === subjectSelect.value && grade.term === activeTerm && grade.studentId === particularStudentId)){
+      console.log(' record like this already exist');
+    }else{
+     addGrades(particularStudentId, activeTerm, subjectSelect.value, Number(particulartest1Input.value), Number(particularTest2Input.value), Number(particularExamInput.value));
+     console.log(gradesArray); 
+    }
    }else if(event.target.closest('.test-2-input')){
-      
+      const particulartest2Input = event.target.closest('.test-2-input');
+      const particularOnPageRecord = event.target.closest('.grade-record');
+      const particularTest1Input = particularOnPageRecord.querySelector('.test-1-input');
+      const particularExamInput = particularOnPageRecord.querySelector('.Exam-input');
+      const particularStudentId = particularOnPageRecord.dataset.userId
+      console.log(particularTest1Input);
+      console.log(particularExamInput);
+      console.log(particularOnPageRecord.dataset.userId);
+      if(gradesArray.find(grade => grade.gradeSubject === subjectSelect.value && grade.term === activeTerm && grade.studentId === particularStudentId)){
+      console.log(' record like this already exist');
+    }else{
+     addGrades(particularStudentId, activeTerm, subjectSelect.value, Number(particularTest1Input.value), Number(particulartest2Input.value), Number(particularExamInput.value));
+     console.log(gradesArray); 
+    }
+   }else if(event.target.closest('.Exam-input')){
+      const particularExamInput = event.target.closest('.Exam-input');
+      const particularOnPageRecord = event.target.closest('.grade-record')
+      const particularStudentId = particularOnPageRecord.dataset.userId
+      console.log(particularStudentId);
+      const particularTest1Input = particularOnPageRecord.querySelector('.test-1-input');
+      const particularTest2Input = particularOnPageRecord.querySelector('.test-2-input')
+      console.log(particularTest1Input);
+      console.log(particularTest2Input);
+      if(gradesArray.find(grade => grade.gradeSubject === subjectSelect.value && grade.term === activeTerm && grade.studentId === particularStudentId)){
+      console.log(' record like this already exist');
+    }else{
+     addGrades(particularStudentId, activeTerm, subjectSelect.value, Number(particularTest1Input.value), Number(particularTest2Input.value), Number(particularExamInput.value));
+     console.log(gradesArray); 
+    }
    }
 })
