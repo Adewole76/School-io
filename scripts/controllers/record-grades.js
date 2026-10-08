@@ -33,6 +33,17 @@ const terms = document.querySelectorAll('.term');
 const mainGradesContainer = document.querySelector('.main-grades-container');
 
 
+
+const loadRecordGrades = ()=>{
+   const teachersStudents = studentsArray.filter(student => student.Classid === currentTeacher.ClassId);
+   console.log(teachersStudents);
+   if(subjectSelect.value === 'Select a subject' && !activeTerm){
+      mainGradesContainer.innerHTML = `Select a subject above to see the class roster and recording grades`;
+   }else if(subjectSelect.value !== "Select a subject" && activeTerm){
+   mappingGradeRecords(classStudents, mainGradesContainer);
+   }
+   return teachersStudents
+}
 let activeTerm;
 for(let i = 0; i < terms.length; i++){
    terms[i].addEventListener('click', function(){
@@ -43,28 +54,23 @@ for(let i = 0; i < terms.length; i++){
             terms[i].classList.remove('active-term');
          }
       }
-      
+        loadRecordGrades();
    })
-}
-const loadRecordGrades = ()=>{
-   const teachersStudents = studentsArray.filter(student => student.Classid === currentTeacher.ClassId);
-   console.log(teachersStudents);
-   subjectSelect.addEventListener('change', function(){
-   if(subjectSelect.value !== "Select a subject"){
-   mappingGradeRecords(teachersStudents, mainGradesContainer)
-   }
-   })
-   if(subjectSelect.value === 'Select a subject'){
-      mainGradesContainer.innerHTML = `Select a subject above to see the class roster and recording grades`;
-   }
-}
-loadRecordGrades();
+};
+
+const classStudents =  loadRecordGrades();
+
+
+ subjectSelect.addEventListener('change', function(){
+  
+   loadRecordGrades()
+ });
 mainGradesContainer.addEventListener('change', (event) => {
    if(event.target.closest('.test-1-input')){
       const particulartest1Input = event.target.closest('.test-1-input');
       const particularOnPageRecord = event.target.closest('.grade-record')
       console.log(particularOnPageRecord);
    }else if(event.target.closest('.test-2-input')){
-
+      
    }
 })
