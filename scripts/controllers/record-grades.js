@@ -76,7 +76,7 @@ mainGradesContainer.addEventListener('change', (event) => {
       console.log(particularExamInput);
        if(gradesArray.find(grade => grade.gradeSubject === subjectSelect.value && grade.term === activeTerm && grade.studentId === particularStudentId)){
        const particularCorrespondingRecord = gradesArray.find(grade => grade.gradeSubject === subjectSelect.value && grade.term === activeTerm && grade.studentId === particularStudentId)
-       particularCorrespondingRecord.test1Score = particulartest1Input.value;
+       particularCorrespondingRecord.test1Score = Number(particulartest1Input.value);
        saveCollection('grades', gradesArray)
     }else{
      addGrades(particularStudentId, activeTerm, subjectSelect.value, Number(particulartest1Input.value), Number(particularTest2Input.value), Number(particularExamInput.value));
@@ -87,13 +87,13 @@ mainGradesContainer.addEventListener('change', (event) => {
       const particularOnPageRecord = event.target.closest('.grade-record');
       const particularTest1Input = particularOnPageRecord.querySelector('.test-1-input');
       const particularExamInput = particularOnPageRecord.querySelector('.Exam-input');
-      const particularStudentId = particularOnPageRecord.dataset.userId
+      const particularStudentId = particularOnPageRecord.dataset.userId;
       console.log(particularTest1Input);
       console.log(particularExamInput);
       console.log(particularOnPageRecord.dataset.userId);
       if(gradesArray.find(grade => grade.gradeSubject === subjectSelect.value && grade.term === activeTerm && grade.studentId === particularStudentId)){
         const particularCorrespondingRecord = gradesArray.find(grade => grade.gradeSubject === subjectSelect.value && grade.term === activeTerm && grade.studentId === particularStudentId)
-       particularCorrespondingRecord.test2Score = particulartest2Input.value;
+       particularCorrespondingRecord.test2Score = Number(particulartest2Input.value);
        saveCollection('grades', gradesArray);
     }else{
      addGrades(particularStudentId, activeTerm, subjectSelect.value, Number(particularTest1Input.value), Number(particulartest2Input.value), Number(particularExamInput.value));
@@ -102,7 +102,7 @@ mainGradesContainer.addEventListener('change', (event) => {
    }else if(event.target.closest('.Exam-input')){
       const particularExamInput = event.target.closest('.Exam-input');
       const particularOnPageRecord = event.target.closest('.grade-record')
-      const particularStudentId = particularOnPageRecord.dataset.userId
+      const particularStudentId = particularOnPageRecord.dataset.userId;
       console.log(particularStudentId);
       const particularTest1Input = particularOnPageRecord.querySelector('.test-1-input');
       const particularTest2Input = particularOnPageRecord.querySelector('.test-2-input')
@@ -110,7 +110,7 @@ mainGradesContainer.addEventListener('change', (event) => {
       console.log(particularTest2Input);
       if(gradesArray.find(grade => grade.gradeSubject === subjectSelect.value && grade.term === activeTerm && grade.studentId === particularStudentId)){
         const particularCorrespondingRecord = gradesArray.find(grade => grade.gradeSubject === subjectSelect.value && grade.term === activeTerm && grade.studentId === particularStudentId)
-       particularCorrespondingRecord.examScore = particularExamInput.value;
+       particularCorrespondingRecord.examScore = Number(particularExamInput.value);
        saveCollection('grades', gradesArray)
     }else{
      addGrades(particularStudentId, activeTerm, subjectSelect.value, Number(particularTest1Input.value), Number(particularTest2Input.value), Number(particularExamInput.value));
