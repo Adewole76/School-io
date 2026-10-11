@@ -33,18 +33,33 @@ const terms = document.querySelectorAll('.term');
 const mainGradesContainer = document.querySelector('.main-grades-container');
 
 
-
+let activeTerm;
 const loadRecordGrades = ()=>{
    const teachersStudents = studentsArray.filter(student => student.Classid === currentTeacher.ClassId);
    console.log(teachersStudents);
    if(subjectSelect.value === 'Select a subject' || !activeTerm){
       mainGradesContainer.innerHTML = `Select a subject above to see the class roster and recording grades`;
    }else if(subjectSelect.value !== "Select a subject" && activeTerm){
-   mappingGradeRecords(classStudents, mainGradesContainer);
-   }
+      mappingGradeRecords(classStudents, mainGradesContainer);
+      const records = mainGradesContainer.querySelectorAll('.grade-record');
+      console.log(records);
+      for(let i = 0; i < records.length; i++){
+      if(gradesArray.find(grade => grade.studentId === records[i].dataset.userId && grade.gradeSubject === subjectSelect.value && grade.term === activeTerm)){
+         let grades = gradesArray.find(grade => grade.studentId === records[i].dataset.userId && grade.gradeSubject === subjectSelect.value && grade.term === activeTerm)
+         let test1inputs = records[i].querySelector('.test-1-input');
+         let test2inputs = records[i].querySelector('.test-2-input');
+         let ExamInputs = records[i].querySelector('.Exam-input');    
+
+         test1inputs.value = grades.test1Score;
+         test2inputs.value = grades.test2Score;
+         ExamInputs.value = grades.examScore;
+       }
+
+      }
+}
    return teachersStudents
 }
-let activeTerm;
+
 for(let i = 0; i < terms.length; i++){
    terms[i].addEventListener('click', function(){
       terms[i].classList.add('active-term');
