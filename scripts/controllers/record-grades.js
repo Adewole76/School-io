@@ -30,6 +30,10 @@ const subjectSelect = document.querySelector('.subject-select');
 const termPicker = document.querySelector('.term-picker');
 const terms = document.querySelectorAll('.term');
 
+
+const subjectGradesStats = document.querySelector('.subject-grades-stats');
+const averageForEachSubject = document.querySelector('.average');
+const NoOfCompletedRecords = document.querySelector('.completed-records');
 const mainGradesContainer = document.querySelector('.main-grades-container');
 
 
@@ -56,6 +60,22 @@ const loadRecordGrades = ()=>{
        }
 
       }
+       const currentTermSubjectRecord = gradesArray.filter(grade => grade.term === activeTerm && grade.gradeSubject === subjectSelect.value)
+       console.log(currentTermSubjectRecord);
+       let accumulatedResult = [];
+       for(let i = 0; i < currentTermSubjectRecord.length; i++){
+         let overallResult = currentTermSubjectRecord[i].test1Score + currentTermSubjectRecord[i].test2Score + currentTermSubjectRecord[i].examScore;
+         accumulatedResult.push(overallResult);
+         console.log(accumulatedResult); 
+       }
+       console.log(accumulatedResult);
+       const totalSumOfOverallScores =  accumulatedResult.reduce((acc, curr) => {
+  return acc + curr;
+}, 0);
+console.log(totalSumOfOverallScores);
+const averageScore = totalSumOfOverallScores / teachersStudents.length;
+console.log(averageScore);
+
 }
    return teachersStudents
 }
@@ -93,9 +113,11 @@ mainGradesContainer.addEventListener('change', (event) => {
        const particularCorrespondingRecord = gradesArray.find(grade => grade.gradeSubject === subjectSelect.value && grade.term === activeTerm && grade.studentId === particularStudentId)
        particularCorrespondingRecord.test1Score = Number(particulartest1Input.value);
        saveCollection('grades', gradesArray)
+       loadRecordGrades()
     }else{
      addGrades(particularStudentId, activeTerm, subjectSelect.value, Number(particulartest1Input.value), Number(particularTest2Input.value), Number(particularExamInput.value));
      console.log(gradesArray); 
+     loadRecordGrades()
     }
    }else if(event.target.closest('.test-2-input')){
       const particulartest2Input = event.target.closest('.test-2-input');
@@ -110,9 +132,11 @@ mainGradesContainer.addEventListener('change', (event) => {
         const particularCorrespondingRecord = gradesArray.find(grade => grade.gradeSubject === subjectSelect.value && grade.term === activeTerm && grade.studentId === particularStudentId)
        particularCorrespondingRecord.test2Score = Number(particulartest2Input.value);
        saveCollection('grades', gradesArray);
+       loadRecordGrades()
     }else{
      addGrades(particularStudentId, activeTerm, subjectSelect.value, Number(particularTest1Input.value), Number(particulartest2Input.value), Number(particularExamInput.value));
      console.log(gradesArray); 
+     loadRecordGrades()
     }
    }else if(event.target.closest('.Exam-input')){
       const particularExamInput = event.target.closest('.Exam-input');
@@ -127,9 +151,11 @@ mainGradesContainer.addEventListener('change', (event) => {
         const particularCorrespondingRecord = gradesArray.find(grade => grade.gradeSubject === subjectSelect.value && grade.term === activeTerm && grade.studentId === particularStudentId)
        particularCorrespondingRecord.examScore = Number(particularExamInput.value);
        saveCollection('grades', gradesArray)
+       loadRecordGrades()
     }else{
      addGrades(particularStudentId, activeTerm, subjectSelect.value, Number(particularTest1Input.value), Number(particularTest2Input.value), Number(particularExamInput.value));
      console.log(gradesArray); 
+     loadRecordGrades()
     }
    }
 })
