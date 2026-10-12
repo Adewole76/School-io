@@ -61,6 +61,7 @@ const loadRecordGrades = ()=>{
 
       }
        const currentTermSubjectRecord = gradesArray.filter(grade => grade.term === activeTerm && grade.gradeSubject === subjectSelect.value)
+      
        console.log(currentTermSubjectRecord);
        let accumulatedResult = [];
        for(let i = 0; i < currentTermSubjectRecord.length; i++){
@@ -72,10 +73,18 @@ const loadRecordGrades = ()=>{
        const totalSumOfOverallScores =  accumulatedResult.reduce((acc, curr) => {
   return acc + curr;
 }, 0);
+
+const noOfStudentsFullyGraded = currentTermSubjectRecord.filter(grade => grade.test1Score && grade.test2Score && grade.examScore);
+console.log(noOfStudentsFullyGraded);
 console.log(totalSumOfOverallScores);
 const averageScore = totalSumOfOverallScores / teachersStudents.length;
 console.log(averageScore);
-
+averageForEachSubject.innerHTML = `<h3>${averageScore}</h3>
+<p>Class Average - ${subjectSelect.value}, ${activeTerm} based on scores entered so far</p>
+`
+NoOfCompletedRecords.innerHTML = `<h3>${noOfStudentsFullyGraded.length} of ${teachersStudents.length}</h3>
+<p>Students fully graded</p>
+`
 }
    return teachersStudents
 }
