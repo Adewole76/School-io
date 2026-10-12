@@ -47,8 +47,19 @@ const loadRecordGrades = ()=>{
    const teachersStudents = studentsArray.filter(student => student.Classid === currentTeacher.ClassId);
    console.log(teachersStudents);
    if(subjectSelect.value === 'Select a subject' || !activeTerm){
-      mainGradesContainer.innerHTML = `<div class="inactive-state"><p>Select a subject above to see the class roster and recording grades</p></div>`;
+      mainGradesContainer.innerHTML = `<section class="inactive-state">
+      <div>
+      <div class="inactive-img">
+      <img class="file-icon" src="/images/document.png" alt="file-icon">
+      </div>
+      <p>Select a subject above to see the class roster and recording grades</p>
+      </div>
+      </section>`;
+      averageForEachSubject.classList.add('hidden');
+      NoOfCompletedRecords.classList.add('hidden')
    }else if(subjectSelect.value !== "Select a subject" && activeTerm){
+      averageForEachSubject.classList.remove('hidden');
+      NoOfCompletedRecords.classList.remove('hidden')
       mappingGradeRecords(classStudents, mainGradesContainer);
       const records = mainGradesContainer.querySelectorAll('.grade-record');
       console.log(records);
@@ -84,7 +95,7 @@ console.log(noOfStudentsFullyGraded);
 console.log(totalSumOfOverallScores);
 const averageScore = totalSumOfOverallScores / teachersStudents.length;
 console.log(averageScore);
-averageForEachSubject.innerHTML = `<h3>${averageScore}</h3>
+averageForEachSubject.innerHTML = `<h3>${averageScore.toFixed(2)}</h3>
 <p>Class Average - ${subjectSelect.value}, ${activeTerm} based on scores entered so far</p>
 `
 NoOfCompletedRecords.innerHTML = `<h3>${noOfStudentsFullyGraded.length} of ${teachersStudents.length}</h3>

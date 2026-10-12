@@ -2,20 +2,20 @@
 export const mappingGradeRecords = (arr, container)=>{
     const mappedGradesRecords = arr.map(item => {
         return `<div class="grade-record" data-user-id="${item.studentId}">
-        <section>
+        <section class=img-name>
             <img src="/images/user.png">
             <p>${item.Name}</p>
         </section>
 
-        <section>
+        <section class="result">
 
             <div class="">
-                <label class="">Test 1</label>
+                <p class="">Test 1</p>
                 <input class="test-1-input" type="number" placeholder="--">
             </div>
 
             <div class="">
-                <label class="">Test 2</label>
+                <p class="">Test 2</p>
                 <input class="test-2-input" type="number" placeholder="--">
             </div>
 

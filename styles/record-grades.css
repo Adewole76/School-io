@@ -67,6 +67,9 @@
 	--transition-base: 200ms ease;
   }
 
+  .hidden{
+	display: none;
+  }
   
   *{
 	margin: 0;
@@ -138,7 +141,7 @@
 	display:flex;
 	border: 1px solid var(--color-border-strong);
 	margin: 1em 0;
-	box-shadow:var(--shadow-md);
+	box-shadow:var(--shadow-sm);
 	border-radius: 6px;
 }
 .term-subject-container p{
@@ -172,4 +175,75 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	border: 1px dashed var(--color-border-strong);
+	padding: 4em;
+}
+.inactive-state p{
+	color:var(--color-text-secondary);
+	font-family: var(--font-body);
+}
+.inactive-img{
+	text-align: center;
+}
+.file-icon{
+	width: 50px;
+	height: 50px;
+	text-align: center;
+}
+
+/*subject grades stats styles*/
+.subject-grades-stats{
+	display: grid;
+    grid-template-columns:1fr 1fr;
+	column-gap: 1em;
+	margin-bottom: 1em;
+}
+.subject-grades-stats .stat{
+	background-color: white;
+	padding: 1em;
+	border: 1px solid var(--color-border);
+	box-shadow: var(--shadow-sm);
+	border-radius: 8px;
+}
+.stat h3{
+	color:var(--color-primary-dark);
+	font-size:var(--text-2xl);
+	font-family:var(--font-display);
+}
+.stat p{
+	color:var(--color-text-secondary);
+	font-family:var(--font-body);
+}
+.grade-record{
+	display: flex;
+	justify-content: space-between;
+	margin: 0 0 1em 0;
+	background-color: white;
+	padding: 1em;
+	border: 1px solid var(--color-border);
+	border-radius: 8px;
+}
+.grade-record img{
+	width: 50px;
+	height: 50px;
+}
+.grade-record .img-name{
+	display: flex;
+}
+.img-name p{
+	padding: 1em 0;
+	margin-left:6px;
+}
+.grade-record .result{
+	display: flex;
+}
+.result input{
+	width: 50px;
+	height: 30px;
+	background-color:var(--color-bg);
+	border: 1px solid var(--color-border);
+	padding: 0 0 0 4px;
+}
+.result div:nth-child(2){
+	margin: 0 8px;
 }
