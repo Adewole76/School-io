@@ -57,7 +57,6 @@
 	--radius-sm: 6px;   /* inputs, buttons, badges */
 	--radius-md: 10px;  /* cards */
 	--radius-lg: 16px;  /* modals, large panels */
-
 	/* Shadow */
 	--shadow-sm: 0 1px 2px rgba(35, 33, 28, 0.06);
 	--shadow-md: 0 4px 12px rgba(35, 33, 28, 0.08);
@@ -68,13 +67,109 @@
 	--transition-base: 200ms ease;
   }
 
-  /*
+  
   *{
 	margin: 0;
 	padding: 0;
     box-sizing: border-box;
-  }*/
-  .active-term{
-	background-color:black;
-	color: white;
   }
+  body{
+	background-color:var(--color-bg);
+	position:relative;
+	display:flex;
+	justify-content: center;
+	align-items:center;
+	height: 100vh;
+	width: 100%;
+	padding: 10em 3em 0 3em;
+  }
+  .term-picker .active-term{
+	background-color: white;
+	color:var(--color-primary-dark);
+	box-shadow:var(--shadow-md);
+	border-radius: 6px;
+  }
+
+  nav{
+	display: flex;
+	justify-content: space-between;
+	background-color:var(--color-bg);
+	border-bottom:1px solid var(--color-border);
+	padding: 1em;
+	position:fixed;
+	top:0;
+	right:0;
+	left:0;
+  }
+
+  nav ul{
+	list-style-type: none;
+	padding: 6px 0;
+  }
+  nav ul li{
+	display: inline-block;
+	padding: 0 1em;
+  }
+
+  /*main header styles*/
+  main{
+	width: 100%;
+	height: 100vh;
+  }
+  .teachers-class{
+	color: var(--color-primary-dark);
+	background-color:var(--color-primary-light);
+	font-family:var(--font-body);
+	font-weight:var(--weight-bold);
+	padding: 4px;
+	border-radius: 6px;
+  }
+  header h2{
+	font-family:var(--font-display);
+  }
+  header p{
+	font-family:var(--font-body);
+	color:var(--color-text-secondary);
+  }
+
+.term-subject-container{
+	background-color:white;
+	padding: 1em;
+	display:flex;
+	border: 1px solid var(--color-border-strong);
+	margin: 1em 0;
+	box-shadow:var(--shadow-md);
+	border-radius: 6px;
+}
+.term-subject-container p{
+	font-family:var(--font-body);
+	color:var(--color-text-secondary);
+	margin: 0 0 8px 0;
+}
+.term-picker{
+	background-color:var(--color-bg);
+	padding: 6px 10px;
+	border: 1px solid var(--color-border-strong);
+	border-radius: 6px;
+	margin: 0 1em 0 0;
+}
+.term-picker button{
+	background-color:transparent;
+	border: none;
+	color:var(--color-text-secondary);
+	font-family:var(--font-body);
+	padding: 6px 8px;
+}
+.term-picker button:nth-child(2) {
+  margin: 0 14px;
+}
+.subject-select{
+	padding: 10px 8px;
+	border: 1px solid var(--color-border-strong);
+	border-radius: 6px;
+}
+.inactive-state{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

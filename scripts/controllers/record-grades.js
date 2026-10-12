@@ -7,11 +7,14 @@ import { gettingUser } from "../module.js";
 import { requireAuth } from "../module.js";
 import { studentsArray } from "../module.js";
 import { addGrades } from "../module.js";
+import { schoolClasses } from "../module.js";
 import { saveCollection } from "../module.js";
 const currentUser = gettingUser('currentUserId');
 const currentUserRole = gettingUser("currentUserRole");
 console.log(currentUser, currentUserRole);
 const currentTeacher = TeachersArray.find(user => user.teacherId === currentUser);
+const currentTeachersClass = schoolClasses.find(cla => cla.teacherId === currentTeacher.teacherId)
+console.log(currentTeachersClass);
 requireAuth(currentUser, "teacherId", TeachersArray, currentUserRole, 'teacher');
 window.addEventListener('pageshow', (event) => {
    if(event.persisted){
@@ -24,6 +27,8 @@ window.addEventListener('pageshow', (event) => {
 //navbar elements
 const userName = document.querySelector('.user-name');
 userName.textContent  = currentTeacher.Name
+
+const teachersClass = document.querySelector('.teachers-class');
 
 //subjects and terms pickers
 const subjectSelect = document.querySelector('.subject-select');
@@ -42,7 +47,7 @@ const loadRecordGrades = ()=>{
    const teachersStudents = studentsArray.filter(student => student.Classid === currentTeacher.ClassId);
    console.log(teachersStudents);
    if(subjectSelect.value === 'Select a subject' || !activeTerm){
-      mainGradesContainer.innerHTML = `Select a subject above to see the class roster and recording grades`;
+      mainGradesContainer.innerHTML = `<div class="inactive-state"><p>Select a subject above to see the class roster and recording grades</p></div>`;
    }else if(subjectSelect.value !== "Select a subject" && activeTerm){
       mappingGradeRecords(classStudents, mainGradesContainer);
       const records = mainGradesContainer.querySelectorAll('.grade-record');
@@ -103,7 +108,7 @@ for(let i = 0; i < terms.length; i++){
 };
 
 const classStudents =  loadRecordGrades();
-
+teachersClass.innerHTML= currentTeachersClass.name;
 
  subjectSelect.addEventListener('change', function(){
    loadRecordGrades()
