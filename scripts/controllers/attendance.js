@@ -28,12 +28,17 @@ const userName = document.querySelector('.user-name');
 const logOutBtn = document.querySelector('.log-out-btn');
 
 //date select elements
+
+const dateTermPickers = document.querySelector('.date-term-pickers');
+console.log(dateTermPickers);
 const particularDay = document.querySelector('.day');
 const prevDayBtn = document.querySelector('.prev-btn');
 const nextDayBtn = document.querySelector('.next-btn');
 const fullDate = document.querySelector('.full-date');
 
+const statsSection = document.querySelector('.stats')
 // term selection elements
+const dateSelect = document.querySelector('.date-select')
 const termPicker = document.querySelector('.term-picker');
 const terms = document.querySelectorAll('.term');
 
@@ -100,8 +105,9 @@ prevDayBtn.addEventListener('click', function(){
     const previousDaysName = previousDays.toLocaleString('en-US', { weekday: 'long' });
     particularDay.textContent = previousDaysName;
     fullDate.textContent = previousDays.toDateString();
-    mappingAttendanceStudents(getStudentsForTeachers(currentTeacher.ClassId),previousDays.toLocaleDateString(),attendanceContainer);
-    console.log(dayNum)
+     const teachersStudents = getStudentsForTeachers(currentTeacher.ClassId)
+    mappingAttendanceStudents(teachersStudents,previousDays.toLocaleDateString(),attendanceContainer);
+   console.log(dayNum)
     const absentButtons = document.querySelectorAll('.absent-btn');
     const presentButtons = document.querySelectorAll('.present-btn');
     const findArrayValue = attendanceArray.find(attendance => attendance.date === previousDays.toLocaleDateString());
@@ -153,7 +159,8 @@ nextDayBtn.addEventListener('click', function(){
     const previousDaysName = previousDays.toLocaleString('en-US', { weekday: 'long' });
     particularDay.textContent = previousDaysName;
     fullDate.textContent = previousDays.toDateString();
-    mappingAttendanceStudents(getStudentsForTeachers(currentTeacher.ClassId),previousDays.toLocaleDateString(),attendanceContainer);
+    const teachersStudents = getStudentsForTeachers(currentTeacher.ClassId)
+    mappingAttendanceStudents(teachersStudents,previousDays.toLocaleDateString(),attendanceContainer);
     const absentButtons = document.querySelectorAll('.absent-btn');
     const presentButtons = document.querySelectorAll('.present-btn');
      const findArrayValue = attendanceArray.find(attendance => attendance.date === previousDays.toLocaleDateString());
@@ -197,9 +204,11 @@ nextDayBtn.addEventListener('click', function(){
 })
 
 const loadAttendanceList = () =>{
-    getStudentsForTeachers(currentTeacher.ClassId);
+    const teachersStudents = getStudentsForTeachers(currentTeacher.ClassId);
+    console.log(teachersStudents)
+    if(teachersStudents.length !== 0){
     instructionToEdit.classList.add('hidden');
-    mappingAttendanceStudents(getStudentsForTeachers(currentTeacher.ClassId),today.toLocaleDateString(),attendanceContainer);
+    mappingAttendanceStudents(teachersStudents,today.toLocaleDateString(),attendanceContainer);
     let noOfDaysRecorded = [];
     let idsOfStudents = [];
     let studentDayCounts = [];
@@ -239,6 +248,15 @@ const loadAttendanceList = () =>{
     console.log(noOfDaysRecorded, idsOfStudents);
      noOfDays.textContent = noOfDaysRecorded.length;
      loadInstructionsAndBadge();
+    }else if(teachersStudents.length === 0){
+       termPicker.classList.add('hidden');
+       editableState.classList.add('hidden');
+       instructionToEdit.hidden = true;
+       dateSelect.classList.add('hidden')
+       saveAttendanceBtn.classList.add('hidden');
+       statsSection.classList.add('hidden');
+        mappingAttendanceStudents(teachersStudents,today.toLocaleDateString(),attendanceContainer);
+    }
 }
 loadAttendanceList();
 

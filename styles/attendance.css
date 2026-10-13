@@ -82,7 +82,7 @@
 	 align-items: center;
   }
   .hidden{
-	display: none;
+	display: none !important;
   }
   
   nav{
@@ -319,4 +319,18 @@
 	border: none;
 	font-size:var(--text-base);
 	font-family:var(--font-body);
+  }
+  .empty-state{
+	width: 100%;
+	text-align: center;
+  }
+  .empty-state h2{
+	font-family: var(--font-display);
+  }
+  .empty-state p{
+	font-family: var(--font-body);
+  }
+  .empty-state img{
+	width: 50px;
+	height: 50px;
   }

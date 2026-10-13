@@ -75,12 +75,12 @@ logOutBtn.addEventListener('click', function(){
          const todaysDate = new Date();
          const attendanceStatValue = attendanceArray.filter(attendance => attendance.date === todaysDate.toLocaleDateString())
          console.log(attendanceStatValue);
-         if(attendanceStatValue.length === classStudents.length){
+         if(attendanceStatValue.length !== 0 && classStudents.length !== 0 && attendanceStatValue.length === classStudents.length){
             markAttendanceStatus.textContent = 'Attendance Marked';
             markAttendanceStatus.style.color = '#3F8F5F';
             markAttendanceStatus.style.backgroundColor = '#E7F3EA';
             markAttendanceStatus.style.display = 'inline-block'
-         }else if(attendanceStatValue.length === 0){
+         }else if(attendanceStatValue.length === 0 && classStudents.length !== 0){
             markAttendanceStatus.textContent = 'Attendance has not been marked';
             markAttendanceStatus.style.color = '#BF4A3C';
             markAttendanceStatus.style.backgroundColor = '#FAEAE7';
@@ -90,6 +90,12 @@ logOutBtn.addEventListener('click', function(){
              markAttendanceStatus.style.color = '#C8892E';
             markAttendanceStatus.style.backgroundColor = '#FBF0DE';
             markAttendanceStatus.style.display = 'inline-block' 
+        }else if(classStudents.length === 0){
+            markAttendanceStatus.textContent = 'No students in your class';
+            markAttendanceStatus.style.color = '#55503F';
+            markAttendanceStatus.style.backgroundColor = 'transparent';
+            markAttendanceStatus.style.display = 'inline-block';
+            markAttendanceStatus.style.border = '1px solid #E4E1D9'
         }
         }
  }

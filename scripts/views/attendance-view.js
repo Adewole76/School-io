@@ -51,7 +51,10 @@ export const mappingAttendanceStudents = (arr,date,container) => {
         }
     }).join('')
 if(mappedStudentAttendance.length === 0){
-    container.innerHTML = `You haven't added any students yet`
+    container.innerHTML = `<div class="empty-state">
+    <img src="/images/empty-folder.png" alt="empty-file-icon">
+    <h2>No students yet</h2>
+    <p>Once you add Students you will be able to mark Attendance</p></div>`
 }else{
     container.innerHTML = mappedStudentAttendance;
 }

@@ -480,3 +480,7 @@ label input{
 	font-family:var(--font-body);
 	max-width: 400px;
 }
+.empty-state img{
+	width: 55px;
+	height: 55px;
+}

@@ -25,6 +25,7 @@ if(arr.length === 0){
     container.style.justifyContent = 'center';
     container.style.alignItems = 'center'
     container.innerHTML = `<div class="empty-state">
+    <img src="/images/empty-folder.png" alt="empty-stat-icon">
     <h2>No Students in your class yet</h2>
     <p>Once a student is added their profile will show up here as a card</p>
     </div>`
