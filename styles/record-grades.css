@@ -105,15 +105,34 @@
 	left:0;
   }
 
+  nav h1{
+	font-family:var(--font-display);
+	color:var(--color-primary-dark)
+  }
+  nav h1 span{
+	color:var(--color-accent);
+  }
   nav ul{
 	list-style-type: none;
 	padding: 6px 0;
+	font-family: var(--font-body);
   }
   nav ul li{
 	display: inline-block;
 	padding: 0 1em;
   }
 
+  nav ul li a{
+	text-decoration:none;
+	color:var(--color-text-secondary);
+  }
+
+   nav ul li button{
+	background-color: transparent;
+	border: none;
+	color:var(--color-text-secondary);
+	cursor: pointer;
+  }
   /*main header styles*/
   main{
 	width: 100%;
@@ -177,6 +196,7 @@
 	align-items: center;
 	border: 1px dashed var(--color-border-strong);
 	padding: 4em;
+	border-radius: 8px;
 }
 .inactive-state p{
 	color:var(--color-text-secondary);
@@ -247,3 +267,43 @@
 .result div:nth-child(2){
 	margin: 0 8px;
 }
+.save-Grades-btn{
+	margin: 1em 0 4em 0;
+	background-color:var(--color-primary-dark);
+	color: white;
+	font-weight:var(--weight-bold);
+	padding: 12px 14px;
+	border: none;
+	border-radius: 8px;
+  }
+
+   .toast-message{
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	text-align: center;
+	transition: transform 0.12s ease;
+	opacity: 0;
+	transform: translateY(0em);
+  }
+  .toast-message p{
+	background-color:var(--color-primary-dark);
+	color: white;
+	padding: 12px 14px;
+	display: inline-block;
+	font-family: var(--font-body);
+	border-radius: 8px;
+	font-weight: var(--weight-bold);
+  }
+
+  .active-toast{
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	text-align: center;
+	transition: transform 0.12s ease;
+	transform: translateY(-2.5em);
+	opacity: 1;
+  }

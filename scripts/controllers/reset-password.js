@@ -92,7 +92,7 @@ resetBtn.addEventListener('click', async() => {
         const particularStudent = studentsArray.find(user => user.passwordResetCode === Number(resetCodeInput.value));
         console.log(particularStudent);
         let currentTimesstamp = Date.now();
-        if (particularStudent.passwordResetType === 'password reset' &&currentTimesstamp - particularStudent.passwordResetTimestamp >= fifteenMinutes){
+        if (particularStudent.passwordResetType === 'password reset' && currentTimesstamp - particularStudent.passwordResetTimestamp >= fifteenMinutes){
            console.log('you code has expired')
         }else if(particularStudent.passwordResetType === 'password reset' && currentTimesstamp - particularStudent.passwordResetTimestamp < fifteenMinutes){
           const { saltHex, hashHex } = await hashPassword(resetPasswordInput.value);

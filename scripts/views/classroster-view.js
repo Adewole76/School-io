@@ -24,7 +24,10 @@ if(arr.length === 0){
     container.style.display = 'flex';
     container.style.justifyContent = 'center';
     container.style.alignItems = 'center'
-    container.innerHTML = `<p class=empty-state>No student in your class yet</p>`
+    container.innerHTML = `<div class="empty-state">
+    <h2>No Students in your class yet</h2>
+    <p>Once a student is added their profile will show up here as a card</p>
+    </div>`
 }else if(arr.length > 0){
     container.innerHTML = mappedClassRoster;
 }

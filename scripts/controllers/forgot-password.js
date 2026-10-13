@@ -51,7 +51,7 @@ sendBtn.addEventListener('click', function(){
         saveCollection('students', studentsArray);
         sendEmail(particularStudent.Name, resetCode, particularStudent.Email);
         //saveCollection('userTochangePassword', particularStudent);
-        window.location.href = '/pages/reset-password.html'
+        //window.location.href = '/pages/reset-password.html'
     }else{
         console.log('Email not found');
     }

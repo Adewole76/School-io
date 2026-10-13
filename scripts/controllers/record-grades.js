@@ -15,7 +15,7 @@ console.log(currentUser, currentUserRole);
 const currentTeacher = TeachersArray.find(user => user.teacherId === currentUser);
 const currentTeachersClass = schoolClasses.find(cla => cla.teacherId === currentTeacher.teacherId)
 console.log(currentTeachersClass);
-requireAuth(currentUser, "teacherId", TeachersArray, currentUserRole, 'teacher');
+
 window.addEventListener('pageshow', (event) => {
    if(event.persisted){
       const freshUserId = gettingUser('currentUserId');
@@ -23,11 +23,11 @@ window.addEventListener('pageshow', (event) => {
       requireAuth(freshUserId, "teacherId", TeachersArray, freshUserRole, 'teacher');
    }
 });
-
+requireAuth(currentUser, "teacherId", TeachersArray, currentUserRole, 'teacher');
 //navbar elements
 const userName = document.querySelector('.user-name');
 userName.textContent  = currentTeacher.Name
-
+const logOutBtn = document.querySelector('.log-out-btn');
 const teachersClass = document.querySelector('.teachers-class');
 
 //subjects and terms pickers
@@ -35,11 +35,19 @@ const subjectSelect = document.querySelector('.subject-select');
 const termPicker = document.querySelector('.term-picker');
 const terms = document.querySelectorAll('.term');
 
+const saveGradesBtn = document.querySelector('.save-Grades-btn');
+const toastMessage = document.querySelector('.toast-message');
+const toastMessageText = document.querySelector('.toastMessage-text');
 
 const subjectGradesStats = document.querySelector('.subject-grades-stats');
 const averageForEachSubject = document.querySelector('.average');
 const NoOfCompletedRecords = document.querySelector('.completed-records');
 const mainGradesContainer = document.querySelector('.main-grades-container');
+
+
+logOutBtn.addEventListener('click', function(){
+   clearSessionStorage()
+});
 
 
 let activeTerm;
@@ -182,5 +190,21 @@ mainGradesContainer.addEventListener('change', (event) => {
      console.log(gradesArray); 
      loadRecordGrades()
     }
+   }
+});
+
+saveGradesBtn.addEventListener('click', function(){
+   toastMessage.classList.add('active-toast');
+   setTimeout(() => {
+  toastMessage.classList.remove('active-toast');
+}, 2000);
+   if(subjectSelect.value && activeTerm){
+   toastMessageText.textContent = `Grades for ${subjectSelect.value} ${activeTerm} saved`
+   }else if(subjectSelect.value === 'Select a subject' && !activeTerm){
+       toastMessageText.textContent = `Choose a subject and a term`;
+   }else if(!activeTerm){
+       toastMessageText.textContent = `You haven't chosen a term`;
+   }else if(subjectSelect.value === 'Select a subject'){
+      toastMessageText.textContent = `You haven't picked a subject`;
    }
 })

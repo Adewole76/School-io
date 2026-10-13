@@ -470,4 +470,13 @@ label input{
 	font-family:var(--font-body);
 	color:var(--color-text-muted);
 }
-
+.empty-state{
+	text-align: center;
+}
+.empty-state h2{
+	font-family: var(--font-display);
+}
+.empty-state p{
+	font-family:var(--font-body);
+	max-width: 400px;
+}
