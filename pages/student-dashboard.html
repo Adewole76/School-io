@@ -4,10 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/styles/student-dashboard.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"></head>
 <body>
+         <nav>
+        <h1>Prime Touch <span>Portal</span></h1>
+        <ul class="user-profile">
+            <li><p class="user-name"></p></li> 
+            <li><a href="/pages/forgot-password.html">Change password</a></li> 
+            <li><button class="log-out-btn">log out</button></li>
+        </ul>
+    </nav>
+
+    <main>
+        <header>
+            <p class="class-tag"></p>
+            <h1 class="welcome-message"></h1>
+        </header>
+
+    </main>
     <p class="test-welcome-message"></p>
     <button class="logout-btn">log out</button>
     <script type="module" src="/scripts/controllers/student-dashboard.js"></script>
