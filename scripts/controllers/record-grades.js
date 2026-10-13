@@ -31,6 +31,7 @@ const logOutBtn = document.querySelector('.log-out-btn');
 const teachersClass = document.querySelector('.teachers-class');
 
 //subjects and terms pickers
+const termSubjectContainer = document.querySelector('.term-subject-container');
 const subjectSelect = document.querySelector('.subject-select');
 const termPicker = document.querySelector('.term-picker');
 const terms = document.querySelectorAll('.term');
@@ -54,6 +55,7 @@ let activeTerm;
 const loadRecordGrades = ()=>{
    const teachersStudents = studentsArray.filter(student => student.Classid === currentTeacher.ClassId);
    console.log(teachersStudents);
+   if(teachersStudents.length !== 0){
    if(subjectSelect.value === 'Select a subject' || !activeTerm){
       mainGradesContainer.innerHTML = `<section class="inactive-state">
       <div>
@@ -68,7 +70,7 @@ const loadRecordGrades = ()=>{
    }else if(subjectSelect.value !== "Select a subject" && activeTerm){
       averageForEachSubject.classList.remove('hidden');
       NoOfCompletedRecords.classList.remove('hidden')
-      mappingGradeRecords(classStudents, mainGradesContainer);
+      mappingGradeRecords(teachersStudents, mainGradesContainer);
       const records = mainGradesContainer.querySelectorAll('.grade-record');
       console.log(records);
       for(let i = 0; i < records.length; i++){
@@ -109,6 +111,13 @@ averageForEachSubject.innerHTML = `<h3>${averageScore.toFixed(2)}</h3>
 NoOfCompletedRecords.innerHTML = `<h3>${noOfStudentsFullyGraded.length} of ${teachersStudents.length}</h3>
 <p>Students fully graded</p>
 `
+ subjectGradesStats.classList.remove('hidden');
+ saveGradesBtn.classList.remove('hidden');
+}}else if(teachersStudents.length === 0){
+ console.log('no students');
+ subjectGradesStats.classList.add('hidden');
+ saveGradesBtn.classList.add('hidden');
+mappingGradeRecords(teachersStudents, mainGradesContainer);
 }
    return teachersStudents
 }

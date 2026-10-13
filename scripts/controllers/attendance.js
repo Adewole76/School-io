@@ -247,6 +247,12 @@ const loadAttendanceList = () =>{
      console.log(idsOfStudents)
     console.log(noOfDaysRecorded, idsOfStudents);
      noOfDays.textContent = noOfDaysRecorded.length;
+     termPicker.classList.remove('hidden');
+       editableState.classList.remove('hidden');
+       instructionToEdit.hidden = false;
+       dateSelect.classList.remove('hidden')
+       saveAttendanceBtn.classList.remove('hidden');
+       statsSection.classList.remove('hidden');
      loadInstructionsAndBadge();
     }else if(teachersStudents.length === 0){
        termPicker.classList.add('hidden');
