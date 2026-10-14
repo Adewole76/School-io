@@ -5,6 +5,8 @@ import { gettingUser } from "../module.js";
 import { clearSessionStorage } from "../module.js";
 import { schoolClasses } from "../module.js";
 import { gradesArray } from "../module.js";
+import { attendanceArray } from "../module.js";
+
 const currentUser = gettingUser('currentUserId');
 const currentUserRole = gettingUser("currentUserRole");
 const currentStudent  = studentsArray.find(user => user.studentId === currentUser);  
@@ -32,16 +34,20 @@ const studentClass = document.querySelector('.student-Class');
 const GuardianParentContact = document.querySelector('.Guardian-Parent-Contact');
 const Email = document.querySelector('.Email');
 
+//results section container
+const mainResultsContainer = document.querySelector('.main-results-container');
+const currentStudentGrades = gradesArray.filter(grade => grade.studentId === currentStudent.studentId);
+
+userName.textContent = currentStudent.Name;
+WelcomeMessage.textContent = `Welcome to your dashboard ${currentStudent.Name}`;
+
 dateOfBirth.textContent = currentStudent.dateOfBirth;
 studentClass.textContent = currentStudentClass.name;
 GuardianParentContact.textContent = currentStudent.ParentGuardianNo;
 Email.textContent = currentStudent.Email;
 
-userName.textContent = `${currentStudent.Name}`
-
-WelcomeMessage.textContent = `Welcome to your dashboard ${currentStudent.Name}`;
 
 logOutBtn.addEventListener('click', function (){
     clearSessionStorage();
-})
+});
 
