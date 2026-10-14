@@ -11,13 +11,18 @@ window.addEventListener('pageshow', (event) => {
     }
 });
 requireAuth(currentUser, "studentId", studentsArray, currentUserRole, 'student');
-const logOutBtn = document.querySelector('.logout-btn');
+
 const currentUser = gettingUser('currentUserId');
 const currentUserRole = gettingUser("currentUserRole");
 const currentStudent  = studentsArray.find(user => user.studentId === currentUser);  
+const WelcomeMessage = document.querySelector('.welcome-message');
+
+//nav bar elements
+const logOutBtn = document.querySelector('.log-out-btn');
+
+WelcomeMessage.textContent = `Welcome to your dashboard ${currentStudent.Name}`;
+
 logOutBtn.addEventListener('click', function (){
     clearSessionStorage();
 })
 
-const testWelcomeMessage = document.querySelector('.test-welcome-message');
-testWelcomeMessage.textContent = `Welcome to your dashboard ${currentStudent.Name}`;
