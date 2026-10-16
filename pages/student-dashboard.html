@@ -52,25 +52,41 @@
                              </div>
                             </section>
                             <hr>
-                            <p>Something not right? ask your class teacher or your school office to update your details</p>
+                            <p class="missing-info">Something not right? ask your class teacher or your school office to update your details</p>
                         </article>
                     </section>
         </section>
 
         <section class="attendance-info-container">
          <h3>Attendance</h3>
-         <p>For Entire Session(FirstTerm, SecondTerm, ThirdTerm)</p>
+         <p class="attendance-instruction">For Entire Session(FirstTerm, SecondTerm, ThirdTerm)</p>
          <section class="attendance-stats">
-          <div class="stat"></div>
-          <div class="stat"></div>
-          <div class="stat"></div>
+          <div class="stat">
+            <h3 class="no-present"></h3>
+            <p>Number of days present</p>
+          </div>
+          <div class="stat">
+            <h3 class="attendance-rate"></h3>
+            <p>Attendance Rate</p>
+          </div>
+          <div class="stat">
+            <h3 class="no-absent"></h3>
+            <p>Number of Days Absent</p>
+          </div>
           </section>
         </section>
 
         <section class="results-info-container">
             <header>
-                <h2>My results</h2>
-                <p>Test 1 and Test 2 are out of 20 and Exam is out of 60</p>
+                <section>
+                    <h2>My results</h2>
+                    <p>Test 1 and Test 2 are out of 20 and Exam is out of 60</p>
+                </section>
+                <section class="term-picker">
+                    <button class="term">First Term</button>
+                    <button class="term">Second Term</button>
+                    <button class="term">Third Term</button>
+                </section>
             </header>
             <section class="main-results-container">
 
@@ -80,7 +96,6 @@
 
     </main>
   
-    <button class="logout-btn">log out</button>
     <script type="module" src="/scripts/controllers/student-dashboard.js"></script>
 </body>
 </html>

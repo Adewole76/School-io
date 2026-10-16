@@ -6,6 +6,7 @@ import { clearSessionStorage } from "../module.js";
 import { schoolClasses } from "../module.js";
 import { gradesArray } from "../module.js";
 import { attendanceArray } from "../module.js";
+import { mappingStudentResults } from "../views/student-dashboard-view.js";
 
 const currentUser = gettingUser('currentUserId');
 const currentUserRole = gettingUser("currentUserRole");
@@ -28,23 +29,83 @@ const WelcomeMessage = document.querySelector('.welcome-message');
 const logOutBtn = document.querySelector('.log-out-btn');
 const userName = document.querySelector('.user-name');
 
-//profile details
+
+//profile details elements
 const dateOfBirth = document.querySelector('.Date-of-birth');
 const studentClass = document.querySelector('.student-Class');
 const GuardianParentContact = document.querySelector('.Guardian-Parent-Contact');
 const Email = document.querySelector('.Email');
+const userProfileName = document.querySelector('.user-profile-name');
 
-//results section container
+userProfileName.textContent = currentStudent.Name;
+
+//attendance stats section elements
+const attendanceStats = document.querySelector('.attendance-stats');
+const noOfDaysPresent = document.querySelector('.no-present');
+const noOfDaysAbsent = document.querySelector('.no-absent');
+const attendanceRate = document.querySelector('.attendance-rate');
+
+
+//results sections elements
 const mainResultsContainer = document.querySelector('.main-results-container');
-const currentStudentGrades = gradesArray.filter(grade => grade.studentId === currentStudent.studentId);
+const termPicker = document.querySelector('.term-picker');
+const terms = document.querySelectorAll('.term');
 
 userName.textContent = currentStudent.Name;
-WelcomeMessage.textContent = `Welcome to your dashboard ${currentStudent.Name}`;
+WelcomeMessage.textContent = `Welcome back, ${currentStudent.Name}`;
 
 dateOfBirth.textContent = currentStudent.dateOfBirth;
 studentClass.textContent = currentStudentClass.name;
 GuardianParentContact.textContent = currentStudent.ParentGuardianNo;
 Email.textContent = currentStudent.Email;
+
+let activeTerm = 'First Term';
+for(let i = 0; i < terms.length; i++){
+    if(terms[i].textContent === activeTerm){
+        terms[i].classList.add('active-term');
+    }
+}
+
+const loadAttendanceInfo = () => {
+  const NumberOfDaysPresent = attendanceArray.filter(record => record.studentId === currentStudent.studentId && record.attendanceStatus === 'present');
+  const NumberOfDaysAbsent = attendanceArray.filter(record => record.studentId === currentStudent.studentId && record.attendanceStatus === 'absent');
+  let attendanceRateCalculation = (NumberOfDaysPresent.length / 120) * 100
+
+  
+  if(NumberOfDaysPresent.length || NumberOfDaysAbsent.length){
+  noOfDaysPresent.textContent = `${NumberOfDaysPresent.length}/120`;
+  noOfDaysAbsent.textContent = `${NumberOfDaysAbsent.length}`;
+  attendanceRate.textContent = `${attendanceRateCalculation.toFixed(2)}`;
+  }else if(!NumberOfDaysPresent.length && !NumberOfDaysAbsent.length){
+    attendanceStats.innerHTML = `<div>
+    <p>When your teacher starts marking your attendance it will show here</p>
+    </div>`
+  }
+}
+loadAttendanceInfo();
+const loadResults = () => {    
+const currentStudentGrades = gradesArray.filter(grade => grade.studentId === currentStudent.studentId && grade.term === activeTerm);
+mappingStudentResults(currentStudentGrades, mainResultsContainer);
+console.log(currentStudentGrades);
+}
+loadResults();
+
+termPicker.addEventListener('click', (event) =>{
+    if(event.target.closest('.term')){
+        const particularTerm = event.target.closest('.term');
+        particularTerm.classList.add('active-term');
+        console.log(particularTerm);
+        activeTerm = particularTerm.textContent;
+        console.log(activeTerm); 
+        loadResults();
+         for(let i = 0; i < terms.length; i++){
+             if(terms[i].textContent !== particularTerm.textContent){
+                 terms[i].classList.remove('active-term');
+             }
+         }
+    }
+})
+
 
 
 logOutBtn.addEventListener('click', function (){
