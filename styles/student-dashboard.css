@@ -81,14 +81,17 @@
   }
   main{
 	width: 100%;
-	padding: 5em 4em 0 4em;
+	padding: 5em 4em;
   }
   .hidden{
 	display: none;
   }
-  .active-term{
-	background-color: black;
-	color: white;
+  .term-picker .active-term{
+	background-color: white;
+	color:var(--color-primary-dark);
+	border-radius: 6px;
+	box-shadow:var(--shadow-md);
+	font-weight:var(--weight-semibold);
   }
 
   nav{
@@ -111,6 +114,7 @@
 	padding: 0 8px;
   }
 
+
   main header p{
 	font-family:var(--font-body);
 	color:var(--color-text-secondary);
@@ -121,12 +125,23 @@
   }
   .welcome-message{
 	font-family:var(--font-display);
+	font-weight:var(--weight-semibold);
+	font-size:var(--text-2xl);
   }
   .profile-container{
-	background-color: white;
+	margin-top: 1em;
+  }
+  .profile-container h2{
+	font-weight:var(--weight-semibold);
   }
   .profile-details{
 	display: flex;
+	background-color:white;
+	box-shadow:var(--shadow-md);
+	padding: 2em;
+	border-radius: 8px;
+	box-shadow:var(--shadow-sm);
+	border: 1px solid var(--color-border);
 	margin-top: 2em;
 
   }
@@ -141,6 +156,7 @@
 	font-size: 2em;
 	margin: 0 0 0.5em 0;
 	font-family:var(--font-display);
+	font-weight:var(--weight-semibold);
   }
   .detail-name{
 	font-family:var(--font-body);
@@ -202,6 +218,26 @@
 	display: flex;
 	justify-content: space-between;
   }
+  .heading-text{
+	padding: 1.5em 0 0 0;
+  }
+  .terms-termPicker{
+	padding: 2em 0 0 0;
+  }
+  .term-picker{
+	border:1px solid var(--color-border);
+	padding: 3px 8px;
+	border-radius: 6px;
+  }
+  .term-picker button{
+   background-color: transparent;
+   color:var(--color-text-secondary);
+   border: none;
+   padding: 8px 10px;
+  }
+  .term-picker button:nth-child(2){
+	margin: 0 1em;
+  }
   .term{
 	vertical-align:bottom;
   }
@@ -234,4 +270,26 @@
   .grade-record footer{
 	display: flex;
 	justify-content: space-between;
+  }
+  .empty-state{
+	text-align: center;
+	display: flex;
+    justify-content: center;
+	align-items: center;
+	border: 2px dashed var(--color-border);
+	width: 100%;
+	padding: 4em;
+	border-radius:8px;
+  }
+  .empty-state img{
+	width: 50px;
+	height: 50px;
+  }
+  .empty-state h2{
+	font-family:var(--font-display);
+  }
+  .empty-state p{
+	font-family:var(--font-body);
+	color:var(--color-text-secondary);
+	text-align: center;
   }

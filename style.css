@@ -84,6 +84,13 @@ body{
 .info-area{
     background-color: var(--color-primary-dark);
     padding: 3em 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.main-info-container{
+    width: 100%;
 }
 .school-name{
     color: white;
@@ -103,7 +110,6 @@ article h2{
     color: white;
     font-family: var(--font-display);
     margin: 0;
-    width: 350px;
 }
 article p{
     color: white;

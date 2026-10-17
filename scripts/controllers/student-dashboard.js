@@ -29,6 +29,10 @@ const WelcomeMessage = document.querySelector('.welcome-message');
 const logOutBtn = document.querySelector('.log-out-btn');
 const userName = document.querySelector('.user-name');
 
+//empty state elements
+const emptyState = document.querySelector('.empty-state');
+const emptyStateHeading = document.querySelector('.empty-state-heading');
+
 
 //profile details elements
 const dateOfBirth = document.querySelector('.Date-of-birth');
@@ -59,7 +63,7 @@ studentClass.textContent = currentStudentClass.name;
 GuardianParentContact.textContent = currentStudent.ParentGuardianNo;
 Email.textContent = currentStudent.Email;
 
-let activeTerm = 'First Term';
+export let activeTerm = 'First Term';
 for(let i = 0; i < terms.length; i++){
     if(terms[i].textContent === activeTerm){
         terms[i].classList.add('active-term');
