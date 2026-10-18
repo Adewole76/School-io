@@ -50,6 +50,8 @@ const guardianNo = document.querySelector('.guardian-No');
 const emailInput =  document.querySelector('.email-input');
 const CancelAddBtn = document.querySelector('.cancel-btn');
 const closeAddForm = document.querySelector('.close-addStudent-form');
+
+const errorState = document.querySelector('.error-state');
 // edit student form input variables
 const editStudentNameInput = document.querySelector('.edit-Name');
 const editStudentEmailInput = document.querySelector('.edit-Email');
@@ -87,11 +89,16 @@ addBtn.addEventListener('click', async()=>{
     }else{
         let studentClass = schoolClasses.find(cla => cla.name === classSelect.value);
         console.log(studentClass);
-        await addStudent(nameInput.value, emailInput.value, dateInput.value, guardianNo.value, studentClass.id)
-        saveCollection('classes', schoolClasses);
+        if(await addStudent(nameInput.value, emailInput.value, dateInput.value, guardianNo.value, studentClass.id)){
+           saveCollection('classes', schoolClasses);
         mappingStudentsArray(studentsArray, classContainer);
         addStudentForm.classList.add('hidden');
         formOverlay.classList.add('hidden');
+        }else{
+          errorState.classList.remove('hidden');
+          formOverlay.classList.remove('hidden');s
+        }
+       
     }
 });
 

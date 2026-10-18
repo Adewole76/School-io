@@ -73,6 +73,26 @@
   .hidden{
 	display: none;
   }
+  .error-state{
+	position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding:2em 2em;
+    border-radius: 8px;
+    z-index: 120;
+}
+.error-state header{
+	display: flex;
+	justify-content: space-between;
+}
+.error-state div{
+	background-color:var(--color-warning-bg);
+	padding: 1em;
+	margin: 1em 0;
+	border-radius: 8px
+}
   body{
 	background-color:var(--color-bg);
 	position: relative;

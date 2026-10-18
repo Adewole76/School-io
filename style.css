@@ -73,6 +73,9 @@
 *{
     box-sizing: border-box;
 }
+.hidden{
+    display: none;
+}
 body{
     background-color: var(--color-bg);
     display: grid;
