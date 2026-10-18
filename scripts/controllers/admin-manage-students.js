@@ -76,7 +76,9 @@ const cancelDeleteBtn = document.querySelector('.cancel-del');
 const deleteStudentBtn = document.querySelector('.delete-student');
 const showDeleteBtn = document.querySelector('.show-delete');
 
-
+//
+const toastMessage = document.querySelector('.toast-message');
+const toastMessageText = document.querySelector('.toastMessage-text');
 logoutButton.addEventListener('click', function(){
   clearSessionStorage()
 })
@@ -88,7 +90,22 @@ addBtn.addEventListener('click', async()=>{
     if(!nameInput.value||!dateInput.value||classSelect.value === 'Select a class'||!guardianNo.value||!emailInput.value){
        console.log(nameInput.value, dateInput.value, classSelect.value, guardianNo.value, emailInput.value);
         console.log(`you haven't filled in all the current information`);
-    }else{
+        toastMessage.classList.add('active-toast');
+        toastMessageText.textContent = `you haven't filled out all the info`;
+         setTimeout(() => {
+         toastMessage.classList.remove('active-toast');
+        },2000)
+    }else if(studentsArray.find(student => student.Email === emailInput.value)){
+      console.log(`This email already exists`);
+       toastMessage.classList.add('active-toast');
+        toastMessageText.textContent = `This email already exists`;
+         setTimeout(() => {
+         toastMessage.classList.remove('active-toast');
+        },2000)
+    }
+    else{
+        toastMessage.classList.add('active-toast');
+        toastMessageText.textContent = 'loading...'
         let studentClass = schoolClasses.find(cla => cla.name === classSelect.value);
         console.log(studentClass);
         if(await addStudent(nameInput.value, emailInput.value, dateInput.value, guardianNo.value, studentClass.id)){
@@ -96,30 +113,57 @@ addBtn.addEventListener('click', async()=>{
         mappingStudentsArray(studentsArray, classContainer);
         addStudentForm.classList.add('hidden');
         formOverlay.classList.add('hidden');
+        toastMessageText.textContent = 'student was successfully added'
+        setTimeout(() => {
+         toastMessage.classList.remove('active-toast');
+        },2000);
+        nameInput.value = ''
+        dateInput.value = ''
+        classSelect.value = 'Select a class';
+        guardianNo.value = ''
+        emailInput.value = ''
         }else{
           errorState.classList.remove('hidden');
           formOverlay.classList.remove('hidden');
           addStudentForm.classList.add('hidden');
           closeErrorState.addEventListener('click', function(){
-            errorState.classList.add('hidden');
-            formOverlay.classList.add('hidden');
+          errorState.classList.add('hidden');
+          formOverlay.classList.add('hidden');
           });
           closeBtn.addEventListener('click', function(){
              errorState.classList.add('hidden');
             formOverlay.classList.add('hidden');
           })
+        toastMessageText.textContent = 'Failed to add student'
+        setTimeout(() => {
+         toastMessage.classList.remove('active-toast');
+        },2000)
+         nameInput.value = ''
+        dateInput.value = ''
+        classSelect.value = 'Select a class';
+        guardianNo.value = ''
+        emailInput.value = ''
         }
-       
     }
 });
 
 CancelAddBtn.addEventListener('click', function(){
   addStudentForm.classList.add('hidden');
   formOverlay.classList.add('hidden');
+   nameInput.value = ''
+   dateInput.value = ''
+   classSelect.value = 'Select a class';
+   guardianNo.value = ''
+   emailInput.value = ''
 });
 closeAddForm.addEventListener('click', function(){
   addStudentForm.classList.add('hidden');
   formOverlay.classList.add('hidden');
+   nameInput.value = ''
+   dateInput.value = ''
+   classSelect.value = 'Select a class';
+   guardianNo.value = ''
+   emailInput.value = ''
 })
 
 classContainer.addEventListener('click', (event) => {
