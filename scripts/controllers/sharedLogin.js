@@ -35,7 +35,7 @@ try {
         toastMessageText.textContent = 'Signed in successfully';
         setTimeout(()=>{
             toastMessage.classList.remove('active-toast');
-        })
+        }, 2000)
         console.log('password was verified'); 
         saveUserIdOnLogin('currentUserId', particularStudent.studentId);
         saveUserRoleOnLogin('currentUserRole', 'student');
@@ -44,7 +44,7 @@ try {
         toastMessageText.textContent = 'Please check your password again';
         setTimeout(()=>{
             toastMessage.classList.remove('active-toast');
-        })
+        }, 2000)
         console.log("incorrect password")
     }
     }else if (emailInput.value && TeachersArray.some(user => user.Email === emailInput.value)){
@@ -55,7 +55,7 @@ try {
         toastMessageText.textContent = 'Signed in successfully';
         setTimeout(()=>{
             toastMessage.classList.remove('active-toast');
-        })
+        }, 2000)
         console.log('password was verified'); 
         saveUserIdOnLogin('currentUserId', ParticularTeacher.teacherId);
         saveUserRoleOnLogin('currentUserRole', 'teacher');
@@ -64,7 +64,7 @@ try {
         toastMessageText.textContent = 'Please check your password again';
         setTimeout(()=>{
             toastMessage.classList.remove('active-toast');
-        })
+        },2000)
         console.log("incorrect password")
     };
     }else if(!emailInput.value || !passwordInput.value){
