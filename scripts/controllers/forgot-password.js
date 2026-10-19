@@ -13,9 +13,15 @@ function generateFourDigitNumber() {
 console.log(TeachersArray);
 console.log(studentsArray);
 console.log(adminArray);
-sendBtn.addEventListener('click', function(){
+sendBtn.addEventListener('click',  async () =>{
+    toastMessage.classList.add('active-toast');
+    toastMessageText.textContent = `Sending password reset code to your email..`;
     if(!emailInput.value){
         console.log('please fill in your email address');
+        toastMessageText.textContent = 'please fill in the input';
+        setTimeout(() => {
+         toastMessage.classList.remove('active-toast');
+        },2000)
     }else if(adminArray.some(admin => admin.email === emailInput.value)){
       const particularAdmin = adminArray.find(admin => admin.email === emailInput.value);
       console.log(particularAdmin.email);
@@ -25,9 +31,20 @@ sendBtn.addEventListener('click', function(){
       particularAdmin.passwordResetType = 'password reset';
       console.log(particularAdmin);
       saveCollection('admin', adminArray);
-      sendEmail(particularAdmin.name, resetCode, particularAdmin.email);
+
+      if(await sendEmail(particularAdmin.name, resetCode, particularAdmin.email)){
+        toastMessageText.textContent = 'check your email for reset code';
+        setTimeout(() => {
+         toastMessage.classList.remove('active-toast');
+        },2000)
+      }else{
+        toastMessageText.textContent = `reset code email failed`;
+        setTimeout(() => {
+         toastMessage.classList.remove('active-toast');
+        },2000)
+      };
       //saveCollection('userTochangePassword', particularAdmin);
-      window.location.href = '/pages/reset-password.html'
+      //window.location.href = '/pages/reset-password.html'
     }else if(TeachersArray.some(teacher => teacher.Email === emailInput.value)){
         const particularTeacher = TeachersArray.find(teacher => teacher.Email === emailInput.value);
         console.log(particularTeacher.Email);
@@ -38,9 +55,19 @@ sendBtn.addEventListener('click', function(){
         particularTeacher.passwordResetType = 'password reset';
         console.log(particularTeacher);
         saveCollection('teachers', TeachersArray);
-        sendEmail(particularTeacher.Name, resetCode, particularTeacher.Email);
+        if(await sendEmail(particularTeacher.Name, resetCode, particularTeacher.Email)){
+            toastMessageText.textContent = 'check your email for reset code';
+            setTimeout(() => {
+            toastMessage.classList.remove('active-toast');
+            },2000)
+        }else{
+            toastMessageText.textContent = `reset code email failed`;
+            setTimeout(() => {
+            toastMessage.classList.remove('active-toast');
+            },2000)
+        }
         //saveCollection('userTochangePassword', particularTeacher);
-        window.location.href = '/pages/reset-password.html'
+        //window.location.href = '/pages/reset-password.html'
     }else if(studentsArray.some(student => student.Email === emailInput.value)){
         const particularStudent = studentsArray.find(student => student.Email === emailInput.value);
         console.log(particularStudent.Email);
@@ -51,17 +78,31 @@ sendBtn.addEventListener('click', function(){
         console.log(resetCode);
         console.log(particularStudent);
         saveCollection('students', studentsArray);
-        sendEmail(particularStudent.Name, resetCode, particularStudent.Email);
+        if(await sendEmail(particularStudent.Name, resetCode, particularStudent.Email)){
+            toastMessageText.textContent = 'check your email for reset code';
+            setTimeout(() => {
+            toastMessage.classList.remove('active-toast');
+            },2000)
+        }else{
+            toastMessageText.textContent = `reset code email failed`;
+            setTimeout(() => {
+            toastMessage.classList.remove('active-toast');
+            },2000)
+        }
         //saveCollection('userTochangePassword', particularStudent);
         //window.location.href = '/pages/reset-password.html'
     }else{
+        toastMessageText.textContent = `This user email does not exists`;
+        setTimeout(() => {
+         toastMessage.classList.remove('active-toast');
+        },2000)
         console.log('Email not found');
     }
 })
 
 
 //send Email function
-const sendEmail = (userName, resetCode, userEmail) => {
+const sendEmail = async (userName, resetCode, userEmail) => {
 
 // templateParams object package
 const templateParams = {
@@ -74,12 +115,13 @@ const templateParams = {
 };
 
 //  Service ID and Template ID
+try{
+ await emailjs.send("service_1fzqpt7", "template_625pnsa", templateParams);
+ console.log('email was sent successfully');
+ return true;
+}catch(error){
+ console.error("Failed to send email:", error);
+ return false
+}
 
-emailjs.send("service_1fzqpt7", "template_625pnsa", templateParams)
-    .then((response) => {
-        console.log("Email sent successfully!", response.status, response.text);
-    })
-    .catch((error) => {
-        console.error("Failed to send email:", error);
-    });
 }
