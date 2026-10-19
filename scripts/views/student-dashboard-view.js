@@ -11,15 +11,15 @@ export const mappingStudentResults = (arr, container) =>{
         <section>
            <div>
               <p>Test 1</p>
-              <p>${grade.test1Score}/20</p>
+              <p class="test-1"><span>${grade.test1Score}</span>/20</p>
            </div>
            <div>
               <p>Test 2</p>
-              <p>${grade.test2Score}/20</p>
+              <p class="test-2"><span>${grade.test2Score}</span>/20</p>
            </div>
            <div>
               <p>Exam</p>
-              <p>${grade.examScore}/60</p>
+              <p class="exam"><span>${grade.examScore}</span>/60</p>
            </div>
         </section>
 
@@ -27,7 +27,7 @@ export const mappingStudentResults = (arr, container) =>{
         
         <footer>
           <p>Total</p>
-          <p>${total}</p>
+          <p><span>${total}</span>/100</p>
         </footer>
         </div>`
     }).join('')

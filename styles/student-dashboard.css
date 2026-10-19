@@ -105,6 +105,21 @@
 	right: 0;
 	background-color:var(--color-bg);
 }
+nav h1{
+	font-family:var(--font-display);
+	color:var(--color-primary-dark);
+}
+nav h1 span{
+	color:var(--color-accent);
+}
+nav .log-out-btn{
+	background-color:transparent;
+	color:var(--color-text-secondary);
+	border: none;
+	font-family:var(--font-body);
+	font-size:14px;
+	cursor:pointer;
+}
   nav ul{
 	list-style-type:none;
 	padding: 8px 0;
@@ -113,6 +128,15 @@
 	display: inline-block;
 	padding: 0 8px;
   }
+   nav p{
+	font-family:var(--font-body);
+	color:var(--color-text-secondary);
+   }
+   nav a{
+	color:var(--color-text-secondary);
+	text-decoration:none;
+	font-family:var(--font-body);
+   }
 
 
   main header p{
@@ -254,6 +278,10 @@
 	border-radius: 8px;
 	border:1px solid var(--color-border-strong);
   }
+  .grade-record h2{
+	font-family:var(--font-display);
+	font-size:var(--text-lg);
+  }
   .grade-record section{
 	display: flex;
 	justify-content: space-between;
@@ -264,12 +292,26 @@
 	border-radius: 8px;
 	padding: 1em 2em;
   }
+  .grade-record p{
+	font-family:var(--font-mono);
+	color:var(--color-text-secondary);
+  }
+  .grade-record p span{
+	color:var(--color-text);
+	font-size:var(--text-xl);
+  }
+  .grade-record section .test-1, .test-2, .exam{
+	font-family:var(--font-mono);
+  }
   .grade-record hr{
 	margin: 1em 0;
   }
   .grade-record footer{
 	display: flex;
 	justify-content: space-between;
+  }
+  .grade-record footer p{
+	font-family:var(--font-mono);
   }
   .empty-state{
 	text-align: center;
