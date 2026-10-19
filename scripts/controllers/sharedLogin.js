@@ -32,11 +32,19 @@ try {
       console.log(particularStudent);
      console.log(await verifyPassword(passwordInput.value, particularStudent.passwordSalt, 600000, particularStudent.passwordHash)) 
     if(passwordInput.value && await verifyPassword(passwordInput.value, particularStudent.passwordSalt, 600000, particularStudent.passwordHash)){
+        toastMessageText.textContent = 'Signed in successfully';
+        setTimeout(()=>{
+            toastMessage.classList.remove('active-toast');
+        })
         console.log('password was verified'); 
         saveUserIdOnLogin('currentUserId', particularStudent.studentId);
         saveUserRoleOnLogin('currentUserRole', 'student');
         window.location.href = '/pages/student-dashboard.html';
     }else{
+        toastMessageText.textContent = 'Please check your password again';
+        setTimeout(()=>{
+            toastMessage.classList.remove('active-toast');
+        })
         console.log("incorrect password")
     }
     }else if (emailInput.value && TeachersArray.some(user => user.Email === emailInput.value)){
@@ -44,13 +52,21 @@ try {
        console.log(ParticularTeacher);
        console.log(await verifyPassword(passwordInput.value, ParticularTeacher.passwordSalt, 600000, ParticularTeacher.passwordHash))       
    if(passwordInput.value && await verifyPassword(passwordInput.value, ParticularTeacher.passwordSalt, 600000, ParticularTeacher.passwordHash)){
+        toastMessageText.textContent = 'Signed in successfully';
+        setTimeout(()=>{
+            toastMessage.classList.remove('active-toast');
+        })
         console.log('password was verified'); 
         saveUserIdOnLogin('currentUserId', ParticularTeacher.teacherId);
         saveUserRoleOnLogin('currentUserRole', 'teacher');
         window.location.href = '/pages/teacher-dashboard.html'
-    }else(
+    }else{
+        toastMessageText.textContent = 'Please check your password again';
+        setTimeout(()=>{
+            toastMessage.classList.remove('active-toast');
+        })
         console.log("incorrect password")
-    );
+    };
     }else if(!emailInput.value || !passwordInput.value){
         toastMessageText.textContent = 'Please fill in all required data';
         setTimeout(() => {
