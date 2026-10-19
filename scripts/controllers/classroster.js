@@ -43,6 +43,9 @@ const classNameTag = document.querySelector('.class-name-tag');
 const currentTeacherClass = schoolClasses.find(cla => cla.id === currentTeacher.ClassId)
 const studentsNumber = document.querySelector('.students-number');
 
+const toastMessage = document.querySelector('.toast-message');
+const toastMessageText = document.querySelector('.toastMessage-text');
+const closeBtn = document.querySelector('.close-btn');
 //heaader dom elements
 const className = document.querySelector('.class-name');
 className.textContent = `${currentTeacherClass.name} Roster`;
@@ -118,9 +121,21 @@ addButton.addEventListener('click', async()=>{
     if(!nameInput.value||!dateInput.value||!guardianNo.value||!emailInput.value){
         console.log(nameInput.value, dateInput.value, guardianNo.value, emailInput.value);
         console.log(`you haven't filled in all the current information`);
+         toastMessage.classList.add('active-toast');
+        toastMessageText.textContent = `you haven't filled out all the info`;
+         setTimeout(() => {
+         toastMessage.classList.remove('active-toast');
+        },2000)
     }else if(TeachersArray.some(user => user.Email === emailInput.value) || studentsArray.some(user => user.Email === emailInput.value) || adminArray.some(user => user.email === emailInput.value)){
-       console.log('a student already exists with this email');
+       console.log('a user already exists with this email');
+        toastMessage.classList.add('active-toast');
+        toastMessageText.textContent = `a user already exists with this email`;
+         setTimeout(() => {
+         toastMessage.classList.remove('active-toast');
+        },2000)
     }else{
+        toastMessage.classList.add('active-toast');
+        toastMessageText.textContent = 'loading...';
         let studentClass = schoolClasses.find(cla => cla.id === currentTeacher.ClassId);
         console.log(studentClass);
         if(await addStudent(nameInput.value, emailInput.value, dateInput.value, guardianNo.value, studentClass.id)){
@@ -128,6 +143,10 @@ addButton.addEventListener('click', async()=>{
         loadClassRoster();
         addStudentForm.classList.add('hidden');
         formOverlay.classList.add('hidden');
+         toastMessageText.textContent = 'student was successfully added'
+        setTimeout(() => {
+         toastMessage.classList.remove('active-toast');
+        },2000);
         }else{
            addStudentForm.classList.add('hidden');
            errorState.classList.remove('hidden');
@@ -136,6 +155,14 @@ addButton.addEventListener('click', async()=>{
            errorState.classList.add('hidden');
            formOverlay.classList.add('hidden');
            });
+            toastMessageText.textContent = 'Failed to add student'
+            setTimeout(() => {
+            toastMessage.classList.remove('active-toast');
+            },2000);
+            closeBtn.addEventListener('click', function(){
+                errorState.classList.add('hidden');
+                formOverlay.classList.add('hidden');
+            });
         }
        
     }

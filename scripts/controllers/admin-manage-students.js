@@ -2,6 +2,7 @@ import { adminArray } from "../module.js";
 import { gettingUser } from "../module.js";
 import { requireAuth } from "../module.js";
 import {saveCollection} from "../module.js";
+import { TeachersArray } from "../module.js";
 import { clearSessionStorage } from "../module.js";
 import {studentsArray} from "../module.js";
 import {schoolClasses} from "../module.js";
@@ -95,8 +96,8 @@ addBtn.addEventListener('click', async()=>{
          setTimeout(() => {
          toastMessage.classList.remove('active-toast');
         },2000)
-    }else if(studentsArray.find(student => student.Email === emailInput.value)){
-      console.log(`This email already exists`);
+    }else if(TeachersArray.find(user => user.Email === emailInput.value) || studentsArray.find(student => student.Email === emailInput.value)){
+      console.log(`a user already exists with this email`);
        toastMessage.classList.add('active-toast');
         toastMessageText.textContent = `This email already exists`;
          setTimeout(() => {
@@ -159,11 +160,11 @@ CancelAddBtn.addEventListener('click', function(){
 closeAddForm.addEventListener('click', function(){
   addStudentForm.classList.add('hidden');
   formOverlay.classList.add('hidden');
-   nameInput.value = ''
-   dateInput.value = ''
+   nameInput.value = '';
+   dateInput.value = '';
    classSelect.value = 'Select a class';
-   guardianNo.value = ''
-   emailInput.value = ''
+   guardianNo.value = '';
+   emailInput.value = '';
 })
 
 classContainer.addEventListener('click', (event) => {
