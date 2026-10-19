@@ -7,11 +7,9 @@ import { schoolClasses } from "../module.js";
 import { gradesArray } from "../module.js";
 import { attendanceArray } from "../module.js";
 import { mappingStudentResults } from "../views/student-dashboard-view.js";
-
 const currentUser = gettingUser('currentUserId');
 const currentUserRole = gettingUser("currentUserRole");
-const currentStudent  = studentsArray.find(user => user.studentId === currentUser);  
-const currentStudentClass = schoolClasses.find(clas => clas.id === currentStudent.Classid);
+requireAuth(currentUser, "studentId", studentsArray, currentUserRole, 'student');
 window.addEventListener('pageshow', (event) => {
     if(event.persisted){
     const freshUserId = gettingUser("currentUserId");
@@ -19,7 +17,11 @@ window.addEventListener('pageshow', (event) => {
     requireAuth(freshUserId, "studentId", studentsArray, freshUserRole, 'student');
     }
 });
-requireAuth(currentUser, "studentId", studentsArray, currentUserRole, 'student');
+
+const currentStudent  = studentsArray.find(user => user.studentId === currentUser);  
+const currentStudentClass = schoolClasses.find(clas => clas.id === currentStudent.Classid);
+
+
 
 
 console.log(currentStudent);
