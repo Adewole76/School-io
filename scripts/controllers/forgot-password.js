@@ -92,7 +92,7 @@ sendBtn.addEventListener('click',  async () =>{
         //saveCollection('userTochangePassword', particularStudent);
         //window.location.href = '/pages/reset-password.html'
     }else{
-        toastMessageText.textContent = `This user email does not exists`;
+        toastMessageText.textContent = `This user does not exists`;
         setTimeout(() => {
          toastMessage.classList.remove('active-toast');
         },2000)

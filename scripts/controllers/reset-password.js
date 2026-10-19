@@ -8,6 +8,8 @@ const resetCodeInput = document.querySelector('.reset-code-input');
 const resetPasswordInput = document.querySelector('.reset-password-input');
 const confirmPasswordInput = document.querySelector('.confirm-password-input');
 const resetBtn = document.querySelector('.reset-btn');
+const toastMessage = document.querySelector('.toast-message');
+const toastMessageText = document.querySelector('.toastMessage-text');
 //const userTochangePassword = getCollection('userTochangePassword');
 
 async function hashPassword(password) {
@@ -65,8 +67,14 @@ const fortyEightHrs = 40 * 60 * 60 * 1000;
 
 
 resetBtn.addEventListener('click', async() => {
+  toastMessage.classList.add('active-toast');
+  toastMessageText.textContent = 'reseting password...';
     if(!resetCodeInput.value || !resetPasswordInput.value || !confirmPasswordInput.value){
       console.log('please fill in all the fields');
+      toastMessageText.textContent = `please fill in all the fields`;
+      setTimeout(() => {
+        toastMessage.classList.remove('active-toast');
+      },2000);
     }else if(resetCodeInput.value && resetPasswordInput.value === confirmPasswordInput.value){
       console.log(resetCodeInput.value);
       if(adminArray.some(user=> user.passwordResetCode === Number(resetCodeInput.value))){
@@ -75,18 +83,34 @@ resetBtn.addEventListener('click', async() => {
         let currentTimesstamp = Date.now();
         if (particularAdmin.passwordResetType === 'password reset' &&currentTimesstamp - particularAdmin.passwordResetTimestamp >= fifteenMinutes){
            console.log('you code has expired');
+           toastMessageText.textContent = `This code has expired`;
+           setTimeout(() => {
+             toastMessage.classList.remove('active-toast');
+           },2000)
         }else if(particularAdmin.passwordResetType === 'password reset' && currentTimesstamp - particularAdmin.passwordResetTimestamp < fifteenMinutes){
           const { saltHex, hashHex } = await hashPassword(resetPasswordInput.value);
           particularAdmin.passwordSalt = saltHex;
           particularAdmin.passwordHash = hashHex;
           saveCollection('admin', adminArray);
+          toastMessageText.textContent = 'password reset successfully';
+          setTimeout(() => {
+            toastMessage.classList.remove('active-toast');
+          },2000)
         }else if (particularAdmin.passwordResetType === 'setup' && currentTimesstamp - particularAdmin.passwordResetTimestamp >= fortyEightHrs){
           console.log('your code has expired');
+          toastMessageText.textContent = 'This code has expired';
+          setTimeout(() => {
+            toastMessage.classList.remove('active-toast');
+          })
         }else if(particularAdmin.passwordResetType === 'setup' && currentTimesstamp - particularAdmin.passwordResetTimestamp < fortyEightHrs){
           const { saltHex, hashHex } = await hashPassword(resetPasswordInput.value);
           particularAdmin.passwordSalt = saltHex;
           particularAdmin.passwordHash = hashHex;
           saveCollection('admin', adminArray);
+          toastMessageText.textContent = 'password reset successfully';
+          setTimeout(() => {
+            toastMessage.classList.remove('active-toast');
+          },2000)
         }
       }else if(studentsArray.some(user=> user.passwordResetCode === Number(resetCodeInput.value))){
         const particularStudent = studentsArray.find(user => user.passwordResetCode === Number(resetCodeInput.value));
@@ -94,40 +118,76 @@ resetBtn.addEventListener('click', async() => {
         let currentTimesstamp = Date.now();
         if (particularStudent.passwordResetType === 'password reset' && currentTimesstamp - particularStudent.passwordResetTimestamp >= fifteenMinutes){
            console.log('you code has expired')
+           toastMessageText.textContent = `This code has expired`;
+           setTimeout(() => {
+            toastMessage.classList.remove('active-toast');
+           },2000);
         }else if(particularStudent.passwordResetType === 'password reset' && currentTimesstamp - particularStudent.passwordResetTimestamp < fifteenMinutes){
           const { saltHex, hashHex } = await hashPassword(resetPasswordInput.value);
           particularStudent.passwordSalt = saltHex;
           particularStudent.passwordHash = hashHex;
           saveCollection('students', studentsArray);
+          toastMessageText.textContent = `password reset successfully`;
+          setTimeout(()=>{
+            toastMessage.classList.remove('active-toast');
+          },2000)
         }else if (particularStudent.passwordResetType === 'setup' && currentTimesstamp - particularStudent.passwordResetTimestamp >= fortyEightHrs){
           console.log('your code has expired');
+          toastMessageText.textContent = `This code has expired`;
+          setTimeout(() => {
+            toastMessage.classList.remove('active-toast');
+          })
         }else if(particularStudent.passwordResetType === 'setup' && currentTimesstamp - particularStudent.passwordResetTimestamp < fortyEightHrs){
           const { saltHex, hashHex } = await hashPassword(resetPasswordInput.value);
           particularStudent.passwordSalt = saltHex;
           particularStudent.passwordHash = hashHex;
           saveCollection('students', studentsArray);
+           toastMessageText.textContent = `password reset successfully`;
+          setTimeout(()=>{
+            toastMessage.classList.remove('active-toast');
+          },2000)
         }
       }else if(TeachersArray.some(user=> user.passwordResetCode === Number(resetCodeInput.value))){
         const particularTeacher = TeachersArray.find(user => user.passwordResetCode === Number(resetCodeInput.value));
         console.log(particularTeacher);
         let currentTimesstamp = Date.now();
         if (particularTeacher.passwordResetType === 'password reset' && currentTimesstamp - particularTeacher.passwordResetTimestamp >= fifteenMinutes){
-           console.log('you code has expired')
+           console.log('you code has expired');
+          toastMessageText.textContent = `This code has expired`;
+          setTimeout(() => {
+            toastMessage.classList.remove('active-toast');
+          })
         }else if(particularTeacher.passwordResetType === 'password reset' && currentTimesstamp - particularTeacher.passwordResetTimestamp < fifteenMinutes){
           const { saltHex, hashHex } = await hashPassword(resetPasswordInput.value);
           particularTeacher.passwordSalt = saltHex;
           particularTeacher.passwordHash = hashHex;
           saveCollection('teachers', TeachersArray);
+           toastMessageText.textContent = `password reset successfully`;
+          setTimeout(()=>{
+            toastMessage.classList.remove('active-toast');
+          },2000)
         }else if (particularTeacher.passwordResetType === 'setup' && currentTimesstamp - particularTeacher.passwordResetTimestamp >= fortyEightHrs){
           console.log('your code has expired');
+           toastMessageText.textContent = `This code has expired`;
+          setTimeout(()=>{
+            toastMessage.classList.remove('active-toast');
+          },2000)
         }else if(particularTeacher.passwordResetType === 'setup' && currentTimesstamp - particularTeacher.passwordResetTimestamp < fortyEightHrs){
           const { saltHex, hashHex } = await hashPassword(resetPasswordInput.value);
           particularTeacher.passwordSalt = saltHex;
           particularTeacher.passwordHash = hashHex;
           saveCollection('teachers', TeachersArray);
+           toastMessageText.textContent = `password reset successfully`;
+          setTimeout(()=>{
+            toastMessage.classList.remove('active-toast');
+          },2000)
         }
       }else{
          console.log('wrong code');
+          toastMessageText.textContent = `Wrong code`;
+          setTimeout(()=>{
+            toastMessage.classList.remove('active-toast');
+          },2000)
       }
 //     }else if(Number(resetCodeInput.value) !== userTochangePassword.passwordResetCode && userTochangePassword.passwordResetCode !== null){
 //       console.log(typeof resetCodeInput.value);
