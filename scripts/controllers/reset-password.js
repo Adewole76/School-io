@@ -98,7 +98,7 @@ resetBtn.addEventListener('click', async() => {
           const { saltHex, hashHex } = await hashPassword(resetPasswordInput.value);
           particularStudent.passwordSalt = saltHex;
           particularStudent.passwordHash = hashHex;
-          saveCollection('teachers', TeachersArray);
+          saveCollection('students', studentsArray);
         }else if (particularStudent.passwordResetType === 'setup' && currentTimesstamp - particularStudent.passwordResetTimestamp >= fortyEightHrs){
           console.log('your code has expired');
         }else if(particularStudent.passwordResetType === 'setup' && currentTimesstamp - particularStudent.passwordResetTimestamp < fortyEightHrs){

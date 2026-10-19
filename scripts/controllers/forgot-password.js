@@ -5,6 +5,8 @@ import {adminArray} from '../module.js';``
 import {saveCollection} from '../module.js';
 const sendBtn = document.querySelector('.send-btn');
 const emailInput = document.querySelector('.email-input');
+const toastMessage = document.querySelector('.toast-message');
+const toastMessageText = document.querySelector('.toastMessage-text');
 function generateFourDigitNumber() {
   return Math.floor(1000 + Math.random() * 9000);
 }
