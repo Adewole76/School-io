@@ -9,7 +9,7 @@ const emailInput = document.querySelector('.email-input');
 const passwordInput = document.querySelector('.password-input');
 const confirmPassword = document.querySelector('.confirm-password');
 const createAdminBtn = document.querySelector('.create-admin-btn');
-const toastMessage = document.querySelector('toast-message');
+const toastMessage = document.querySelector('.toast-message');
 const toastMessageText = document.querySelector('.toastMessage-text');
 
 createAdminBtn.addEventListener('click',  async () => {
