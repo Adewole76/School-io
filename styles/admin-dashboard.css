@@ -105,6 +105,12 @@
     text-decoration: none;
   }
 
+  .log-out{
+    background-color: transparent;
+    border: none;
+    color:var(--color-text-secondary);
+    font-family:var(--font-body);
+  }
   nav h2{
     font-family: var(--font-display);
     color: var(--color-primary-dark);
@@ -192,4 +198,14 @@
     height: 50px;
   }
 
+  @media(max-width:851px){
+    .stats-section{
+      grid-template-columns: 1fr;
+      row-gap: 1em;
+    }
+    footer{
+      grid-template-columns:1fr;
+      row-gap: 1em;
+    }
+  }
   
