@@ -120,7 +120,19 @@ teachersSection.addEventListener('click', (event)=>{
      formUserName.innerHTML = assignedTeacherInfo.Name;
      formUserEmail.innerHTML = assignedTeacherInfo.Email;
      saveAssignmentbtn.classList.add('hidden');
+     console.log(assignedTeacherInfo.ClassId);
+     const AssignedTeacherClass = schoolClasses.find(clas => clas.id === assignedTeacherInfo.ClassId);
+     console.log(AssignedTeacherClass);
      unassignBtn.classList.remove('hidden');
+     classAssignmentInput.classList.add('hidden');
+     unassignBtn.addEventListener('click', function(){
+       AssignedTeacherClass.teacherId = null;
+       assignedTeacherInfo.ClassId = null;
+       saveCollection('classes', schoolClasses)
+       saveCollection('teachers', TeachersArray);
+       mapUnAssignedTeachers(unassignedTeachers, unassingnedContainer)
+       mapAssignedTeachers(assignedTeachers, assignedContainer);
+     })
       removeBtn.addEventListener('click', function(){
         console.log('i am working')
         removalSection.classList.remove('hidden');
