@@ -1,6 +1,6 @@
 :root {
     /* Color — brand */
---color-bg: #FAF9F6
+    --color-bg: #FAF9F6;
     --color-primary: #2A3B7C;        /* deep institutional blue — headers, primary actions */
     --color-primary-dark: #1D2A5C;   /* hover/active state for primary */
     --color-primary-light: #E7EAF6;  /* tints, selected states, subtle backgrounds */
@@ -109,7 +109,7 @@
     background-color: transparent;
     border: none;
     color:var(--color-text-secondary);
-    font-family:var(--font-body);
+    font-family:var(--font-body)
   }
   nav h2{
     font-family: var(--font-display);

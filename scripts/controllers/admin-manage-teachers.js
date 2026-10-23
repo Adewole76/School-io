@@ -41,6 +41,7 @@ const cancelRemovalBtn = document.querySelector('.cancel-removal-btn');
 const actualRemoveBtn = document.querySelector('.actual-remove-btn');
 const formOverlay = document.querySelector('.form-overlay');
 const closeFormBtn = document.querySelector('.close-btn');
+const unassignBtn = document.querySelector('.unassign-btn');
 console.log(removeBtn);
 const formUserName = document.querySelector('.formUserName');
 const formUserEmail = document.querySelector('.formUserEmail');
@@ -118,30 +119,8 @@ teachersSection.addEventListener('click', (event)=>{
      console.log(assignedTeachertag, assignedTeacherInfo);
      formUserName.innerHTML = assignedTeacherInfo.Name;
      formUserEmail.innerHTML = assignedTeacherInfo.Email;
-     saveAssignmentbtn.addEventListener('click', function(){
-        if(classAssignmentInput.value === "Select a class to coordinate"){
-            console.log(`you haven't selected a class`);
-        }else{
-           const particularClass = schoolClasses.find(c => c.name === classAssignmentInput.value);
-           console.log(particularClass);
-           if(particularClass.teacherId !== null){
-            console.log('this class already has a teacher');
-           }else{
-           assignedTeacherInfo.ClassId = particularClass.id;
-           particularClass.teacherId = assignedTeacherInfo.teacherId;
-           saveCollection('teachers', TeachersArray);
-           saveCollection('classes', schoolClasses);
-           AssignmentForm.classList.add('hidden');
-           unassignedTeachers = TeachersArray.filter(user => user.ClassId === null);
-           assignedTeachers = TeachersArray.filter(user => user.ClassId !== null);
-           mapUnAssignedTeachers(unassignedTeachers, unassingnedContainer);
-           mapAssignedTeachers(assignedTeachers, assignedContainer);
-           console.log(assignedTeacherInfo);
-           AssignmentForm.classList.add('hidden');
-           formOverlay.classList.add('hidden');
-           }
-        };
-     });
+     saveAssignmentbtn.classList.add('hidden');
+     unassignBtn.classList.remove('hidden');
       removeBtn.addEventListener('click', function(){
         console.log('i am working')
         removalSection.classList.remove('hidden');
