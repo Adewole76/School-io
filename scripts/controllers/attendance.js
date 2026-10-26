@@ -14,6 +14,7 @@ const currentUserRole = gettingUser("currentUserRole");
 console.log(currentUser, currentUserRole);
 const currentTeacher = TeachersArray.find(user => user.teacherId === currentUser);
 requireAuth(currentUser, "teacherId", TeachersArray, currentUserRole, 'teacher');
+
 const sidebar = document.querySelector('.sidebar');
 const sidebarOverlay = document.querySelector('.overlay');
 const sidebarToggleOn = document.querySelector('.sidebar-toggle-on');

@@ -515,3 +515,103 @@ label input{
 	transform: translateY(-2.5em);
 	opacity: 1;
   }
+  .overlay{
+    position: fixed;
+    top:0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.169);
+    backdrop-filter:blur(2px);
+  }
+  .sidebar{
+    width: 70%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    justify-content:space-between;
+    flex-direction: column;
+    background-color:var(--color-bg);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+  }
+  .sidebar .logo-close-btn{
+    display: flex;
+    justify-content:space-between;
+    flex-wrap:nowrap;
+  }
+  .sidebar .logo-close-btn .symbol{
+    background-color:var(--color-primary-dark);
+    color:white;
+    padding: 10px 14px;
+  }
+  .sidebar .logo-close-btn p{
+    margin: 0;
+    color:var(--color-primary-dark);
+    font-family:var(--font-display);
+    font-size:var(--text-sm);
+    padding:10px 0;
+    font-weight:var(--weight-bold);
+  }
+  .sidebar .user-name-role{
+    margin: 0 0 0 5px;
+  }
+  .sidebar .user-name-role p{
+    display: block;
+  }
+  .user-name-role .sidebar-user-name{
+    color:var(--color-text);
+    font-weight:var(--weight-semibold);
+    font-family:var(--font-body);
+  }
+  .user-name-role.sidebar-user-name{
+    color:var(--color-text-secondary);
+  }
+  .sidebar-logout-btn{
+    background-color:transparent;
+    border: 1px solid var(--color-border);
+    width: 100%;
+    text-align:left;
+    padding: 1em 0 1em 8px;
+    margin-top: 1em;
+    font-family:var(--font-body);
+    color:var(--color-text-secondary);
+  }
+  .sidebar-user-actions div{
+    display:flex;
+    margin-top: 1em;
+  }
+  .sidebar-password-reset a{
+     text-decoration: none;
+     color:var(--color-text-secondary);
+     font-family:var(--font-body);
+  }
+  .sidebar-password-reset{
+    padding: 1em 0;
+  }
+  .sidebar-user-actions p{
+    margin: 0;
+  }
+  .dashboard-btn{
+    background-color:var(--color-primary-light);
+    width: 100%;
+    border:none;
+    text-align: left;
+    font-size:30px;
+    margin-top: 1em;
+    padding: 10px 0 10px 10px;
+  }
+  .dashboard-btn .dash-icon{
+    width: 30px;
+    height: 30px;
+    margin-top: 5px;
+  }
+  .active{
+    transform:translateX(0%);
+  }
+  .sidebar img{
+    width: 30px;
+    height: 30px;
+  }
