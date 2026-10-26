@@ -77,6 +77,28 @@ const cancelDeleteBtn = document.querySelector('.cancel-del');
 const deleteStudentBtn = document.querySelector('.delete-student');
 const showDeleteBtn = document.querySelector('.show-delete');
 
+const sidebar = document.querySelector('.sidebar')
+const sidebarOverlay = document.querySelector('.overlay');
+const sidebarToggleOn = document.querySelector('.sidebar-toggle-on');
+const closeSidebarBtn = document.querySelector('.close-sidebar');
+sidebarToggleOn.addEventListener('click', function(){
+    sidebar.classList.add('active');
+    sidebarOverlay.classList.remove('hidden');
+});
+
+closeSidebarBtn.addEventListener('click', function(){
+  sidebar.classList.remove('active')
+  sidebarOverlay.classList.add('hidden');
+})
+const sidebarUserName = document.querySelector('.sidebar-user-name');
+const sidebarUserRole = document.querySelector('.sidebar-user-role');
+const sidebarLogOutBtn = document.querySelector('.sidebar-logout-btn');
+sidebarLogOutBtn.addEventListener('click', function(){
+    clearSessionStorage();
+})
+sidebarUserRole.textContent = currentUserRole;
+sidebarUserName.textContent = currentAdmin.name;
+
 //
 const toastMessage = document.querySelector('.toast-message');
 const toastMessageText = document.querySelector('.toastMessage-text');

@@ -15,7 +15,35 @@ const currentUser = gettingUser('currentUserId');
 console.log(currentUser);
 console.log(typeof adminArray);
 const currentUserRole = gettingUser('currentUserRole');
+const currentAdmin = adminArray.find(user => user.adminid === currentUser);
 requireAuth(currentUser, "adminid", adminArray, currentUserRole, 'admin');
+
+const sidebar = document.querySelector('.sidebar');
+const sidebarOverlay = document.querySelector('.overlay');
+const sidebarToggleOn = document.querySelector('.sidebar-toggle-on');
+const closeSidebarBtn = document.querySelector('.close-sidebar');
+if (sidebarToggleOn && sidebar && sidebarOverlay) {
+    sidebarToggleOn.addEventListener('click', function(){
+        sidebar.classList.add('active');
+        sidebarOverlay.classList.remove('hidden');
+    });
+}
+if (closeSidebarBtn && sidebar && sidebarOverlay) {
+    closeSidebarBtn.addEventListener('click', function(){
+        sidebar.classList.remove('active');
+        sidebarOverlay.classList.add('hidden');
+    });
+}
+const sidebarUserName = document.querySelector('.sidebar-user-name');
+const sidebarUserRole = document.querySelector('.sidebar-user-role');
+const sidebarLogOutBtn = document.querySelector('.sidebar-logout-btn');
+if (sidebarLogOutBtn) {
+    sidebarLogOutBtn.addEventListener('click', function(){
+        clearSessionStorage();
+    });
+}
+if (sidebarUserRole) sidebarUserRole.textContent = currentUserRole;
+if (sidebarUserName && currentAdmin) sidebarUserName.textContent = currentAdmin.name;
 
 window.addEventListener('pageshow', (event) => {
     if (event.persisted) {
@@ -24,6 +52,8 @@ window.addEventListener('pageshow', (event) => {
         requireAuth(freshUserId, "adminid", adminArray, freshUserRole, 'admin');
     }
 });
+
+
 const teachersSection = document.querySelector('.teachers-section')
 const emptyState = document.querySelector('.empty-state-section');
 checkIfThereAreAnyteachers(TeachersArray, emptyState, teachersSection)
@@ -160,7 +190,6 @@ teachersSection.addEventListener('click', (event)=>{
      })
    }
 })
-
 
 
 

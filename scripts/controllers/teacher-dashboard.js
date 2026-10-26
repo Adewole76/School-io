@@ -19,6 +19,33 @@ window.addEventListener('pageshow', (event) => {
 });
 const currentTeacher = TeachersArray.find(user => user.teacherId === currentUser);
 requireAuth(currentUser, "teacherId", TeachersArray, currentUserRole, 'teacher')
+const sidebar = document.querySelector('.sidebar');
+const sidebarOverlay = document.querySelector('.overlay');
+const sidebarToggleOn = document.querySelector('.sidebar-toggle-on');
+const closeSidebarBtn = document.querySelector('.close-sidebar');
+if (sidebarToggleOn && sidebar && sidebarOverlay) {
+    sidebarToggleOn.addEventListener('click', function(){
+        sidebar.classList.add('active');
+        sidebarOverlay.classList.remove('hidden');
+    });
+}
+if (closeSidebarBtn && sidebar && sidebarOverlay) {
+    closeSidebarBtn.addEventListener('click', function(){
+        sidebar.classList.remove('active');
+        sidebarOverlay.classList.add('hidden');
+    });
+}
+const sidebarUserName = document.querySelector('.sidebar-user-name');
+const sidebarUserRole = document.querySelector('.sidebar-user-role');
+const sidebarLogOutBtn = document.querySelector('.sidebar-logout-btn');
+if (sidebarLogOutBtn) {
+    sidebarLogOutBtn.addEventListener('click', function(){
+        clearSessionStorage();
+    });
+}
+if (sidebarUserRole) sidebarUserRole.textContent = currentUserRole;
+if (sidebarUserName && currentTeacher) sidebarUserName.textContent = currentTeacher.Name;
+
 const userName = document.querySelector('.user-name');
 const userName2 = document.querySelector('.user-name-2')
 const userSubject = document.querySelector('.user-subject');
@@ -100,6 +127,5 @@ logOutBtn.addEventListener('click', function(){
         }
  }
  loadTeacherDashboard();
-
 
 

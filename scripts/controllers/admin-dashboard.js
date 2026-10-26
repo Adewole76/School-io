@@ -13,12 +13,39 @@ window.addEventListener('pageshow', (event) => {
         requireAuth(freshUserId, "adminid", adminArray, freshUserRole, 'admin');
     }
 });
+
 const currentUser = gettingUser('currentUserId');
 const currentUserRole = gettingUser('currentUserRole');
 console.log(currentUser);
 const currentAdmin = adminArray.find(user => user.adminid === currentUser);
 console.log(typeof adminArray);
 requireAuth(currentUser, "adminid", adminArray, currentUserRole, 'admin');
+
+//sidebar elements and functions
+const sidebar = document.querySelector('.sidebar')
+const sidebarOverlay = document.querySelector('.overlay');
+const sidebarToggleOn = document.querySelector('.sidebar-toggle-on');
+const closeSidebarBtn = document.querySelector('.close-sidebar');
+sidebarToggleOn.addEventListener('click', function(){
+    sidebar.classList.add('active');
+    sidebarOverlay.classList.remove('hidden');
+});
+
+closeSidebarBtn.addEventListener('click', function(){
+  sidebar.classList.remove('active')
+  sidebarOverlay.classList.add('hidden');
+})
+const sidebarUserName = document.querySelector('.sidebar-user-name');
+const sidebarUserRole = document.querySelector('.sidebar-user-role');
+const sidebarLogOutBtn = document.querySelector('.sidebar-logout-btn');
+sidebarLogOutBtn.addEventListener('click', function(){
+    clearSessionStorage();
+})
+sidebarUserRole.textContent = currentUserRole;
+sidebarUserName.textContent = currentAdmin.name;
+
+
+
 const adminName = document.querySelector('.admin-name');
 const totalTeachers = document.querySelector('.total-teachers');
 const totalStudents = document.querySelector('.total-students');
