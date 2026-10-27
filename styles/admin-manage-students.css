@@ -195,7 +195,11 @@
     background-color: white;
     padding:2em 2em;
     border-radius: 8px;
-    z-index: 120
+    z-index: 120;
+	width: calc(100% - 2rem);    
+    max-width: 500px;          
+    max-height: 90vh;         
+    overflow-y: auto;   
   }
   .edit-Name{
 	width: 100%;
@@ -688,6 +692,9 @@
 }
 @media(max-width:376px){
 	.main-student-data{
+		grid-template-columns: 1fr;
+	}
+	.student-edit-data{
 		grid-template-columns: 1fr;
 	}
 }
