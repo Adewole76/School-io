@@ -97,7 +97,7 @@ sidebarLogOutBtn.addEventListener('click', function(){
     clearSessionStorage();
 })
 sidebarUserRole.textContent = currentUserRole;
-sidebarUserName.textContent = currentAdmin.name;
+sidebarUserName.textContent = userName.name;
 
 //
 const toastMessage = document.querySelector('.toast-message');
