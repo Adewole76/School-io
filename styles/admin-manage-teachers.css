@@ -105,7 +105,18 @@
     font-weight:var(--weight-medium);
     font-family:var(--font-body);
   }
-
+  .sidebar-toggle-on{
+    position: fixed;
+    top: 15px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    display: none;
+  }
+  .sidebar-toggle-on img{
+    width: 30px;
+    height: 30px;
+  }
   .logo{
     margin: 0;
   }
@@ -204,6 +215,7 @@
     padding: 6px;
     border-radius: 6px;
     font-family:var(--font-mono);
+    white-space: nowrap;
 }
 .tag-btn button{
     display: inline-block;
@@ -299,6 +311,7 @@ form h3{
   border-radius: 6px;
   color: var(--color-success);
   font-family: var(--font-mono);
+  white-space: nowrap
 }
 
 .manage-btn{
@@ -471,4 +484,48 @@ form h3{
 .sidebar img{
   width: 30px;
   height: 30px;
+}
+@media(max-width: 906px){
+  .assigned-teacher{
+    display: block;
+  }
+  .unassigned-teacher{
+    display: block
+  }
+  .tag-btn{
+    display: block;
+  }
+  .teg-btn p{
+    width: 100%;
+    text-align: center;
+  }
+  .assign-btn{
+    width: 100%;
+  }
+  .assigned-tag-btn{
+    display:block;
+  }
+  .assigned-tag-btn p{
+    width: 100%;
+    text-align: center;
+  }
+  .manage-btn{
+    width: 100%;
+  }
+}
+@media(max-width: 501px){
+  .content-container{
+   padding: 1em 2em 0 2em; 
+  }
+  nav section{
+    display: none;
+  }
+  .sidebar-toggle-on{
+    display:block
+  }
+}
+@media(max-width: 400px){
+  .content-container{
+    padding: 1em 1em 0 1em;
+  }
 }

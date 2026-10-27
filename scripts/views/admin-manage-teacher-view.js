@@ -38,7 +38,7 @@ export const mapAssignedTeachers = (arr, container) => {
         console.log(particularClass);
         return `<div class="assigned-teacher" data-user-id="${user.teacherId}">
         <section class="img-Name-Email">
-           <div imga>
+           <div>
               <img src="/images/user.png">
            </div>
             <footer>

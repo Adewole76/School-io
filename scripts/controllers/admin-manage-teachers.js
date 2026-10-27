@@ -18,6 +18,14 @@ const currentUserRole = gettingUser('currentUserRole');
 const currentAdmin = adminArray.find(user => user.adminid === currentUser);
 requireAuth(currentUser, "adminid", adminArray, currentUserRole, 'admin');
 
+window.addEventListener('pageshow', (event) => {
+    if (event.persisted) {
+        const freshUserId = gettingUser('currentUserId');
+        const freshUserRole = gettingUser('currentUserRole');
+        requireAuth(freshUserId, "adminid", adminArray, freshUserRole, 'admin');
+    }
+});
+
 const sidebar = document.querySelector('.sidebar');
 const sidebarOverlay = document.querySelector('.overlay');
 const sidebarToggleOn = document.querySelector('.sidebar-toggle-on');
@@ -44,15 +52,6 @@ if (sidebarLogOutBtn) {
 }
 if (sidebarUserRole) sidebarUserRole.textContent = currentUserRole;
 if (sidebarUserName && currentAdmin) sidebarUserName.textContent = currentAdmin.name;
-
-window.addEventListener('pageshow', (event) => {
-    if (event.persisted) {
-        const freshUserId = gettingUser('currentUserId');
-        const freshUserRole = gettingUser('currentUserRole');
-        requireAuth(freshUserId, "adminid", adminArray, freshUserRole, 'admin');
-    }
-});
-
 
 const teachersSection = document.querySelector('.teachers-section')
 const emptyState = document.querySelector('.empty-state-section');

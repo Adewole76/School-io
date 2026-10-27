@@ -15,6 +15,22 @@ console.log(currentUser, currentUserRole);
 const currentTeacher = TeachersArray.find(user => user.teacherId === currentUser);
 requireAuth(currentUser, "teacherId", TeachersArray, currentUserRole, 'teacher');
 
+
+window.addEventListener('pageshow', (event) => {
+    if (event.persisted) {
+        const freshUserId = gettingUser('currentUserId');
+        const freshUserRole = gettingUser('currentUserRole');
+        requireAuth(freshUserId, "teacherId", TeachersArray, freshUserRole, 'teacher');
+    }
+});
+
+
+
+//navbar dom elements 
+const userName = document.querySelector('.user-name');
+const logOutBtn = document.querySelector('.log-out-btn');
+
+//sidebar elements 
 const sidebar = document.querySelector('.sidebar');
 const sidebarOverlay = document.querySelector('.overlay');
 const sidebarToggleOn = document.querySelector('.sidebar-toggle-on');
@@ -41,19 +57,6 @@ if (sidebarLogOutBtn) {
 }
 if (sidebarUserRole) sidebarUserRole.textContent = currentUserRole;
 if (sidebarUserName && currentTeacher) sidebarUserName.textContent = currentTeacher.Name;
-
-window.addEventListener('pageshow', (event) => {
-    if (event.persisted) {
-        const freshUserId = gettingUser('currentUserId');
-        const freshUserRole = gettingUser('currentUserRole');
-        requireAuth(freshUserId, "teacherId", TeachersArray, freshUserRole, 'teacher');
-    }
-});
-
-
-//navbar dom elements 
-const userName = document.querySelector('.user-name');
-const logOutBtn = document.querySelector('.log-out-btn');
 
 //date select elements
 
