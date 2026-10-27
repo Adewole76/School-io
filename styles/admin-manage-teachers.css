@@ -234,7 +234,11 @@ form{
     background-color: white;
     padding:2em 2em;
     border-radius: 8px;
-    z-index: 120
+    z-index: 120;
+    width: calc(100% - 2rem);  
+    max-width: 500px;        
+    max-height: 90vh;           
+    overflow-y: auto;   
 }
 form img{
     width: 50px;
@@ -280,6 +284,28 @@ form h3{
     box-shadow: var(--shadow-sm);
     padding: 1em;
     margin-bottom: 1em
+}
+.unassign-btn{
+  background-color:var(--color-primary-dark);
+  color: white;
+  padding: 10px 0;
+  margin-top:1em;
+  width: 100%;
+  border: 1px solid transparent;
+  border-radius:8px
+}
+.cancel-removal-btn{
+  background: transparent;
+  color:var(--color-primary-dark);
+  padding: 8px 10px;
+  border: 1px solid var(--color-primary-dark);
+  font-weight:var(--weight-bold);
+  margin-top: 8px;
+  border-radius: 6px;
+}
+.removal-section p{
+  font-family:var(--font-body);
+  color:var(--color-text-muted);
 }
 .assigned-teacher footer h3{
   margin: 0;
@@ -495,11 +521,11 @@ form h3{
   .tag-btn{
     display: block;
   }
-  .teg-btn p{
+  .tag-btn p{
     width: 100%;
     text-align: center;
   }
-  .assign-btn{
+  .Assign-btn{
     width: 100%;
   }
   .assigned-tag-btn{
@@ -523,9 +549,13 @@ form h3{
   .sidebar-toggle-on{
     display:block
   }
+
 }
 @media(max-width: 400px){
   .content-container{
     padding: 1em 1em 0 1em;
+  }
+  .unassinged-container{
+    padding: 8px;
   }
 }

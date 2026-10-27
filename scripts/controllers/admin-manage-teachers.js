@@ -71,6 +71,7 @@ const actualRemoveBtn = document.querySelector('.actual-remove-btn');
 const formOverlay = document.querySelector('.form-overlay');
 const closeFormBtn = document.querySelector('.close-btn');
 const unassignBtn = document.querySelector('.unassign-btn');
+const removalWarning = document.querySelector('.removal-warning1');
 console.log(removeBtn);
 const formUserName = document.querySelector('.formUserName');
 const formUserEmail = document.querySelector('.formUserEmail');
@@ -110,7 +111,7 @@ teachersSection.addEventListener('click', (event)=>{
            assignedTeachers = TeachersArray.filter(user => user.ClassId !== null);
            mapUnAssignedTeachers(unassignedTeachers, unassingnedContainer);
            mapAssignedTeachers(assignedTeachers, assignedContainer);
-           console.log(UnassignedTeacherInfo);
+        console.log(UnassignedTeacherInfo);
            AssignmentForm.classList.add('hidden');
            }
         };
@@ -119,10 +120,12 @@ teachersSection.addEventListener('click', (event)=>{
         console.log('i am working')
         removalSection.classList.remove('hidden');
         removeBtn.classList.add('hidden');
+        removalWarning.classList.add('hidden');
      });
      cancelRemovalBtn.addEventListener('click', function(){
       removalSection.classList.add('hidden');
       removeBtn.classList.remove('hidden');
+      removalWarning.classList.remove('hidden');
      });
      closeFormBtn.addEventListener('click', function(){
         AssignmentForm.classList.add('hidden');
@@ -166,10 +169,12 @@ teachersSection.addEventListener('click', (event)=>{
         console.log('i am working')
         removalSection.classList.remove('hidden');
         removeBtn.classList.add('hidden');
+        removalWarning.classList.add('hidden');
      });
      cancelRemovalBtn.addEventListener('click', function(){
       removalSection.classList.add('hidden');
       removeBtn.classList.remove('hidden');
+      removalWarning.classList.remove('hidden');
      });
      closeFormBtn.addEventListener('click', function(){
         AssignmentForm.classList.add('hidden');
