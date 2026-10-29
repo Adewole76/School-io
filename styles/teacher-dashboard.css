@@ -78,7 +78,8 @@
     width: 100%;
     margin: 0;
     height: 100vh;
-    padding: 4em 2em 0 2em;
+    padding: 0 2em 0 2em;
+    margin-top:4em;
     background-color: var(--color-bg);
   }
   .main-container{
@@ -94,9 +95,10 @@
     top: 0;
     left: 0;
     right: 0;
-    padding: 0.5em 2em;
+    padding:1em 2em;
     background-color: var(--color-bg);
     border-bottom: 1px solid var(--color-border-strong);
+    z-index: 100;
   }
   body p{
     font-family:var(--font-body);
@@ -104,7 +106,8 @@
   nav h1{
     font-family: var(--font-display);
     margin: 0;
-    color:var(--color-primary-dark)
+    color:var(--color-primary-dark);
+    font-size:var(--text-xl);
   }
   nav h1 span{
     color:var(--color-accent);
@@ -121,6 +124,19 @@
   }
   nav .user-profile p{
     display: inline-block;
+    margin: 0;
+  }
+  .sidebar-toggle-on{
+    position: fixed;
+    top: 15px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    display: none;
+  }
+  .sidebar-toggle-on img{
+    width: 30px;
+    height: 30px;
   }
   .account-details{
     font-family: var(--font-body);
@@ -318,3 +334,36 @@
     width: 30px;
     height: 30px;
   }
+
+  @media(max-width: 921px){
+    body{
+      margin-top: 18em;
+    }
+    .stats-section{
+      grid-template-columns: 1fr;
+      row-gap: 1em;
+    }
+    .teacher-actions{
+      grid-template-columns: 1fr;
+      row-gap: 1em;
+    }
+    .user-profile{
+      display: none;
+    }
+    .sidebar-toggle-on{
+      display: block;
+    }
+  }
+ 
+  
+  
+  /* @media(max-height: 771px){
+    body{
+      margin-top: 30em;
+    }
+  }
+  @media(max-height: 674px){
+    body{
+      margin-top: 35em;
+    }
+  } */
