@@ -195,7 +195,11 @@ header h2{
     background-color: white;
     padding:2em 2em;
     border-radius: 8px;
-    z-index: 120
+    z-index: 120;
+	width: calc(100% - 2rem);    
+    max-width: 500px;          
+    max-height: 90vh;         
+    overflow-y: auto;   
 }
 .add-student-form footer{
 	text-align: right;
@@ -309,6 +313,10 @@ label input{
     padding:2em 2em;
     border-radius: 8px;
     z-index: 120;
+	width: calc(100% - 2rem);    
+    max-width: 500px;          
+    max-height: 90vh;         
+    overflow-y: auto;   
 }
 .edit-student header{
 	display: flex;
@@ -628,13 +636,20 @@ label input{
     height: 30px;
   }
 
+
   @media(max-width: 417px){
-header footer{
+  header footer{
 	display:block;
-}
- footer .students-number{
+  }
+  footer .students-number{
 	margin: 1em 0;
- }
+  }
+  .add-student-form .main-student-data{
+	  grid-template-columns:1fr;	
+	}
+	.edit-student .student-edit-data{
+	  grid-template-columns: 1fr;
+	}
   }
 @media(max-width: 581px){
 	body{
