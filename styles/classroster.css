@@ -125,7 +125,18 @@ nav h1{
 nav h1 span{
 	color:var(--color-accent);
 }
-
+.sidebar-toggle-on{
+    position: fixed;
+    top: 15px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    display: none;
+  }
+  .sidebar-toggle-on img{
+    width: 30px;
+    height: 30px;
+  }
 
 .form-overlay{
 	position: fixed;
