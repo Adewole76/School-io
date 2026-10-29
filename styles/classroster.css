@@ -166,6 +166,7 @@ header footer{
 	border: 1px solid transparent;
 	font-weight:var(--weight-bold);
 	border-radius:6px;
+	white-space: nowrap;
 }
 .student-search{
 	padding: 10px;
@@ -626,3 +627,44 @@ label input{
     width: 30px;
     height: 30px;
   }
+
+  @media(max-width: 417px){
+header footer{
+	display:block;
+}
+ footer .students-number{
+	margin: 1em 0;
+ }
+  }
+@media(max-width: 581px){
+	body{
+		padding: 5em 1em 0 1em;
+	}
+	.students-container{
+		grid-template-columns: 1fr;
+		row-gap: 1em;
+	}
+}
+  @media(max-width: 695px){
+		nav h1{
+		font-size:var(--text-lg);
+	}
+    .sidebar-toggle-on{
+		display: block;
+	}
+	nav ul{
+		display: none;
+	}
+	header .showform{
+		display: block;
+	}
+	.showform p{
+		display: block;
+	}
+   .show-addStudentform{
+	display: block;
+	width: 100%;
+	margin-top: 1em;
+   }
+  }
+
