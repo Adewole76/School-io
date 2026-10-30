@@ -84,7 +84,28 @@
   }
   .main-container{
     width: 100%;
+    overflow-y: auto;
+    max-height: 90vh;
   }
+
+.main-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.main-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+
+.main-container::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 10px;
+}
+
+.main-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.5);
+}
+
   .hidden{
     display: none;
   }
@@ -337,7 +358,7 @@
 
   @media(max-width: 921px){
     body{
-      margin-top: 18em;
+      margin-top: 2em;
     }
     .stats-section{
       grid-template-columns: 1fr;
