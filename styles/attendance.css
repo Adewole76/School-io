@@ -118,7 +118,8 @@
   }
   nav h1{
 	font-family:var(--font-display);
-	color:var(--color-primary-dark)
+	color:var(--color-primary-dark);
+  font-size:var(--text-lg);
   }
   nav h1 span{
 	color:var(--color-accent);

@@ -137,7 +137,18 @@ nav .log-out-btn{
 	text-decoration:none;
 	font-family:var(--font-body);
    }
-
+.sidebar-toggle-on{
+    position: fixed;
+    top: 15px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    display: none;
+  }
+  .sidebar-toggle-on img{
+    width: 30px;
+    height: 30px;
+  }
 
   main header p{
 	font-family:var(--font-body);
@@ -434,4 +445,10 @@ nav .log-out-btn{
   .sidebar img{
     width: 30px;
     height: 30px;
+  }
+
+  @media(max-width: 1078px){
+    .results-info-container .main-results-container{
+      grid-template-columns: 1fr;
+    }
   }
