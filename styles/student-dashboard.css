@@ -108,6 +108,7 @@
 nav h1{
 	font-family:var(--font-display);
 	color:var(--color-primary-dark);
+  font-size:var(--text-lg);
 }
 nav h1 span{
 	color:var(--color-accent);
@@ -448,7 +449,71 @@ nav .log-out-btn{
   }
 
   @media(max-width: 1078px){
-    .results-info-container .main-results-container{
+    .main-results-container{
+      grid-template-columns: 1fr 1fr !important;
+    }
+
+  }
+  @media(max-width: 900px){
+    .attendance-stats{
       grid-template-columns: 1fr;
+      row-gap: 1em;
+    }
+    main{
+      padding: 5em 2em;
+    }
+  }
+
+  @media(max-width: 800px){
+    .results-info-container header{
+      display: block;
+    }
+    .term-picker{
+      display: flex;
+      justify-content: space-between;
+    }
+    .term-picker button:nth-child(2){
+	   margin: 0 2px;
+  }
+    .main-results-container{
+      grid-template-columns: 1fr !important;
+    }
+  }
+
+  @media(max-width: 700px){
+    nav ul{
+      display: none;
+    }
+    .sidebar-toggle-on{
+      display: block;
+    }
+    .profile-details{
+      display: block;
+    }
+  }
+
+  @media(max-width: 602px){
+    .profile-details .profile-details-container{
+      grid-template-columns: 1fr;
+    }
+  }
+  main{
+    padding: 5em 1em;
+  }
+  
+  @media(max-width: 380px){
+    .welcome-message{
+      font-size:var(--text-xl);
+    }
+    .user-profile-name{
+      font-size:var(--text-xl);
+    }
+  }
+  @media(max-width: 340px){
+    .profile-details{
+      padding: 2em 1em;
+    }
+    .main{
+      padding: 5em 8px;
     }
   }
