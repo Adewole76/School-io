@@ -139,7 +139,10 @@
 	background-color:white;
 	color: var(--color-primary-dark);
 	box-shadow:var(--shadow-sm);
-	border-radius: 6px
+	border-radius: 6px;
+  }
+  .change-status-btn{
+    white-space: nowrap
   }
   .change-status-btn .active-status-present{
     color:var(--color-success);
@@ -255,7 +258,8 @@
   .term-picker{
 	padding: 0.5em;
 	border-radius: 8px;
-	border: 1px solid var(--color-border)
+	border: 1px solid var(--color-border);
+
   }
   .term-picker button{
     background-color: transparent;
@@ -445,4 +449,42 @@
   .sidebar img{
     width: 30px;
     height: 30px;
+  }
+
+  @media(max-width: 400px){
+  .mark-attendance-container .attendance-record{
+    display: block;
+  }
+  }
+  @media(max-width: 618px){
+    .date-term-pickers{
+      display: block;
+    }
+    nav h1{
+      font-size:var(--text-lg);
+    }
+    .term-picker{
+      display: inline-block;
+      margin-top: 1em;
+    }
+  }
+  @media(max-width: 700px){
+    nav ul{
+      display: none;
+    }
+    .sidebar-toggle-on{
+      display: block;
+    }
+  }
+  @media(max-width: 900px){
+    .main-container{
+      padding: 0 1em;
+    }
+    .stats{
+      grid-template-columns: 1fr;
+      row-gap: 1em;
+    }
+    .outer-attendance-container header{
+      display: block;
+    }
   }
